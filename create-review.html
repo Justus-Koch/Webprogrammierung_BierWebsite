@@ -5,6 +5,30 @@
   <title>Review erstellen</title>
 </head>
 <body>
+ <h1>Review erstellen</h1>
+ <form>
+   <label for="picture">Bild</label>
+   <input type="file" name="picture" id="picture">
+   <img src="./img/bier.jpg" width="40" alt="beer"><br>
+   <label for="beer_name">Biername</label>
+   <input type="text" name="beer_name" id="beer_name"><br>
+   <label for="beer_type">Bierart</label>
+   <select name="beer_type" id="beer_type">
+     <option value="pils">Pils</option>
+     <option value="weizen">Weizen</option>
+     <option value="helles">Helles</option>
+   </select><br>
+   <label for="original_extract">Stammwürze</label>
+   <input type="number" min="0" max="30" step="0.01" name="original_extract" id="original_extract"><br>
+   <label for="alcohol_content">Alkoholgehalt</label>
+   <input type="number" min="0" max="20" step="0.01" name="alcohol_content" id="alcohol_content"><br>
+   <label for="rating">Bewertung</label>
+   <input type="range" min="0" max="5" name="rating" id="rating"><br>
+   <label for="content">Inhalt</label><br>
+   <textarea name="content" id="content" cols="50" rows="10"></textarea><br>
+   <button type="submit">Review erstellen</button>
+   <a href="./index.html">Abbrechen</a>
+ </form>
 
 </body>
 </html>
