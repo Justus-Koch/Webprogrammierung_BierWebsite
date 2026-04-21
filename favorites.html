@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Suche</title>
+  <title>Favoriten</title>
 </head>
 <body>
 <header>
@@ -11,12 +11,11 @@
     <ul>
       <li><a href="./index.html">Startseite</a></li>
       <li><a href="./create-review.html">Review erstellen</a></li>
-      <li><a href="favorites.html">Favoriten</a></li>
+      <li><a href="./favorites.html">Favoriten</a></li>
       <li><a href="./profile.html">Profil</a></li>
       <li><a href="./impressum.html">Impressum</a></li>
       <li><a href="./datenschutz.html">Datenschutz</a></li>
       <li><a href="./nutzungsbedingungen.html">Nutzungsbedingungen</a></li>
-      <li><a href="./login.html">Anmelden</a></li>
     </ul>
   </nav>
 
@@ -28,14 +27,13 @@
     <button type="submit">Suchen</button>
   </form>
 </header>
-
 <main>
-  <p>Suchergebnisse:</p>
+  <h2>Meine Favoriten</h2>
 
   <article class="post">
-    <h3>Beispieltitel 1</h3>
+    <h3>Beispieltitel</h3>
     <label for="favorite1">Favorisieren</label>
-    <input type="checkbox" id="favorite1" name="favorite1">
+    <input type="checkbox" id="favorite1" name="favorite1" checked>
     <div class="content">
       <img src="./img/bier.jpg" alt="Bier" width="70">
       <p>Biername:</p>
@@ -53,7 +51,29 @@
       <time datetime="2026-04-21">21.04.2026</time>
     </div>
   </article>
-</main>
 
+  <article class="post">
+    <h3>Beispieltitel</h3>
+    <label for="favorite2">Favorisieren</label>
+    <input type="checkbox" id="favorite2" name="favorite2" checked>
+    <div class="content">
+      <img src="./img/bier.jpg" alt="Bier" width="70">
+      <p>Biername:</p>
+      <p>Bierart:</p>
+      <p>Stammwürze:</p>
+      <p>Alkoholgehalt:</p>
+      <p>Bewertung: 5/5</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+        irure dolor in reprehenderit in voluptate velit esse cillum
+        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <time datetime="2026-04-21">21.04.2026</time>
+    </div>
+  </article>
+
+</main>
 </body>
 </html>
