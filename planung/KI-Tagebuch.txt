@@ -1,0 +1,8 @@
+----------------27.04. bearbeitung von Zettel 2, Thema css--------------------------------
+
+Prompt:
+
+Wie kann ich in css schöne hover-funktionen erstellen?
+
+Antwort:
+Mehrere Beispiele für hover funktionen. Von denen wurde eins in die Website für die posts übernommen.

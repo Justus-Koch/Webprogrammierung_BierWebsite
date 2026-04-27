@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Feed Seite</title>
   <!--<link rel="stylesheet" href="css/style.css">-->
+  <link rel="stylesheet" href="./css/components.css">
   <meta name="description" content="">
 
   <link rel="icon" href="./img/favicon.ico" sizes="any">
@@ -46,16 +47,23 @@
     <h2>Bier-Feed</h2>
 
     <article class="post">
+        <header class="post-header">
+          <span class="username">@User_Schluckspecht</span>
+          <div class = "favourite">
+            <label for="favorite1">Favorisieren</label>
+            <input type="checkbox" id="favorite1" name="favorite1">
+          </div>
+        </header>
       <h3>Beispieltitel 1</h3>
-      <label for="favorite1">Favorisieren</label>
-      <input type="checkbox" id="favorite1" name="favorite1">
-      <div class="content">
+      <div class="facts">
         <img src="./img/bier.jpg" alt="Bier" width="70">
-        <p>Biername:</p>
-        <p>Bierart:</p>
-        <p>Stammwürze:</p>
-        <p>Alkoholgehalt:</p>
-        <p>Bewertung: 5/5</p>
+        <p>Biername:<br> Krombacher</p>
+        <p>Bierart:<br> Pilsener</p>
+        <p>Stammwürze:<br> 11,5%</p>
+        <p>Alkoholgehalt:<br> 4,9%</p>
+        <p>Bewertung:<br> 5/5</p>
+      </div>
+      <div class = "content">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -63,14 +71,16 @@
           irure dolor in reprehenderit in voluptate velit esse cillum
           dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
           non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <time datetime="2026-04-21">21.04.2026</time>
       </div>
+      <time datetime="2026-04-21">21.04.2026</time>
     </article>
 
     <article class="post">
       <h3>Beispieltitel 2</h3>
-      <label for="favorite2">Favorisieren</label>
-      <input type="checkbox" id="favorite2" name="favorite2">
+      <div class = "favourite">
+        <label for="favorite2">Favorisieren</label>
+        <input type="checkbox" id="favorite2" name="favorite2">
+      </div>
       <div class="content">
         <img src="./img/bier.jpg" alt="Bier" width="70">
         <p>Biername:</p>
@@ -85,14 +95,16 @@
           irure dolor in reprehenderit in voluptate velit esse cillum
           dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
           non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <time datetime="2026-04-21">21.04.2026</time>
       </div>
+      <time datetime="2026-04-21">21.04.2026</time>
     </article>
 
     <article class="post">
       <h3>Beispieltitel 3</h3>
-      <label for="favorite3">Favorisieren</label>
-      <input type="checkbox" id="favorite3" name="favorite3">
+      <div class = "favourite">
+        <label for="favorite3">Favorisieren</label>
+        <input type="checkbox" id="favorite3" name="favorite3">
+      </div>
       <div class="content">
         <img src="./img/bier.jpg" alt="Bier" width="70">
         <p>Biername:</p>
@@ -107,8 +119,8 @@
           irure dolor in reprehenderit in voluptate velit esse cillum
           dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
           non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <time datetime="2026-04-21">21.04.2026</time>
       </div>
+      <time datetime="2026-04-21">21.04.2026</time>
     </article>
   </main>
 

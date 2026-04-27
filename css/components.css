@@ -1,0 +1,78 @@
+/* Die Hauptkarte des Posts */
+.post {
+  position: relative;
+  background: #FFE1A8;
+  border: 1px solid #111111;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+}
+
+.post:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 8px;
+}
+
+/* Titel*/
+.post h3 {
+  margin-top: 0;
+  color: #2c3e50;
+  display: inline-block;
+}
+
+/*Favourite*/
+.post .favourite {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 10;
+}
+
+/* Bild und Infos nebeneinander anordnen */
+.post .facts {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.post .content {
+  display: flex;
+  line-height: 1.5;
+  text-align: left;
+  color: #333;
+}
+
+.post img {
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #eee;
+}
+
+/* Die Bier-Fakten kompakt stylen */
+.post p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+}
+
+/* Den Datum-Tag dezent nach unten setzen */
+.post time {
+  display: block;
+  margin-top: 15px;
+  font-size: 0.8rem;
+  color: #111111;
+  text-align: right;
+}
