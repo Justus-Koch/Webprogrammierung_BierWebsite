@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Nutzungsbedingungen</title>
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 <header>
-  <h1>Bier-Pun einfügen!</h1>
-  <nav>
+  <nav class="navbar-vertical">
     <ul>
       <li><a href="./index.html">Startseite</a></li>
       <li><a href="./create-review.html">Review erstellen</a></li>
@@ -19,13 +19,22 @@
     </ul>
   </nav>
 
-  <a href="./login.html" class="button-secondary">Anmelden</a>
-
-  <form action="./search.html" method="GET" class="search-form">
-    <label for="site-search" class="visually-hidden">Website durchsuchen:</label>
-    <input type="search" id="site-search" name="q" placeholder="Suchen...">
-    <button type="submit">Suchen</button>
-  </form>
+  <nav class="navbar-horizontal">
+    <div class="navbar-left">
+      <button class="menuButton" onclick= "toggleSidebar()">Menü</button>
+      <form action="./search.html" method="GET" class="search-form">
+        <label for="site-search" class="visually-hidden">Website durchsuchen:</label>
+        <input type="search" id="site-search" name="q" placeholder="Suchen...">
+        <button type="submit">Suchen</button>
+      </form>
+    </div>
+    <div class="navbar-middle">
+      <h1>Prost-Protokoll</h1>
+    </div>
+    <div class="navbar-right">
+      <a href="./login.html" class="button-secondary">Anmelden</a>
+    </div>
+  </nav>
 </header>
 <main>
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
