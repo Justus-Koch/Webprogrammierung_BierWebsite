@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Feed Seite</title>
-  <!--<link rel="stylesheet" href="css/style.css">-->
   <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/style.css">
   <meta name="description" content="">
 
   <link rel="icon" href="./img/favicon.ico" sizes="any">
@@ -21,12 +21,29 @@
 
   <!-- Add your site or application content here -->
   <header>
-    <h1>Bier-Pun einfügen!</h1>
-    <nav>
+    <nav class="navbar-horizontal">
+      <div class="navbar-left">
+        <button class="menuButton" onclick= "toggleSidebar()">Menü</button>
+        <form action="./search.html" method="GET" class="search-form">
+          <label for="site-search" class="visually-hidden">Website durchsuchen:</label>
+          <input type="search" id="site-search" name="q" placeholder="Suchen...">
+          <button type="submit">Suchen</button>
+        </form>
+      </div>
+      <div class="navbar-middle">
+        <h1>Prost-Protokoll</h1>
+      </div>
+      <div class="navbar-right">
+        <a href="./login.html" class="button-secondary">Anmelden</a>
+      </div>
+    </nav>
+  </header>
+  <div class="layout">
+    <nav class="navbar-vertical">
       <ul>
         <li><a href="./index.html">Startseite</a></li>
         <li><a href="./create-review.html">Review erstellen</a></li>
-        <li><a href="./favorites.html">Favoriten</a></li>
+        <li><a href="./index.html">Favoriten</a></li>
         <li><a href="./profile.html">Profil</a></li>
         <li><a href="./impressum.html">Impressum</a></li>
         <li><a href="./datenschutz.html">Datenschutz</a></li>
@@ -34,17 +51,8 @@
       </ul>
     </nav>
 
-    <a href="./login.html" class="button-secondary">Anmelden</a>
-
-    <form action="./search.html" method="GET" class="search-form">
-      <label for="site-search" class="visually-hidden">Website durchsuchen:</label>
-      <input type="search" id="site-search" name="q" placeholder="Suchen...">
-      <button type="submit">Suchen</button>
-    </form>
-  </header>
-
-  <main>
-    <h2>Bier-Feed</h2>
+    <main>
+      <h2>Bier-Feed</h2>
 
     <article class="post">
         <header class="post-header">
@@ -146,7 +154,12 @@
     </article>
   </main>
 
-  <script src="./js/app.js"></script>
+  <script>
+    function toggleSidebar() {
+          document.querySelector('.navbar-vertical')
+    .classList.toggle('active');
+    }
+  </script>
 
 </body>
 
