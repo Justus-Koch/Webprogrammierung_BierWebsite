@@ -316,13 +316,27 @@ body {
   letter-spacing: 0.5px;
 }
 
-.navbar-vertical {
-  position: fixed;
-  top: 58px; /* Höhe der oberen Navbar*/
-  left: -200px; /* -250 ersteckt */
+.navbar-vertical.active {
   width: 200px;
-  height: 100%;
+}
+
+.layout {
+  display: flex;
+}
+
+.navbar-vertical {
   background-color: #444;
+  width: 200px;
+  overflow: hidden;
+  transition: 0.3s;
+
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
 }
 
 .navbar-vertical ul {
@@ -339,9 +353,6 @@ body {
 
 .navbar-vertical li a:hover {
   background-color: #111;
-}
-.navbar-vertical.active {
-  left: 0;
 }
 
 

@@ -4,24 +4,13 @@
   <meta charset="UTF-8">
   <title>Datenschutz</title>
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/components.css">
 </head>
 <body>
 <header>
-  <nav class="navbar-vertical">
-    <ul>
-      <li><a href="./index.html">Startseite</a></li>
-      <li><a href="./create-review.html">Review erstellen</a></li>
-      <li><a href="./favorites.html">Favoriten</a></li>
-      <li><a href="./profile.html">Profil</a></li>
-      <li><a href="./impressum.html">Impressum</a></li>
-      <li><a href="./datenschutz.html">Datenschutz</a></li>
-      <li><a href="./nutzungsbedingungen.html">Nutzungsbedingungen</a></li>
-    </ul>
-  </nav>
-
   <nav class="navbar-horizontal">
     <div class="navbar-left">
-      <button class="menuButton" onclick= "toggleSidebar()">Menü</button>
+      <button class="menuButton" onclick="toggleSidebar()">Menü</button>
       <form action="./search.html" method="GET" class="search-form">
         <label for="site-search" class="visually-hidden">Website durchsuchen:</label>
         <input type="search" id="site-search" name="q" placeholder="Suchen...">
@@ -36,14 +25,29 @@
     </div>
   </nav>
 </header>
-<main>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco
-    laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-    irure dolor in reprehenderit in voluptate velit esse cillum
-    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</main>
+<div class="layout">
+  <nav class="navbar-vertical">
+    <ul>
+      <li><a href="./index.html">Startseite</a></li>
+      <li><a href="./create-review.html">Review erstellen</a></li>
+      <li><a href="./index.html">Favoriten</a></li>
+      <li><a href="./profile.html">Profil</a></li>
+      <li><a href="./impressum.html">Impressum</a></li>
+      <li><a href="./datenschutz.html">Datenschutz</a></li>
+      <li><a href="./nutzungsbedingungen.html">Nutzungsbedingungen</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h2>Datenschutz</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco
+      laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+      irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+      non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </main>
+</div>
 </body>
 </html>
