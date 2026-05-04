@@ -49,9 +49,13 @@
     <article class="post">
         <header class="post-header">
           <span class="username">@User_Schluckspecht</span>
-          <div class = "favourite">
-            <label for="favorite1">Favorisieren</label>
-            <input type="checkbox" id="favorite1" name="favorite1">
+          <div class="favourite">
+            <input type="checkbox" id="favorite1" name="favorite1" class="favourite-checkbox">
+
+            <label for="favorite1" class="favourite-label">
+              <span class="favourite-icon"></span>
+              <span class="visually-hidden">Favorisieren</span>
+            </label>
           </div>
         </header>
       <h3>Beispieltitel 1</h3>
@@ -59,8 +63,8 @@
         <img src="./img/bier.jpg" alt="Bier" width="70">
         <p>Biername:<br> Krombacher</p>
         <p>Bierart:<br> Pilsener</p>
-        <p>Stammwürze:<br> 11,5%</p>
         <p>Alkoholgehalt:<br> 4,9%</p>
+        <p>Stammwürze:<br> 11,5%</p>
         <p>Bewertung:<br> 5/5</p>
       </div>
       <div class = "content">
@@ -76,18 +80,27 @@
     </article>
 
     <article class="post">
+      <header class="post-header">
+        <span class="username">@User_Bierabetiker</span>
+        <div class="favourite">
+          <input type="checkbox" id="favorite2" name="favorite2" class="favourite-checkbox">
+
+          <label for="favorite2" class="favourite-label">
+            <span class="favourite-icon"></span>
+            <span class="visually-hidden">Favorisieren</span>
+          </label>
+        </div>
+      </header>
       <h3>Beispieltitel 2</h3>
-      <div class = "favourite">
-        <label for="favorite2">Favorisieren</label>
-        <input type="checkbox" id="favorite2" name="favorite2">
-      </div>
-      <div class="content">
+      <div class="facts">
         <img src="./img/bier.jpg" alt="Bier" width="70">
-        <p>Biername:</p>
-        <p>Bierart:</p>
-        <p>Stammwürze:</p>
-        <p>Alkoholgehalt:</p>
-        <p>Bewertung: 5/5</p>
+        <p>Biername:<br> Jever</p>
+        <p>Bierart:<br> Pilsener</p>
+        <p>Alkoholgehalt:<br> 4,9%</p>
+        <p>Stammwürze:<br> 11,7%</p>
+        <p>Bewertung:<br> 5/5</p>
+      </div>
+      <div class = "content">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -100,18 +113,27 @@
     </article>
 
     <article class="post">
+      <header class="post-header">
+        <span class="username">@User_Vergenussferkler</span>
+        <div class="favourite">
+          <input type="checkbox" id="favorite3" name="favorite3" class="favourite-checkbox">
+
+          <label for="favorite3" class="favourite-label">
+            <span class="favourite-icon"></span>
+            <span class="visually-hidden">Favorisieren</span>
+          </label>
+        </div>
+      </header>
       <h3>Beispieltitel 3</h3>
-      <div class = "favourite">
-        <label for="favorite3">Favorisieren</label>
-        <input type="checkbox" id="favorite3" name="favorite3">
-      </div>
-      <div class="content">
+      <div class="facts">
         <img src="./img/bier.jpg" alt="Bier" width="70">
-        <p>Biername:</p>
-        <p>Bierart:</p>
-        <p>Stammwürze:</p>
-        <p>Alkoholgehalt:</p>
-        <p>Bewertung: 5/5</p>
+        <p>Biername:<br> Spaten</p>
+        <p>Bierart:<br> Helles</p>
+        <p>Alkoholgehalt:<br> 5,0%</p>
+        <p>Stammwürze:<br> 12%</p>
+        <p>Bewertung:<br> 5/5</p>
+      </div>
+      <div class = "content">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           Ut enim ad minim veniam, quis nostrud exercitation ullamco

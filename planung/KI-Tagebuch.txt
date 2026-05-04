@@ -6,3 +6,9 @@ Wie kann ich in css schöne hover-funktionen erstellen?
 
 Antwort:
 Mehrere Beispiele für hover funktionen. Von denen wurde eins in die Website für die posts übernommen.
+
+Prompt:
+
+Wie kann ich eine Checkbox visuell umstylen, zum beispiel als Herz, das anklickbar ist?
+
+Antwort: Anleitung zur erstellung einer herz checkbox mithilfe von pseudo elementen

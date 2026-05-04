@@ -1,4 +1,4 @@
-/* Die Hauptkarte des Posts */
+/* main card of post */
 .post {
   position: relative;
   background: #FFE1A8;
@@ -27,7 +27,7 @@
   padding-bottom: 8px;
 }
 
-/* Titel*/
+/* Title*/
 .post h3 {
   margin-top: 0;
   color: #2c3e50;
@@ -41,8 +41,73 @@
   right: 15px;
   z-index: 10;
 }
+/*hides the normal checkbox, so the label can be styled as needed*/
+.favourite-checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.favourite-label {
+  display: inline-block;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+}
+/* heart icon made from different elements */
+.favourite-icon {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.favourite-icon::before,
+.favourite-icon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 16px; /* half of width */
+  height: 26px;
+  /* standardcolour grey */
+  background-color: #bdc3c7;
+  border-radius: 16px 16px 0 0;
+  transition: background-color 0.3s ease;
+}
+/* rotate both halves of the heart so they are in place */
+.favourite-icon::before {
+  left: 16px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
 
-/* Bild und Infos nebeneinander anordnen */
+.favourite-icon::after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+/* change colour to red if clicked */
+.favourite-checkbox:checked + .favourite-label .favourite-icon::before,
+.favourite-checkbox:checked + .favourite-label .favourite-icon::after {
+  background-color: #e74c3c;
+}
+/* hover effect */
+.favourite-label:hover .favourite-icon::before,
+.favourite-label:hover .favourite-icon::after {
+  background-color: #95a5a6;
+}
+/* help class for hiding text */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* arrange picture and facts next to each other */
 .post .facts {
   display: flex;
   gap: 20px;
@@ -62,13 +127,13 @@
   border: 1px solid #eee;
 }
 
-/* Die Bier-Fakten kompakt stylen */
+/* compact syling of facts */
 .post p {
   margin: 5px 0;
   font-size: 0.95rem;
 }
 
-/* Den Datum-Tag dezent nach unten setzen */
+/* date time in subtle style */
 .post time {
   display: block;
   margin-top: 15px;
