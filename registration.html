@@ -5,7 +5,7 @@
   <title>Registrierung</title>
 </head>
 <body>
-<section class="register-container">
+<main class="register-container">
   <h2>Neues Konto erstellen</h2>
 
   <form action="/register" method="POST">
@@ -24,10 +24,24 @@
       <input type="password" id="password-confirm" name="password_confirm" required>
     </div>
 
+    <div class="form-group">
+      <label for="nickname">Spitzname</label>
+      <input type="text" id="nickname" name="nickname">
+    </div>
+
     <button type="submit">Jetzt registrieren</button>
     <a href="./login.html" class="button-secondary">Abbrechen</a>
   </form>
-</section>
+</main>
+
+<footer>
+  <ul>
+    <li><a href="./impressum.html">Impressum</a></li>
+    <li><a href="./datenschutz.html">Datenschutz</a></li>
+    <li><a href="./nutzungsbedingungen.html">Nutzungsbedingungen</a></li>
+    <li><a href="./barrierefreiheit.html">Barrierefreiheitserklärung</a></li>
+  </ul>
+</footer>
 
 </body>
 </html>
