@@ -34,7 +34,34 @@ main {
   flex-direction: column;
 }
 
-/* labels verstecken, aber für screenreade verfügbar */
+/* Footer*/
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 15px 20px;
+  margin-top: 40px;
+  font-size: 14px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* labels verstecken, aber für screenreader verfügbar */
 .visually-hidden {
   position: absolute;
   width: 1px;

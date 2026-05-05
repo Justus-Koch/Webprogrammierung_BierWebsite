@@ -26,3 +26,6 @@ Wie verstecke ich ein Label für ein Input in CSS so, dass es nicht sichtbar ist
 Antwort:
 CSS-Klasse .visually-hidden, wurde so übernommen und integriert
 
+5. Prompt (ChatGPT, 05.05.2026)
+Impressum, Datenschutz und Nutzungsbedingungen wurde in einen Footer ausgelagert. Erstelle mir das CSS, um den Footer dezent, aber gut sichtbar in ähnlichem Design wie die horizontale Navigationsleiste zu gestalten.
+
