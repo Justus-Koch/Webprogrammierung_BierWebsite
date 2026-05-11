@@ -77,15 +77,20 @@
 }
 
 /* styling for all secondary buttons */
+/* Styling für alle sekundären Buttons (z.B. Abbrechen) */
 .button-secondary {
-  display: inline-block;
-  padding: 5px 15px;
+  display: inline-flex;    /* Ermöglicht Zentrierung des Inhalts */
+  align-items: center;     /* Vertikale Zentrierung */
+  justify-content: center; /* Horizontale Zentrierung */
+  padding: 10px 15px;      /* Padding angepasst an btn-submit */
   background-color: #f0f2f5;
   color: #333;
   text-decoration: none;
-  border-radius: 20px;
+  border-radius: 6px;      /* Radius vereinheitlicht mit btn-submit */
   font-weight: 600;
   transition: background 0.3s ease;
+  box-sizing: border-box;  /* Wichtig für korrekte Breite */
+  text-align: center;      /* Fallback für ältere Browser */
 }
 .button-secondary:hover {
   background-color: #e2e5e9;
