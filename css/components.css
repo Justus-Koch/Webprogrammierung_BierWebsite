@@ -519,3 +519,57 @@ fieldset legend {
     margin-top: 0;
   }
 }
+
+/* Spezifisch für die Filter-Sektion */
+.filter-form {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.filter-options {
+  display: flex;
+  flex-wrap: wrap; /* Erlaubt Umbruch auf Handys */
+  gap: 15px;
+  align-items: center;
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* Checkboxen etwas größer für bessere Touch-Bedienung */
+.filter-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #333;
+}
+
+.btn-small {
+  padding: 8px 15px;
+  font-size: 0.9rem;
+}
+
+/* Responsive Anpassung für Filter */
+@media (max-width: 600px) {
+  .filter-options {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-options .btn-submit {
+    width: 100%; /* Button auf Mobile volle Breite */
+  }
+}
+
+/* Barrierefreiheit: Fokus für Checkboxen */
+.filter-item input:focus-visible + label {
+  outline: 2px solid #333;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
