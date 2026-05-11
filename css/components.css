@@ -277,3 +277,225 @@
   margin-bottom: 25px;
   padding: 0 20px;
 }
+
+/* REVIEW */
+/* --- FORMULAR CONTAINER (REVIEW ERSTELLEN/BEARBEITEN) --- */
+.form-card {
+  background: #FFE1A8;
+  border: 1px solid #111111;
+  border-radius: 12px;
+  /* Responsive Breite: Mobile First */
+  width: 95%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.form-card h1 {
+  margin-top: 0;
+  color: #2c3e50;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* --- FORMULAR LAYOUT --- */
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Fieldset Reset für Barrierefreiheit (Stammwürze/Alkohol & Sterne) */
+.form-row,
+fieldset.form-group,
+.form-group.fieldset-reset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Stammwürze & Alkohol Zeile: Mobile First (untereinander) */
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* --- FORMULAR ELEMENTE --- */
+.review-form label,
+fieldset legend {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+  padding: 0;
+  margin-bottom: 5px;
+}
+
+.review-form input[type="text"],
+.review-form input[type="number"],
+.review-form select,
+.review-form textarea {
+  width: 100%; /* Volle Breite für Responsivität */
+  box-sizing: border-box; /* Padding vergrößert das Element nicht */
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background-color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.review-form input:focus,
+.review-form textarea:focus,
+.review-form select:focus {
+  outline: 2px solid #444;
+  border-color: transparent;
+}
+
+/* Datei-Upload & Vorschau */
+.file-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.file-input-wrapper img {
+  border-radius: 4px;
+  border: 1px solid #333;
+  object-fit: cover;
+}
+
+/* --- BUTTONS & AKTIONEN --- */
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* Button Gruppe Bearbeitungsseite: Mobile First (untereinander) */
+.form-footer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px dashed #333;
+}
+
+.left-actions {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 15px;
+}
+
+.btn-submit, .btn-delete {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+  width: 100%; /* Volle Breite auf Mobile */
+  text-align: center;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  margin-top: 10px;
+}
+
+.btn-submit:hover { background-color: #555; }
+.btn-delete:hover { background-color: #c0392b; }
+
+/* --- STERNE RATING --- */
+.star-rating-accessible {
+  display: flex;
+  gap: 5px;
+  flex-direction: row;
+  margin-top: 5px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.star-rating-accessible input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.star-rating-accessible label {
+  font-size: 32px;
+  color: #bdc3c7;
+  cursor: pointer;
+  transition: color 0.15s ease-in-out, transform 0.1s ease;
+  line-height: 1;
+}
+
+.star-rating-accessible input:checked + label,
+.star-rating-accessible label:has(~ input:checked) {
+  color: #f1c40f;
+}
+
+.star-rating-accessible label:hover,
+.star-rating-accessible label:has(~ label:hover) {
+  color: #f39c12;
+  transform: scale(1.1);
+}
+
+.star-rating-accessible input:focus + label { outline: none; }
+.star-rating-accessible input:focus-visible + label {
+  outline: 2px solid #333;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* --- MEDIA QUERIES (DESKTOP ANPASSUNGEN) --- */
+@media (min-width: 600px) {
+  .form-card {
+    padding: 30px;
+    margin: 40px auto;
+  }
+
+  .form-row {
+    flex-direction: row; /* Stammwürze/Alkohol nebeneinander */
+    gap: 20px;
+  }
+
+  .form-row .form-group {
+    flex: 1;
+  }
+
+  .form-footer-actions {
+    flex-direction: row; /* Speichern & Löschen nebeneinander */
+    justify-content: space-between;
+  }
+
+  .left-actions {
+    flex-direction: row;
+    width: auto;
+  }
+
+  .btn-submit, .btn-delete {
+    width: auto; /* Buttons schrumpfen auf Inhalt */
+  }
+
+  .btn-delete {
+    margin-top: 0;
+  }
+}
