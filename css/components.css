@@ -134,14 +134,12 @@
 
 /* favourite */
 .post .favourite {
-  position: absolute;
-  top: 15px;
-  right: 15px;
+  position: relative;
   z-index: 10;
 }
 /* hides the normal checkbox, so the label can be styled as needed */
 .favourite-checkbox {
-  position: absolute;
+  position: relative;
   opacity: 0;
   width: 0;
   height: 0;
@@ -281,6 +279,23 @@
   color: #666;
   margin-bottom: 25px;
   padding: 0 20px;
+}
+
+.post-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.post-actions .button-secondary {
+  padding: 5px 12px;
+  font-size: 0.85rem;
+}
+
+main h2 {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 /* REVIEW */
