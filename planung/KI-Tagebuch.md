@@ -46,6 +46,10 @@ Antwort: Anpassung des HTMLs und des CSSs.
 Gestalte die Seiten nun responsive entsprechend der gegebene Maßstäbe (Vorlesung gegeben)
 Antwort: Die Seiten wurden durch fluide Layouts und Media Queries responsive gestaltet.
 
-11. Prompt (Gemini, 02.05.2026):
+11. Prompt (Gemini, 02.05.2026)
 Wie kann ich eine Checkbox visuell umstylen, zum Beispiel als Herz, das anklickbar ist?
 Antwort: Anleitung zur Erstellung einer Herz-Checkbox mithilfe von Pseudoelementen.
+
+12. Prompt (Gemini, 11.05.2026)
+Designe nun auch diese Seite zum Bearbeiten des Profils. achte dabei auf Barrierefreiheit und responsive Design. Nutze bereits vorher erstelltes CSS, falls möglich.
+Antwort: Optimiertes HTML und

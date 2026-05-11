@@ -2,30 +2,53 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Profil bearbeiten</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Profil bearbeiten</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/components.css">
 </head>
 <body>
-  <h1>Profil bearbeiten</h1>
-  <main>
-    <form method="post">
-      <label for="nickname">Nickname:</label><br>
-      <input type="text" id="nickname" name="nickname" value="Nickname"><br>
-      <label for="profile_picture">Profilbild:</label><br>
-      <input type="file" id="profile_picture" name="profile_picture">
-      <img src="./img/profile_picture.jpg" alt="Profilbild" width="50"><br>
-      <button type="submit">Speichern</button>
-      <a href="./profile.html">Abbrechen</a>
-    </form>
-    <button type="submit">Profil löschen</button>
-  </main>
+<main>
+  <div class="form-card">
+    <h1>Profil bearbeiten</h1>
 
-  <footer class="footer">
-    <div class="footer-content">
-      <a href="./impressum.html">Impressum</a>
-      <a href="./datenschutz.html">Datenschutz</a>
-      <a href="./nutzungsbedingungen.html">Nutzungsbedingungen</a>
-      <a href="./barrierefreiheit.html">Barrierefreiheitserklärung</a>
-    </div>
-  </footer>
+    <form method="post" class="review-form">
+
+      <div class="form-group">
+        <label for="nickname">Nickname <span aria-hidden="true">*</span></label>
+        <input type="text" id="nickname" name="nickname" value="Nickname" required aria-required="true">
+      </div>
+
+      <div class="form-group">
+        <label for="profile_picture">Profilbild ändern</label>
+        <div class="file-input-wrapper">
+          <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+          <img src="./img/profile_picture.jpg" alt="Aktuelles Profilbild" width="50" height="50">
+        </div>
+      </div>
+
+      <div class="form-footer-actions">
+        <div class="left-actions">
+          <button type="submit" class="btn-submit">Speichern</button>
+          <a href="./profile.html" class="button-secondary">Abbrechen</a>
+        </div>
+
+        <button type="button" class="btn-delete"
+                aria-label="Profil unwiderruflich löschen"
+                onclick="return confirm('Möchtest du dein Profil wirklich löschen?')">
+          Profil löschen
+        </button>
+      </div>
+    </form>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-content">
+    <a href="./impressum.html">Impressum</a>
+    <a href="./datenschutz.html">Datenschutz</a>
+    <a href="./nutzungsbedingungen.html">Nutzungsbedingungen</a>
+    <a href="./barrierefreiheit.html">Barrierefreiheitserklärung</a>
+  </div>
+</footer>
 </body>
 </html>
