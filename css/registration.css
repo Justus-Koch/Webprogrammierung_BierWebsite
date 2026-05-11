@@ -1,0 +1,92 @@
+body {
+  font-family: 'Chau Philomene One', sans-serif;
+  background: #403f3f;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.registration-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 25px;
+  border-radius: 10px;
+  background: #FFE1A8;
+  border: 5px solid #000000;
+  box-sizing: border-box;
+}
+
+h2 {
+  text-align: center;
+  font-size: 35px;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 2px solid #000;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+input:focus {
+  outline: 3px solid blue;
+  outline-offset: 2px;
+}
+
+button {
+  background: #cccccc;
+  font-family: 'Chau Philomene One', sans-serif;
+  width: 100%;
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 20px;
+  border: 2px solid #000;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.2s;
+}
+
+button:hover, button:focus {
+  background: #b3b3b3;
+  outline: 3px solid blue;
+  outline-offset: 2px;
+}
+
+.button-secondary {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  color: #000;
+  text-decoration: underline;
+  text-decoration-color: blue;
+  text-decoration-thickness: 2px;
+  padding: 8px;
+}
+
+@media (max-width: 350px) {
+  .registration-container {
+    padding: 15px;
+    border-width: 3px;
+  }
+  h2 {
+    font-size: 28px;
+  }
+}
