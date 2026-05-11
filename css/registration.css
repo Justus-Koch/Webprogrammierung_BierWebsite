@@ -1,15 +1,13 @@
 body {
-  font-family: 'Chau Philomene One', sans-serif;
-  background: #403f3f;
-  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 20px;
+  margin: 0;
+  background: #403f3f;
 }
 
-.registration-container {
+.register-container {
   width: 100%;
   max-width: 400px;
   padding: 25px;
@@ -51,7 +49,7 @@ input:focus {
   outline-offset: 2px;
 }
 
-button {
+button[type="submit"] {
   background: #cccccc;
   font-family: 'Chau Philomene One', sans-serif;
   width: 100%;
@@ -64,7 +62,8 @@ button {
   transition: background 0.2s;
 }
 
-button:hover, button:focus {
+button[type="submit"]:hover,
+button[type="submit"]:focus {
   background: #b3b3b3;
   outline: 3px solid blue;
   outline-offset: 2px;
@@ -82,7 +81,7 @@ button:hover, button:focus {
 }
 
 @media (max-width: 350px) {
-  .registration-container {
+  .register-container {
     padding: 15px;
     border-width: 3px;
   }
