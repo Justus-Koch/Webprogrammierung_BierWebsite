@@ -1,5 +1,5 @@
 body {
-  font-family: 'Chau Philomene One', serif;
+  font-family: 'Chau Philomene One', sans-serif;
   background: #403f3f;
   margin: 0;
   display: flex;
@@ -7,23 +7,23 @@ body {
   align-items: center;
   min-height: 100vh;
   padding: 20px;
-  box-sizing: border-box;
 }
 
-.login-container {
+.registration-container {
   width: 100%;
-  max-width: 340px;
+  max-width: 400px;
   padding: 25px;
   border-radius: 10px;
   background: #FFE1A8;
   border: 5px solid #000000;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  box-sizing: border-box;
 }
 
 h2 {
   text-align: center;
   font-size: 35px;
   margin-top: 0;
+  margin-bottom: 20px;
 }
 
 .form-group {
@@ -34,6 +34,7 @@ label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  margin-left: 5px;
 }
 
 input {
@@ -52,11 +53,11 @@ input:focus {
 
 button {
   background: #cccccc;
-  font-family: 'Chau Philomene One', serif;
+  font-family: 'Chau Philomene One', sans-serif;
   width: 100%;
   border-radius: 10px;
   padding: 12px;
-  margin-top: 15px;
+  margin-top: 20px;
   border: 2px solid #000;
   cursor: pointer;
   font-size: 18px;
@@ -69,7 +70,6 @@ button:hover, button:focus {
   outline-offset: 2px;
 }
 
-
 .button-secondary {
   display: block;
   text-align: center;
@@ -81,17 +81,11 @@ button:hover, button:focus {
   padding: 8px;
 }
 
-.button-secondary:focus {
-  outline: 2px dashed blue;
-  border-radius: 5px;
-}
-
 @media (max-width: 350px) {
-  .login-container {
+  .registration-container {
     padding: 15px;
     border-width: 3px;
   }
-
   h2 {
     font-size: 28px;
   }

@@ -1,31 +1,40 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="css/login.css">
-<link href='https://fonts.googleapis.com/css?family=Chau Philomene One' rel='stylesheet'>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Anmeldung</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anmeldung | Deine Website</title>
+
+  <link rel="stylesheet" href="css/login.css">
+  <link href='https://fonts.googleapis.com/css?family=Chau+Philomene+One' rel='stylesheet'>
 </head>
 <body>
-<section class="login-container">
-  <h2>Anmeldung</h2>
 
-  <form action="/login" method="POST">
-    <div class="form-group">
-      <label for="username">E-Mail:</label>
-      <input id="username" name="username" required type="text">
-    </div>
+<main>
+  <section class="login-container">
+    <h1>Anmeldung</h1>
 
-    <div class="form-group">
-      <label for="password">Passwort:</label>
-      <input id="password" name="password" required type="password">
-    </div>
+    <form action="/login" method="POST">
+      <div class="form-group">
+        <label for="username">E-Mail-Adresse</label>
+        <input id="username" name="username" required type="email" autocomplete="email">
+      </div>
 
-    <button type="submit">Einloggen</button>
-    <a href="./registration.html" class="button-secondary">Registrieren</a>
-    <a href="./index.html" class="button-secondary">Abbrechen</a>
-  </form>
-</section>
+      <div class="form-group">
+        <label for="password">Passwort</label>
+        <input id="password" name="password" required type="password" autocomplete="current-password">
+      </div>
+
+      <div class="button-group">
+        <button type="submit">Einloggen</button>
+        <div class="secondary-actions">
+          <a href="./registration.html" class="button-link">Registrieren</a>
+          <a href="./index.html" class="button-link">Abbrechen</a>
+        </div>
+      </div>
+    </form>
+  </section>
+</main>
 
 </body>
 </html>
