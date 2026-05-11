@@ -35,87 +35,61 @@
       </ul>
     </nav>
 
-    <main>
-      <h2>Profil</h2>
-      <img src="./img/profile_picture.jpg" alt="Profilbild" width="70">
-      <p>Spitzname</p>
-      <p>gegebenfalls weitere Infos</p>
-      <a href="./edit-profile.html" class="button-secondary">Profil bearbeiten</a>
+  <main>
+    <section class="profile-card">
+      <div class="profile-header">
+        <img src="./img/profile_picture.jpg" alt="Profilbild" class="profile-img">
+        <div class="profile-info">
+          <h2>Profil</h2>
+          <p class="username">@User_Schluckspecht</p>
+        </div>
+      </div>
 
-      <header>
-        <h2>Meine Reviews</h2>
+      <div class="profile-bio">
+        <p>Der Schluckspecht schluckt schlecht</p>
+      </div>
+
+      <div class="profile-actions">
+        <a href="./edit-profile.html" class="button-secondary">Profil bearbeiten</a>
+      </div>
+    </section>
+
+    <h2>Meine Reviews</h2>
+
+    <article class="post">
+      <header class="post-header">
+        <span class="username">@User_Schluckspecht</span>
+        <div class="favourite">
+          <input type="checkbox" id="favorite1" name="favorite1" class="favourite-checkbox">
+
+          <label for="favorite1" class="favourite-label">
+            <span class="favourite-icon"></span>
+            <span class="visually-hidden">Favorisieren</span>
+          </label>
+        </div>
       </header>
-
-      <article class="post">
-        <h3>Beispieltitel 1</h3>
-        <label for="favorite1">Favorisieren</label>
-        <input type="checkbox" id="favorite1" name="favorite1">
-        <a href="./edit-review.html" class="button-secondary">Bearbeiten</a>
-        <div class="content">
-          <img src="./img/bier.jpg" alt="Bier" width="70">
-          <p>Biername:</p>
-          <p>Bierart:</p>
-          <p>Stammwürze:</p>
-          <p>Alkoholgehalt:</p>
-          <p>Bewertung: 5/5</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-            irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <time datetime="2026-04-21">21.04.2026</time>
-        </div>
-      </article>
-
-      <article class="post">
-        <h3>Beispieltitel 2</h3>
-        <label for="favorite2">Favorisieren</label>
-        <input type="checkbox" id="favorite2" name="favorite2">
-        <a href="./edit-review.html" class="button-secondary">Bearbeiten</a>
-        <div class="content">
-          <img src="./img/bier.jpg" alt="Bier" width="70">
-          <p>Biername:</p>
-          <p>Bierart:</p>
-          <p>Stammwürze:</p>
-          <p>Alkoholgehalt:</p>
-          <p>Bewertung: 5/5</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-            irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <time datetime="2026-04-21">21.04.2026</time>
-        </div>
-      </article>
-
-      <article class="post">
-        <h3>Beispieltitel 3</h3>
-        <label for="favorite3">Favorisieren</label>
-        <input type="checkbox" id="favorite3" name="favorite3">
-        <a href="./edit-review.html" class="button-secondary">Bearbeiten</a>
-        <div class="content">
-          <img src="./img/bier.jpg" alt="Bier" width="70">
-          <p>Biername:</p>
-          <p>Bierart:</p>
-          <p>Stammwürze:</p>
-          <p>Alkoholgehalt:</p>
-          <p>Bewertung: 5/5</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-            irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <time datetime="2026-04-21">21.04.2026</time>
-        </div>
-      </article>
-    </main>
-  </div>
+      <h3>Beispieltitel 1</h3>
+      <div class="facts">
+        <img src="./img/bier.jpg" alt="Bier" width="70">
+        <p>Biername:<br> Krombacher</p>
+        <p>Bierart:<br> Pilsener</p>
+        <p>Alkoholgehalt:<br> 4,9%</p>
+        <p>Stammwürze:<br> 11,5%</p>
+        <p>Bewertung:<br> 5/5</p>
+      </div>
+      <div class = "content">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+          irure dolor in reprehenderit in voluptate velit esse cillum
+          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+          non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+      <time datetime="2026-04-21">21.04.2026</time>
+    </article>
+  </main>
+</div>
 
   <footer class="footer">
     <div class="footer-content">
