@@ -1,0 +1,279 @@
+/* elements of navbar*/
+
+.navbar-left, .navbar-middle, .navbar-right{
+  margin-right: 20px;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
+.navbar-horizontal a,
+.navbar-horizontal button,
+.navbar-horizontal h1 {
+  color: white;
+  font: inherit;
+}
+
+.navbar-horizontal input{
+  color: black;
+}
+
+.navbar-horizontal button,
+.navbar-horizontal a.button-secondary {
+  background-color: #444;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.navbar-horizontal button:hover,
+.navbar-horizontal a.button-secondary:hover {
+  background-color: #555;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.search-form input {
+  padding: 7px 10px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+}
+
+.navbar-middle h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.navbar-vertical.active {
+  width: 200px;
+}
+
+.navbar-vertical ul {
+  list-style: none;
+  padding: 0;
+}
+
+.navbar-vertical li a{
+  display: block;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-vertical li a:hover {
+  background-color: #111;
+}
+
+/* styling for all secondary buttons */
+.button-secondary {
+  display: inline-block;
+  padding: 5px 15px;
+  background-color: #f0f2f5;
+  color: #333;
+  text-decoration: none;
+  border-radius: 20px;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+.button-secondary:hover {
+  background-color: #e2e5e9;
+}
+
+/* main card of post */
+.post {
+  position: relative;
+  background: #FFE1A8;
+  border: 1px solid #111111;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+}
+
+.post:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 8px;
+}
+
+/* title */
+.post h3 {
+  margin-top: 0;
+  color: #2c3e50;
+  display: inline-block;
+}
+
+/* favourite */
+.post .favourite {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 10;
+}
+/* hides the normal checkbox, so the label can be styled as needed */
+.favourite-checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.favourite-label {
+  display: inline-block;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+}
+/* heart icon made from different elements */
+.favourite-icon {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.favourite-icon::before,
+.favourite-icon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 16px; /* half of width */
+  height: 26px;
+  /* standardcolour grey */
+  background-color: #bdc3c7;
+  border-radius: 16px 16px 0 0;
+  transition: background-color 0.3s ease;
+}
+/* rotate both halves of the heart so they are in place */
+.favourite-icon::before {
+  left: 16px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+
+.favourite-icon::after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+/* change colour to red if clicked */
+.favourite-checkbox:checked + .favourite-label .favourite-icon::before,
+.favourite-checkbox:checked + .favourite-label .favourite-icon::after {
+  background-color: #e74c3c;
+}
+/* hover effect */
+.favourite-label:hover .favourite-icon::before,
+.favourite-label:hover .favourite-icon::after {
+  background-color: #95a5a6;
+}
+/* help class for hiding text */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* arrange picture and facts next to each other */
+.post .facts {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.post .content {
+  display: flex;
+  line-height: 1.5;
+  text-align: left;
+  color: #333;
+}
+
+.post img {
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #eee;
+}
+
+/* compact syling of facts */
+.post p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+}
+
+/* date time in subtle style */
+.post time {
+  display: block;
+  margin-top: 15px;
+  font-size: 0.8rem;
+  color: #111111;
+  text-align: right;
+}
+
+.profile-card {
+  background: #FFE1A8;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 500px;
+  margin: 40px auto;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: center; /* Alles standardmäßig zentrieren */
+}
+
+/* the profilepicture and username */
+.profile-header {
+  display: flex;
+  flex-direction: column; /* Bild über dem Text */
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* styling for the picture */
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #f0f2f5;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.username {
+  font-weight: bold;
+  color: #004a99;
+  font-size: 1.2rem;
+  margin-top: 5px;
+}
+
+.profile-bio {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 25px;
+  padding: 0 20px;
+}

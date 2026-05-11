@@ -2,39 +2,40 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anmeldung | Deine Website</title>
-
-  <link rel="stylesheet" href="css/login.css">
-  <link href='https://fonts.googleapis.com/css?family=Chau+Philomene+One' rel='stylesheet'>
+  <title>Anmeldung</title>
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+  <main>
+    <section class="login-container">
+      <h2>Anmeldung</h2>
 
-<main>
-  <section class="login-container">
-    <h1>Anmeldung</h1>
-
-    <form action="/login" method="POST">
-      <div class="form-group">
-        <label for="username">E-Mail-Adresse</label>
-        <input id="username" name="username" required type="email" autocomplete="email">
-      </div>
-
-      <div class="form-group">
-        <label for="password">Passwort</label>
-        <input id="password" name="password" required type="password" autocomplete="current-password">
-      </div>
-
-      <div class="button-group">
-        <button type="submit">Einloggen</button>
-        <div class="secondary-actions">
-          <a href="./registration.html" class="button-link">Registrieren</a>
-          <a href="./index.html" class="button-link">Abbrechen</a>
+      <form action="/login" method="POST">
+        <div class="form-group">
+          <label for="username">E-Mail:</label>
+          <input id="username" name="username" required type="text">
         </div>
-      </div>
-    </form>
-  </section>
-</main>
+
+        <div class="form-group">
+          <label for="password">Passwort:</label>
+          <input id="password" name="password" required type="password">
+        </div>
+
+        <button type="submit">Einloggen</button>
+        <a href="./registration.html" class="button-secondary">Registrieren</a>
+        <a href="./index.html" class="button-secondary">Abbrechen</a>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <a href="./impressum.html">Impressum</a>
+      <a href="./datenschutz.html">Datenschutz</a>
+      <a href="./nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="./barrierefreiheit.html">Barrierefreiheitserklärung</a>
+    </div>
+  </footer>
 
 </body>
 </html>

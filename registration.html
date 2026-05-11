@@ -8,9 +8,8 @@
   <link rel="stylesheet" href="css/registration.css">
 </head>
 <body>
-
-<main class="registration-container">
-  <h2>Registrierung</h2>
+<main class="register-container">
+  <h2>Neues Konto erstellen</h2>
 
   <form action="/register" method="POST">
     <div class="form-group">
@@ -28,10 +27,24 @@
       <input id="reg-password-confirm" name="password_confirm" required type="password">
     </div>
 
-    <button type="submit">Konto erstellen</button>
-    <a href="./login.html" class="button-secondary">Zurück zum Login</a>
+    <div class="form-group">
+      <label for="nickname">Spitzname</label>
+      <input type="text" id="nickname" name="nickname">
+    </div>
+
+    <button type="submit">Jetzt registrieren</button>
+    <a href="./login.html" class="button-secondary">Abbrechen</a>
   </form>
 </main>
+
+<footer class="footer">
+  <div class="footer-content">
+    <a href="./impressum.html">Impressum</a>
+    <a href="./datenschutz.html">Datenschutz</a>
+    <a href="./nutzungsbedingungen.html">Nutzungsbedingungen</a>
+    <a href="./barrierefreiheit.html">Barrierefreiheitserklärung</a>
+  </div>
+</footer>
 
 </body>
 </html>
