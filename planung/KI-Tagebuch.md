@@ -53,3 +53,7 @@ Antwort: Anleitung zur Erstellung einer Herz-Checkbox mithilfe von Pseudoelement
 12. Prompt (Gemini, 11.05.2026)
 Designe nun auch diese Seite zum Bearbeiten des Profils. achte dabei auf Barrierefreiheit und responsive Design. Nutze bereits vorher erstelltes CSS, falls möglich.
 Antwort: Optimiertes HTML und
+
+13. Prompt (Gemini, 12.05.2026)
+Erkläre mir anhand von Änderungen was gemacht werden muss, damit der Footer bei Login.html und Registration.html, korrekt angezeigt wird.
+Antwort: Änderungen mit Erklärungen bzgl. Footer
