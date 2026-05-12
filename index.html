@@ -52,17 +52,21 @@
       <h2>Bier-Feed</h2>
 
     <article class="post">
-        <header class="post-header">
-          <span class="username">@User_Schluckspecht</span>
+      <header class="post-header">
+        <span class="username">@User_Schluckspecht</span>
+        <div class="post-actions">
           <div class="favourite">
-            <input type="checkbox" id="favorite1" name="favorite1" class="favourite-checkbox">
+            <input type="checkbox" id="favorite1" name="favorite1"
+                   class="favourite-checkbox"
+                   aria-label="Diesen Post zu Favoriten hinzufügen">
 
             <label for="favorite1" class="favourite-label">
-              <span class="favourite-icon"></span>
+              <span class="favourite-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Favorisieren</span>
             </label>
           </div>
-        </header>
+        </div>
+      </header>
       <h3>Beispieltitel 1</h3>
       <div class="facts">
         <img src="./img/bier.jpg" alt="Bier" width="70">
@@ -85,17 +89,20 @@
     </article>
 
     <article class="post">
-        <header class="post-header">
-          <span class="username">@User_Bierabetiker</span>
-          <div class="favourite">
-            <input type="checkbox" id="favorite2" name="favorite2" class="favourite-checkbox">
+      <header class="post-header">
+        <span class="username">@User_Bierabetiker</span>
+        <div class="post-actions"> <div class="favourite">
+          <input type="checkbox" id="favorite2" name="favorite2"
+                 class="favourite-checkbox"
+                 aria-label="Diesen Post zu Favoriten hinzufügen">
 
-            <label for="favorite2" class="favourite-label">
-              <span class="favourite-icon"></span>
-              <span class="visually-hidden">Favorisieren</span>
-            </label>
-          </div>
-        </header>
+          <label for="favorite2" class="favourite-label">
+            <span class="favourite-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Favorisieren</span>
+          </label>
+        </div>
+        </div>
+      </header>
         <h3>Beispieltitel 2</h3>
         <div class="facts">
           <img src="./img/bier.jpg" alt="Bier" width="70">
@@ -120,13 +127,16 @@
       <article class="post">
         <header class="post-header">
           <span class="username">@User_Vergenussferkler</span>
-          <div class="favourite">
-            <input type="checkbox" id="favorite3" name="favorite3" class="favourite-checkbox">
+          <div class="post-actions"> <div class="favourite">
+            <input type="checkbox" id="favorite3" name="favorite3"
+                   class="favourite-checkbox"
+                   aria-label="Diesen Post zu Favoriten hinzufügen">
 
             <label for="favorite3" class="favourite-label">
-              <span class="favourite-icon"></span>
+              <span class="favourite-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Favorisieren</span>
             </label>
+          </div>
           </div>
         </header>
         <h3>Beispieltitel 3</h3>
