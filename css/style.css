@@ -81,3 +81,12 @@ html, body {
   white-space: nowrap;
   border: 0;
 }
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+.favourite-checkbox:focus-visible + .favourite-label {
+  outline: 3px solid #004a99;
+  outline-offset: 4px;
+  border-radius: 4px;
+}

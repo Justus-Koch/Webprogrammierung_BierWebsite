@@ -1,3 +1,14 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .layout {
+    flex-direction: row;
+  }
+}
+
 /* elements of navbar*/
 
 .navbar-left, .navbar-middle, .navbar-right{
@@ -5,6 +16,22 @@
   align-items: center;
   display: flex;
   gap: 10px;
+}
+
+.navbar-horizontal {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  flex-wrap: wrap; /* Erlaubt Umbruch bei sehr kleinen Screens */
+}
+
+@media (max-width: 600px) {
+  .navbar-middle h1 {
+    font-size: 16px; /* Titel verkleinern */
+  }
+  .search-form input {
+    width: 100px; /* Suchfeld schrumpfen */
+  }
 }
 
 .navbar-horizontal a,
@@ -56,8 +83,21 @@
   letter-spacing: 0.5px;
 }
 
+.navbar-vertical {
+  width: 100%; /* Mobil: Volle Breite */
+  background-color: #333;
+  display: none; /* Standardmäßig auf Mobil verstecken, wenn nicht aktiv */
+}
+@media (min-width: 768px) {
+  .navbar-vertical {
+    width: 200px; /* Desktop: Feste Breite */
+    display: block; /* Immer anzeigen auf Desktop */
+    min-height: calc(100vh - 60px);
+  }
+}
+
 .navbar-vertical.active {
-  width: 200px;
+  display: block;
 }
 
 .navbar-vertical ul {
@@ -102,13 +142,15 @@
   background: #FFE1A8;
   border: 1px solid #111111;
   border-radius: 12px;
-  padding: 20px;
+  padding: 15px; /* Etwas weniger Padding auf Mobil */
+  width: 90%;   /* Nutzt fast die volle Breite */
   max-width: 750px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 25px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  transition: transform 0.2s;
+  margin: 0 auto 25px auto;
+}
+@media (min-width: 600px) {
+  .post {
+    padding: 20px;
+  }
 }
 
 .post:hover {
@@ -135,6 +177,8 @@
 /* favourite */
 .post .favourite {
   position: relative;
+  display: inline-flex;
+  align-items: center;
   z-index: 10;
 }
 /* hides the normal checkbox, so the label can be styled as needed */
@@ -203,11 +247,22 @@
   border: 0;
 }
 
-/* arrange picture and facts next to each other */
 .post .facts {
   display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+  flex-direction: row; /* Standard: Nebeneinander */
+  gap: 15px;
+  overflow-x: auto; /* Falls es zu viele Infos sind, kann man seitlich scrollen */
+  padding-bottom: 10px;
+}
+
+@media (max-width: 480px) {
+  .post .facts {
+    gap: 10px;
+    font-size: 0.85rem; /* Schrift etwas kleiner auf Mini-Displays */
+  }
+  .post img {
+    width: 60px; /* Bild etwas kleiner auf Mobil */
+  }
 }
 
 .post .content {
