@@ -18,6 +18,10 @@
   gap: 10px;
 }
 
+.navbar-left label{
+  color: white;
+}
+
 .navbar-horizontal {
   display: flex;
   justify-content: space-between;
@@ -80,7 +84,7 @@
   margin: 0;
   font-size: 18px;
   font-weight: 600;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
 .navbar-vertical {
@@ -90,7 +94,7 @@
 }
 @media (min-width: 768px) {
   .navbar-vertical {
-    width: 200px; /* Desktop: Feste Breite */
+    width: 200px; /* Desktop: ausklappbar, temporär (ohne JS): feste Breite */
     display: block; /* Immer anzeigen auf Desktop */
     min-height: calc(100vh - 60px);
   }
@@ -98,6 +102,8 @@
 
 .navbar-vertical.active {
   display: block;
+  width: 200px;
+  transition: 0.3s;
 }
 
 .navbar-vertical ul {
@@ -117,7 +123,6 @@
 }
 
 /* styling for all secondary buttons */
-/* Styling für alle sekundären Buttons (z.B. Abbrechen) */
 .button-secondary {
   display: inline-flex;    /* Ermöglicht Zentrierung des Inhalts */
   align-items: center;     /* Vertikale Zentrierung */
@@ -234,17 +239,6 @@
 .favourite-label:hover .favourite-icon::before,
 .favourite-label:hover .favourite-icon::after {
   background-color: #95a5a6;
-}
-/* help class for hiding text */
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
 }
 
 .post .facts {
@@ -516,20 +510,17 @@ fieldset legend {
 
 .star-rating-accessible label {
   font-size: 32px;
-  color: #bdc3c7;
+  color: #535151;
   cursor: pointer;
   transition: color 0.15s ease-in-out, transform 0.1s ease;
   line-height: 1;
 }
 
 .star-rating-accessible input:checked + label,
-.star-rating-accessible label:has(~ input:checked) {
-  color: #f1c40f;
-}
-
+.star-rating-accessible label:has(~ input:checked),
 .star-rating-accessible label:hover,
 .star-rating-accessible label:has(~ label:hover) {
-  color: #f39c12;
+  color: #ff9e00;
   transform: scale(1.1);
 }
 
