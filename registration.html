@@ -8,42 +8,45 @@
   <link rel="stylesheet" href="css/registration.css">
 </head>
 <body>
-<main class="register-container">
-  <h2>Neues Konto erstellen</h2>
 
-  <form action="/register" method="POST">
-    <div class="form-group">
-      <label for="reg-email">E-Mail Adresse</label>
-      <input id="reg-email" name="email" required type="email" autocomplete="email">
-    </div>
+<main>
+  <section class="register-container">
+    <h2>Neues Konto erstellen</h2>
 
-    <div class="form-group">
-      <label for="reg-password">Passwort wählen</label>
-      <input id="reg-password" name="password" required type="password" autocomplete="new-password">
-    </div>
+    <form action="/register" method="POST">
+      <div class="form-group">
+        <label for="reg-email">E-Mail Adresse</label>
+        <input id="reg-email" name="email" required type="email" autocomplete="email">
+      </div>
 
-    <div class="form-group">
-      <label for="reg-password-confirm">Passwort bestätigen</label>
-      <input id="reg-password-confirm" name="password_confirm" required type="password">
-    </div>
+      <div class="form-group">
+        <label for="reg-password">Passwort wählen</label>
+        <input id="reg-password" name="password" required type="password" autocomplete="new-password">
+      </div>
 
-    <div class="form-group">
-      <label for="nickname">Spitzname</label>
-      <input type="text" id="nickname" name="nickname">
-    </div>
+      <div class="form-group">
+        <label for="reg-password-confirm">Passwort bestätigen</label>
+        <input id="reg-password-confirm" name="password_confirm" required type="password">
+      </div>
 
-    <button type="submit">Jetzt registrieren</button>
-    <a href="./login.html" class="button-secondary">Abbrechen</a>
-  </form>
+      <div class="form-group">
+        <label for="nickname">Spitzname</label>
+        <input type="text" id="nickname" name="nickname">
+      </div>
+
+      <button type="submit">Jetzt registrieren</button>
+      <a href="./login.html" class="button-secondary">Abbrechen</a>
+    </form>
+  </section>
 </main>
 
 <footer class="footer">
-  <div class="footer-content">
+  <nav class="footer-content" aria-label="Footer Navigation">
     <a href="./impressum.html">Impressum</a>
     <a href="./datenschutz.html">Datenschutz</a>
     <a href="./nutzungsbedingungen.html">Nutzungsbedingungen</a>
     <a href="./barrierefreiheit.html">Barrierefreiheitserklärung</a>
-  </div>
+  </nav>
 </footer>
 
 </body>
