@@ -56,4 +56,8 @@ Antwort: Optimiertes HTML und
 
 13. Prompt (Gemini, 12.05.2026)
 Erkläre mir anhand von Änderungen was gemacht werden muss, damit der Footer bei Login.html und Registration.html, korrekt angezeigt wird.
-Antwort: Änderungen mit Erklärungen bzgl. Footer
+Antwort: Änderungen mit Erklärungen bzgl. Footer.
+
+14. Prompt (Gemini, 12.05.2026)
+Wie muss ich die Registrations.css verändern, sodass das Registrations-feld nicht die gesamte vertikale Größe nutzt?
+Antwort: Eine Beschreibung, was genau getan werden muss, um die gewünschten Änderungen zu machen.
