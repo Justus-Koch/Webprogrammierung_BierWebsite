@@ -473,7 +473,6 @@ fieldset legend {
 }
 
 .btn-submit, .btn-delete {
-  background-color: #333;
   color: white;
   border: none;
   padding: 12px 20px;
@@ -485,8 +484,12 @@ fieldset legend {
   text-align: center;
 }
 
+.btn-submit {
+  background-color: #333;
+}
+
 .btn-delete {
-  background-color: #e74c3c;
+  background-color: #ca1908;
   margin-top: 10px;
 }
 
@@ -521,7 +524,7 @@ fieldset legend {
 .star-rating-accessible label:has(~ input:checked),
 .star-rating-accessible label:hover,
 .star-rating-accessible label:has(~ label:hover) {
-  color: #ff9e00;
+  color: #cf0000;
   transform: scale(1.1);
 }
 
