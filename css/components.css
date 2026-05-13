@@ -287,6 +287,7 @@
   text-align: right;
 }
 
+/* Profil */
 .profile-card {
   background: #FFE1A8;
   border-radius: 15px;
@@ -618,4 +619,50 @@ fieldset legend {
   outline: 2px solid #333;
   outline-offset: 4px;
   border-radius: 2px;
+}
+
+/* Spezifische Ergänzungen für Textseiten wie die Barrierefreiheitserklärung */
+
+.accessibility-content {
+  text-align: left;
+  line-height: 1.8;
+}
+
+.accessibility-content section {
+  margin-bottom: 30px;
+  border-bottom: 1px dashed #333;
+  padding-bottom: 15px;
+}
+
+.accessibility-content section:last-child {
+  border-bottom: none;
+}
+
+.accessibility-content h1,
+.accessibility-content h2 {
+  color: #2c3e50;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+  margin-top: 25px;
+}
+
+.accessibility-content h2 {
+  margin-top: 0;
+  text-align: left; /* Überschreibt das zentrierte h2 aus deinem main h2 */
+}
+
+.accessibility-content ul {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.accessibility-content li {
+  margin-bottom: 10px;
+}
+
+.accessibility-content code {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: monospace;
 }

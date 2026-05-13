@@ -73,3 +73,7 @@ Antwort: Codeverbesserungen, um die Seiten accessible und responsive zu machen
 17. Prompt (Gemini, 13.05.2026)
 Das ist das Aufgabenblatt, das wir bearbeiten sollen. Überprüfe, ob mein Code die hier gelisteten Anforderungen erfüllt (Aufgabenblatt und HTML/CSS gegeben)
 Antwort: Überprüfung der Anforderungne Layout & CSS3-Techniken, visuelle Gestaltung & Navigation, Responsive Design, Accessibility, formale Anforderungen. Hinweis, dass das JavaScript bei dem Menü-Button noch entfernt werdens sollte. Erinnerung, den CSS-Validator und WAVE-Validator zu nutzen. Ansonsten sind alle Anforderungen erfüllt.
+
+18. Prompt (Gemini, 13.05.2026)
+Verfasse eine zu meiner Website passende Barrierefreiheitserklärung in HTML-Format und passe das Design an die anderen Seiten an. Eine Überprüfung mit dem WAVE-Validator hat keine Fehler oder Warnungen ergeben.
+Antwort: Erstellung der Barrierefreiheitserklärung als HTML und des passenden CSS.
