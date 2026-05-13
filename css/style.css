@@ -69,7 +69,7 @@ html, body {
   text-decoration: underline;
 }
 
-/* labels verstecken, aber für screenreader verfügbar
+/* labels verstecken, aber für screenreader verfügbar*/
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -80,7 +80,7 @@ html, body {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
-}*/
+}
 
 a:focus-visible,
 button:focus-visible,

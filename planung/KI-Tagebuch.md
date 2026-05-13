@@ -51,7 +51,7 @@ Wie kann ich eine Checkbox visuell umstylen, zum Beispiel als Herz, das anklickb
 Antwort: Anleitung zur Erstellung einer Herz-Checkbox mithilfe von Pseudoelementen.
 
 12. Prompt (Gemini, 11.05.2026)
-Designe nun auch diese Seite zum Bearbeiten des Profils. achte dabei auf Barrierefreiheit und responsive Design. Nutze bereits vorher erstelltes CSS, falls möglich.
+Designe nun auch diese Seite zum Bearbeiten des Profils. achte dabei auf Barrierefreiheit und Responsive Design. Nutze bereits vorher erstelltes CSS, falls möglich.
 Antwort: Optimiertes HTML und
 
 ---------------------------------------------------------------------------
@@ -71,5 +71,5 @@ Hier ist die momentane Struktur in html und css, für meine Website. Gib mir Ver
 Antwort: Mehrere Verbesserungsvorschläge zu den hochgeladenen Dateien.
 
 16. Prompt (Gemini, 11.05.2026)
-Stelle sicher, dass die Profil und Feed Seite sowohl accesible als auch responsive sind.
-Antwort: Codeverbesserungen, um die Seiten accesible und responsive zu machen
+Stelle sicher, dass die Profil- und Feed-Seite sowohl accessible als auch responsive sind.
+Antwort: Codeverbesserungen, um die Seiten accessible und responsive zu machen
