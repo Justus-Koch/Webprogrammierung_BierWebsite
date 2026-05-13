@@ -54,8 +54,6 @@ Antwort: Anleitung zur Erstellung einer Herz-Checkbox mithilfe von Pseudoelement
 Designe nun auch diese Seite zum Bearbeiten des Profils. achte dabei auf Barrierefreiheit und Responsive Design. Nutze bereits vorher erstelltes CSS, falls möglich.
 Antwort: Optimiertes HTML und
 
----------------------------------------------------------------------------
-
 13. Prompt (Gemini, 12.05.2026)
 Erkläre mir anhand von Änderungen was gemacht werden muss, damit der Footer bei Login.html und Registration.html, korrekt angezeigt wird.
 Antwort: Änderungen mit Erklärungen bzgl. Footer.
@@ -64,8 +62,6 @@ Antwort: Änderungen mit Erklärungen bzgl. Footer.
 Wie muss ich die Registrations.css verändern, sodass das Registrations-feld nicht die gesamte vertikale Größe nutzt?
 Antwort: Eine Beschreibung, was genau getan werden muss, um die gewünschten Änderungen zu machen.
 
----------------------------------------------------------------------------
-
 15. Prompt (Gemini, 11.05.2026)
 Hier ist die momentane Struktur in html und css, für meine Website. Gib mir Verbesserungsvorschläge für die Profilseite und die index seite.
 Antwort: Mehrere Verbesserungsvorschläge zu den hochgeladenen Dateien.
@@ -73,3 +69,7 @@ Antwort: Mehrere Verbesserungsvorschläge zu den hochgeladenen Dateien.
 16. Prompt (Gemini, 11.05.2026)
 Stelle sicher, dass die Profil- und Feed-Seite sowohl accessible als auch responsive sind.
 Antwort: Codeverbesserungen, um die Seiten accessible und responsive zu machen
+
+17. Prompt (Gemini, 13.05.2026)
+Das ist das Aufgabenblatt, das wir bearbeiten sollen. Überprüfe, ob mein Code die hier gelisteten Anforderungen erfüllt (Aufgabenblatt und HTML/CSS gegeben)
+Antwort: Überprüfung der Anforderungne Layout & CSS3-Techniken, visuelle Gestaltung & Navigation, Responsive Design, Accessibility, formale Anforderungen. Hinweis, dass das JavaScript bei dem Menü-Button noch entfernt werdens sollte. Erinnerung, den CSS-Validator und WAVE-Validator zu nutzen. Ansonsten sind alle Anforderungen erfüllt.
