@@ -1,58 +1,27 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <title>Suche</title>
-  <link href="./css/style.css" rel="stylesheet">
-  <link href="./css/components.css" rel="stylesheet">
-</head>
-<body>
-<header>
-  <nav class="navbar-horizontal">
-    <div class="navbar-left">
-      <button class="menuButton" onclick="toggleSidebar()">Menü</button>
-      <form action="./search.html" class="search-form" method="GET">
-        <label class="visually-hidden" for="site-search">Website durchsuchen:</label>
-        <input id="site-search" name="q" placeholder="Suchen..." type="search">
-        <button type="submit">Suchen</button>
-      </form>
-    </div>
-    <div class="navbar-middle">
-      <h1>Prost-Protokoll</h1>
-    </div>
-    <div class="navbar-right">
-      <a class="button-secondary" href="./login.html">Anmelden</a>
-    </div>
-  </nav>
-</header>
+<?php $title = 'Suche'; ?>
+<?php include './includes/header.php'; ?>
+
 <div class="layout">
-  <nav class="navbar-vertical">
-    <ul>
-      <li><a href="./index.html">Startseite</a></li>
-      <li><a href="./create-review.html">Review erstellen</a></li>
-      <li><a href="./index.html">Favoriten</a></li>
-      <li><a href="./profile.html">Profil</a></li>
-    </ul>
-  </nav>
+  <?php include './includes/sidebar.php'; ?>
 
   <main>
     <div class="form-card search-results-container">
       <h2>Suchergebnisse</h2>
 
-      <form method="post" class="filter-form">
+      <form method="GET" action="./search.php" class="filter-form">
         <fieldset class="form-group fieldset-reset">
           <legend>Ergebnisse filtern</legend>
           <div class="filter-options">
             <div class="filter-item">
-              <input id="filter1" name="filter1" type="checkbox">
+              <input type="checkbox" id="filter1" name="type[]" value="pils">
               <label for="filter1">Pilsner</label>
             </div>
             <div class="filter-item">
-              <input id="filter2" name="filter2" type="checkbox">
+              <input type="checkbox" id="filter2" name="type[]" value="weizen">
               <label for="filter2">Weizen</label>
             </div>
             <div class="filter-item">
-              <input id="filter3" name="filter3" type="checkbox">
+              <input type="checkbox" id="filter3" name="type[]" value="helles">
               <label for="filter3">Helles</label>
             </div>
             <button type="submit" class="btn-submit btn-small">Filter anwenden</button>
@@ -64,13 +33,16 @@
     <article class="post">
       <header class="post-header">
         <span class="username">@User_Schluckspecht</span>
-        <div class="favourite">
-          <input type="checkbox" id="favorite1" name="favorite1" class="favourite-checkbox">
-
-          <label for="favorite1" class="favourite-label">
-            <span class="favourite-icon"></span>
-            <span class="visually-hidden">Favorisieren</span>
-          </label>
+        <div class="post-actions">
+          <div class="favourite">
+            <input type="checkbox" id="favorite1" name="favorite1"
+                   class="favourite-checkbox"
+                   aria-label="Diesen Post zu Favoriten hinzufügen">
+            <label for="favorite1" class="favourite-label">
+              <span class="favourite-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Favorisieren</span>
+            </label>
+          </div>
         </div>
       </header>
       <h3>Beispieltitel 1</h3>
@@ -82,7 +54,7 @@
         <p>Stammwürze:<br> 11,5%</p>
         <p>Bewertung:<br> 5/5</p>
       </div>
-      <div class = "content">
+      <div class="content">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -97,13 +69,16 @@
     <article class="post">
       <header class="post-header">
         <span class="username">@User_Bierabetiker</span>
-        <div class="favourite">
-          <input type="checkbox" id="favorite2" name="favorite2" class="favourite-checkbox">
-
-          <label for="favorite2" class="favourite-label">
-            <span class="favourite-icon"></span>
-            <span class="visually-hidden">Favorisieren</span>
-          </label>
+        <div class="post-actions">
+          <div class="favourite">
+            <input type="checkbox" id="favorite2" name="favorite2"
+                   class="favourite-checkbox"
+                   aria-label="Diesen Post zu Favoriten hinzufügen">
+            <label for="favorite2" class="favourite-label">
+              <span class="favourite-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Favorisieren</span>
+            </label>
+          </div>
         </div>
       </header>
       <h3>Beispieltitel 2</h3>
@@ -115,7 +90,7 @@
         <p>Stammwürze:<br> 11,7%</p>
         <p>Bewertung:<br> 5/5</p>
       </div>
-      <div class = "content">
+      <div class="content">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -129,14 +104,4 @@
   </main>
 </div>
 
-<footer class="footer">
-  <div class="footer-content">
-    <a href="./impressum.html">Impressum</a>
-    <a href="./datenschutz.html">Datenschutz</a>
-    <a href="./nutzungsbedingungen.html">Nutzungsbedingungen</a>
-    <a href="./barrierefreiheit.html">Barrierefreiheitserklärung</a>
-  </div>
-</footer>
-
-</body>
-</html>
+<?php include './includes/footer.php'; ?>

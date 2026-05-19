@@ -1,0 +1,93 @@
+<?php $title = 'Review bearbeiten'; ?>
+<?php include './includes/header.php'; ?>
+
+<div class="layout">
+  <?php include './includes/sidebar.php'; ?>
+
+  <main>
+    <div class="form-card">
+      <h1>Review bearbeiten</h1>
+
+      <form method="post" class="review-form" novalidate>
+
+        <div class="form-group">
+          <label for="picture">Bild ändern (optional)</label>
+          <div class="file-input-wrapper">
+            <input type="file" name="picture" id="picture" accept="image/*">
+            <img src="./img/bier.jpg" width="50" height="50" alt="Aktuelles Foto von Jever">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="beer_name">Biername <span aria-hidden="true">*</span></label>
+          <input type="text" name="beer_name" id="beer_name"
+                 value="Jever"
+                 required aria-required="true">
+        </div>
+
+        <div class="form-group">
+          <label for="beer_type">Bierart</label>
+          <select name="beer_type" id="beer_type">
+            <option value="pils" selected>Pils</option>
+            <option value="weizen">Weizen</option>
+            <option value="helles">Helles</option>
+          </select>
+        </div>
+
+        <fieldset class="form-row">
+          <legend class="visually-hidden">Technische Details zum Bier</legend>
+          <div class="form-group flex-1">
+            <label for="original_extract">Stammwürze (%)</label>
+            <input type="number" min="0" max="30" step="0.01"
+                   name="original_extract" id="original_extract" value="10.4">
+          </div>
+          <div class="form-group flex-1">
+            <label for="alcohol_content">Alkoholgehalt (%)</label>
+            <input type="number" min="0" max="20" step="0.01"
+                   name="alcohol_content" id="alcohol_content" value="5.1">
+          </div>
+        </fieldset>
+
+        <fieldset class="form-group">
+          <legend>Bewertung bearbeiten (1 bis 5 Sterne)</legend>
+          <div class="star-rating-accessible">
+            <input type="radio" id="star1" name="rating" value="1">
+            <label for="star1"><span class="visually-hidden">1 Stern</span>★</label>
+
+            <input type="radio" id="star2" name="rating" value="2">
+            <label for="star2"><span class="visually-hidden">2 Sterne</span>★</label>
+
+            <input type="radio" id="star3" name="rating" value="3">
+            <label for="star3"><span class="visually-hidden">3 Sterne</span>★</label>
+
+            <input type="radio" id="star4" name="rating" value="4" checked>
+            <label for="star4"><span class="visually-hidden">4 Sterne</span>★</label>
+
+            <input type="radio" id="star5" name="rating" value="5">
+            <label for="star5"><span class="visually-hidden">5 Sterne</span>★</label>
+          </div>
+        </fieldset>
+
+        <div class="form-group">
+          <label for="content">Inhalt</label>
+          <textarea name="content" id="content" cols="50" rows="6">Das Bier schmeckt lecker!</textarea>
+        </div>
+
+        <div class="form-footer-actions">
+          <div class="left-actions">
+            <button type="submit" class="btn-submit">Änderungen speichern</button>
+            <a href="./profile.php" class="button-secondary">Abbrechen</a>
+          </div>
+          <button type="button" class="btn-delete"
+                  aria-label="Dieses Review unwiderruflich löschen"
+                  onclick="return confirm('Möchtest du dieses Review wirklich löschen?')">
+            Löschen
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </main>
+</div>
+
+<?php include './includes/footer.php'; ?>

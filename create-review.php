@@ -1,31 +1,28 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <title>Review erstellen</title>
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/components.css">
-</head>
-  <body>
+<?php $title = 'Review erstellen'; ?>
+<?php include './includes/header.php'; ?>
+
+<div class="layout">
+  <?php include './includes/sidebar.php'; ?>
+
   <main>
     <div class="form-card">
       <h1>Review erstellen</h1>
 
-      <form method="post" class="review-form">
+      <form method="post" class="review-form" novalidate>
 
-        <!-- Bild-Upload -->
         <div class="form-group">
           <label for="picture">Bier-Foto hochladen (optional)</label>
           <div class="file-input-wrapper">
             <input type="file" name="picture" id="picture" accept="image/*">
-            <!-- Alt-Text leer lassen, wenn es nur ein Platzhalter ist, oder beschreiben -->
             <img src="./img/bier.jpg" width="50" height="50" alt="Vorschau des ausgewählten Bildes">
           </div>
         </div>
 
         <div class="form-group">
           <label for="beer_name">Biername <span aria-hidden="true">*</span></label>
-          <input type="text" name="beer_name" id="beer_name" placeholder="z.B. Augustiner Helles" required>
+          <input type="text" name="beer_name" id="beer_name"
+                 placeholder="z.B. Augustiner Helles"
+                 required aria-required="true">
         </div>
 
         <div class="form-group">
@@ -37,25 +34,24 @@
           </select>
         </div>
 
-        <!-- Gruppierung technischer Daten -->
         <fieldset class="form-row">
           <legend class="visually-hidden">Technische Details</legend>
           <div class="form-group flex-1">
             <label for="original_extract">Stammwürze (%)</label>
-            <input type="number" min="0" max="30" step="0.01" name="original_extract" id="original_extract">
+            <input type="number" min="0" max="30" step="0.01"
+                   name="original_extract" id="original_extract">
           </div>
           <div class="form-group flex-1">
             <label for="alcohol_content">Alkoholgehalt (%)</label>
-            <input type="number" min="0" max="20" step="0.01" name="alcohol_content" id="alcohol_content">
+            <input type="number" min="0" max="20" step="0.01"
+                   name="alcohol_content" id="alcohol_content">
           </div>
         </fieldset>
 
-        <!-- Barrierefreies Sterne-Rating -->
         <fieldset class="form-group">
           <legend>Bewertung (1 bis 5 Sterne)</legend>
           <div class="star-rating-accessible">
-            <!-- Wir nutzen hier die natürliche Reihenfolge 1-5 für Screenreader -->
-            <input type="radio" id="star1" name="rating" value="1" required>
+            <input type="radio" id="star1" name="rating" value="1" required aria-required="true">
             <label for="star1"><span class="visually-hidden">1 Stern</span>★</label>
 
             <input type="radio" id="star2" name="rating" value="2">
@@ -74,26 +70,18 @@
 
         <div class="form-group">
           <label for="content">Deine Meinung</label>
-          <textarea name="content" id="content" cols="50" rows="6" placeholder="Beschreibe Geschmack, Geruch und Aussehen..."></textarea>
+          <textarea name="content" id="content" cols="50" rows="6"
+                    placeholder="Beschreibe Geschmack, Geruch und Aussehen..."></textarea>
         </div>
 
         <div class="form-actions">
           <button type="submit" class="btn-submit">Review veröffentlichen</button>
-          <a href="./index.html" class="button-secondary">Abbrechen</a>
+          <a href="./index.php" class="button-secondary">Abbrechen</a>
         </div>
 
       </form>
     </div>
   </main>
+</div>
 
-    <footer class="footer">
-      <div class="footer-content">
-        <a href="./impressum.html">Impressum</a>
-        <a href="./datenschutz.html">Datenschutz</a>
-        <a href="./nutzungsbedingungen.html">Nutzungsbedingungen</a>
-        <a href="./barrierefreiheit.html">Barrierefreiheitserklärung</a>
-      </div>
-    </footer>
-
-  </body>
-</html>
+<?php include './includes/footer.php'; ?>

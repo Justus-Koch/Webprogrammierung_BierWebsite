@@ -1,41 +1,26 @@
-.layout {
+/* ============================================================
+   COMPONENT STYLES — Prost-Protokoll
+   ============================================================ */
+
+/* ============================================================
+   NAVBAR — HORIZONTAL (top bar elements)
+   ============================================================ */
+
+.navbar-left,
+.navbar-middle,
+.navbar-right {
   display: flex;
-  flex-direction: column;
-}
-
-@media (min-width: 768px) {
-  .layout {
-    flex-direction: row;
-  }
-}
-
-/* elements of navbar*/
-
-.navbar-left, .navbar-middle, .navbar-right{
-  margin-right: 20px;
   align-items: center;
-  display: flex;
   gap: 10px;
 }
 
-.navbar-left label{
+.navbar-middle {
+  flex: 1;
+  justify-content: center;
+}
+
+.navbar-left label {
   color: white;
-}
-
-.navbar-horizontal {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  flex-wrap: wrap; /* Erlaubt Umbruch bei sehr kleinen Screens */
-}
-
-@media (max-width: 600px) {
-  .navbar-middle h1 {
-    font-size: 16px; /* Titel verkleinern */
-  }
-  .search-form input {
-    width: 100px; /* Suchfeld schrumpfen */
-  }
 }
 
 .navbar-horizontal a,
@@ -45,7 +30,7 @@
   font: inherit;
 }
 
-.navbar-horizontal input{
+.navbar-horizontal input {
   color: black;
 }
 
@@ -67,6 +52,7 @@
   background-color: #555;
 }
 
+/* Search form inside navbar */
 .search-form {
   display: flex;
   align-items: center;
@@ -78,6 +64,7 @@
   border: none;
   border-radius: 6px;
   outline: none;
+  color: black;
 }
 
 .navbar-middle h1 {
@@ -87,80 +74,88 @@
   letter-spacing: 1px;
 }
 
-.navbar-vertical {
-  width: 100%; /* Mobil: Volle Breite */
-  background-color: #333;
-  display: none; /* Standardmäßig auf Mobil verstecken, wenn nicht aktiv */
-}
-@media (min-width: 768px) {
-  .navbar-vertical {
-    width: 200px; /* Desktop: ausklappbar, temporär (ohne JS): feste Breite */
-    display: block; /* Immer anzeigen auf Desktop */
-    min-height: calc(100vh - 60px);
+@media (max-width: 600px) {
+  .navbar-middle h1 {
+    font-size: 15px;
+  }
+
+  .search-form input {
+    width: 100px;
   }
 }
 
-.navbar-vertical.active {
-  display: block;
-  width: 200px;
-  transition: 0.3s;
-}
+/* ============================================================
+   NAVBAR — VERTICAL (sidebar links)
+   ============================================================ */
 
 .navbar-vertical ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.navbar-vertical li a{
+.navbar-vertical li a {
   display: block;
-  padding: 12px;
+  padding: 12px 16px;
   color: white;
   text-decoration: none;
+  transition: background 0.2s;
 }
 
 .navbar-vertical li a:hover {
   background-color: #111;
 }
 
-/* styling for all secondary buttons */
+/* ============================================================
+   BUTTONS — secondary style
+   ============================================================ */
+
 .button-secondary {
-  display: inline-flex;    /* Ermöglicht Zentrierung des Inhalts */
-  align-items: center;     /* Vertikale Zentrierung */
-  justify-content: center; /* Horizontale Zentrierung */
-  padding: 10px 15px;      /* Padding angepasst an btn-submit */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
   background-color: #f0f2f5;
   color: #333;
   text-decoration: none;
-  border-radius: 6px;      /* Radius vereinheitlicht mit btn-submit */
+  border-radius: 6px;
   font-weight: 600;
   transition: background 0.3s ease;
-  box-sizing: border-box;  /* Wichtig für korrekte Breite */
-  text-align: center;      /* Fallback für ältere Browser */
+  box-sizing: border-box;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  font: inherit;
 }
+
 .button-secondary:hover {
   background-color: #e2e5e9;
 }
 
-/* main card of post */
+/* ============================================================
+   POST CARD
+   ============================================================ */
+
 .post {
-  position: relative;
   background: #FFE1A8;
-  border: 1px solid #111111;
+  border: 1px solid #111;
   border-radius: 12px;
-  padding: 15px; /* Etwas weniger Padding auf Mobil */
-  width: 90%;   /* Nutzt fast die volle Breite */
+  padding: 15px;
+  width: 90%;
   max-width: 750px;
   margin: 0 auto 25px auto;
-}
-@media (min-width: 600px) {
-  .post {
-    padding: 20px;
-  }
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .post:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 600px) {
+  .post {
+    padding: 20px;
+  }
 }
 
 .post-header {
@@ -172,53 +167,121 @@
   padding-bottom: 8px;
 }
 
-/* title */
 .post h3 {
   margin-top: 0;
   color: #2c3e50;
   display: inline-block;
 }
 
-/* favourite */
+.post .facts {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  align-items: flex-start;
+}
+
+.post .content {
+  display: flex;
+  line-height: 1.6;
+  text-align: left;
+  color: #333;
+  margin-top: 10px;
+}
+
+.post img {
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #eee;
+  flex-shrink: 0;
+}
+
+.post p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+}
+
+.post time {
+  display: block;
+  margin-top: 15px;
+  font-size: 0.8rem;
+  color: #111;
+  text-align: right;
+}
+
+@media (max-width: 480px) {
+  .post .facts {
+    gap: 10px;
+    font-size: 0.85rem;
+  }
+
+  .post img {
+    width: 60px !important;
+  }
+}
+
+/* ============================================================
+   POST ACTIONS (edit button + favourite)
+   ============================================================ */
+
+.post-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.post-actions .button-secondary {
+  padding: 5px 12px;
+  font-size: 0.85rem;
+}
+
+/* ============================================================
+   FAVOURITE (heart toggle)
+   ============================================================ */
+
 .post .favourite {
   position: relative;
   display: inline-flex;
   align-items: center;
   z-index: 10;
 }
-/* hides the normal checkbox, so the label can be styled as needed */
+
+/* Hide native checkbox */
 .favourite-checkbox {
-  position: relative;
+  position: absolute;
   opacity: 0;
   width: 0;
   height: 0;
 }
+
 .favourite-label {
   display: inline-block;
   cursor: pointer;
   width: 32px;
   height: 32px;
 }
-/* heart icon made from different elements */
+
 .favourite-icon {
   position: relative;
   display: block;
   width: 100%;
   height: 100%;
 }
+
+/* Heart shape via two pseudo-elements */
 .favourite-icon::before,
 .favourite-icon::after {
   content: '';
   position: absolute;
   top: 0;
-  width: 16px; /* half of width */
+  width: 16px;
   height: 26px;
-  /* standardcolour grey */
   background-color: #bdc3c7;
   border-radius: 16px 16px 0 0;
   transition: background-color 0.3s ease;
 }
-/* rotate both halves of the heart so they are in place */
+
 .favourite-icon::before {
   left: 16px;
   transform: rotate(-45deg);
@@ -230,91 +293,48 @@
   transform: rotate(45deg);
   transform-origin: 100% 100%;
 }
-/* change colour to red if clicked */
+
+/* Checked: red heart */
 .favourite-checkbox:checked + .favourite-label .favourite-icon::before,
 .favourite-checkbox:checked + .favourite-label .favourite-icon::after {
   background-color: #e74c3c;
 }
-/* hover effect */
+
+/* Hover */
 .favourite-label:hover .favourite-icon::before,
 .favourite-label:hover .favourite-icon::after {
   background-color: #95a5a6;
 }
 
-.post .facts {
-  display: flex;
-  flex-direction: row; /* Standard: Nebeneinander */
-  gap: 15px;
-  overflow-x: auto; /* Falls es zu viele Infos sind, kann man seitlich scrollen */
-  padding-bottom: 10px;
-}
+/* ============================================================
+   PROFILE CARD
+   ============================================================ */
 
-@media (max-width: 480px) {
-  .post .facts {
-    gap: 10px;
-    font-size: 0.85rem; /* Schrift etwas kleiner auf Mini-Displays */
-  }
-  .post img {
-    width: 60px; /* Bild etwas kleiner auf Mobil */
-  }
-}
-
-.post .content {
-  display: flex;
-  line-height: 1.5;
-  text-align: left;
-  color: #333;
-}
-
-.post img {
-  border-radius: 8px;
-  object-fit: cover;
-  border: 1px solid #eee;
-}
-
-/* compact syling of facts */
-.post p {
-  margin: 5px 0;
-  font-size: 0.95rem;
-}
-
-/* date time in subtle style */
-.post time {
-  display: block;
-  margin-top: 15px;
-  font-size: 0.8rem;
-  color: #111111;
-  text-align: right;
-}
-
-/* Profil */
 .profile-card {
   background: #FFE1A8;
   border-radius: 15px;
   padding: 30px;
   max-width: 500px;
   margin: 40px auto;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  text-align: center; /* Alles standardmäßig zentrieren */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-/* the profilepicture and username */
 .profile-header {
   display: flex;
-  flex-direction: column; /* Bild über dem Text */
+  flex-direction: column;
   align-items: center;
   gap: 15px;
   margin-bottom: 20px;
 }
 
-/* styling for the picture */
 .profile-img {
   width: 120px;
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid #f0f2f5;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .username {
@@ -331,16 +351,13 @@
   padding: 0 20px;
 }
 
-.post-actions {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+.profile-actions {
+  margin-top: 10px;
 }
 
-.post-actions .button-secondary {
-  padding: 5px 12px;
-  font-size: 0.85rem;
-}
+/* ============================================================
+   SECTION HEADINGS
+   ============================================================ */
 
 main h2 {
   text-align: center;
@@ -348,18 +365,19 @@ main h2 {
   margin-bottom: 20px;
 }
 
-/* REVIEW */
-/* --- FORMULAR CONTAINER (REVIEW ERSTELLEN/BEARBEITEN) --- */
+/* ============================================================
+   FORM CARD
+   ============================================================ */
+
 .form-card {
   background: #FFE1A8;
-  border: 1px solid #111111;
+  border: 1px solid #111;
   border-radius: 12px;
-  /* Responsive Breite: Mobile First */
   width: 95%;
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .form-card h1 {
@@ -371,7 +389,17 @@ main h2 {
   font-size: 24px;
 }
 
-/* --- FORMULAR LAYOUT --- */
+@media (min-width: 600px) {
+  .form-card {
+    padding: 30px;
+    margin: 40px auto;
+  }
+}
+
+/* ============================================================
+   REVIEW FORM LAYOUT
+   ============================================================ */
+
 .review-form {
   display: flex;
   flex-direction: column;
@@ -384,7 +412,7 @@ main h2 {
   gap: 5px;
 }
 
-/* Fieldset Reset für Barrierefreiheit (Stammwürze/Alkohol & Sterne) */
+/* Fieldset reset */
 .form-row,
 fieldset.form-group,
 .form-group.fieldset-reset {
@@ -393,14 +421,29 @@ fieldset.form-group,
   margin: 0;
 }
 
-/* Stammwürze & Alkohol Zeile: Mobile First (untereinander) */
+/* Technical fields row: stacked on mobile, side-by-side on desktop */
 .form-row {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-/* --- FORMULAR ELEMENTE --- */
+.flex-1 {
+  flex: 1;
+}
+
+@media (min-width: 600px) {
+  .form-row {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .form-row .form-group {
+    flex: 1;
+  }
+}
+
+/* Labels and legends */
 .review-form label,
 fieldset legend {
   font-weight: 600;
@@ -410,12 +453,15 @@ fieldset legend {
   margin-bottom: 5px;
 }
 
+/* Form inputs */
 .review-form input[type="text"],
 .review-form input[type="number"],
+.review-form input[type="email"],
+.review-form input[type="password"],
 .review-form select,
 .review-form textarea {
-  width: 100%; /* Volle Breite für Responsivität */
-  box-sizing: border-box; /* Padding vergrößert das Element nicht */
+  width: 100%;
+  box-sizing: border-box;
   padding: 10px;
   border: 1px solid #333;
   border-radius: 6px;
@@ -427,11 +473,12 @@ fieldset legend {
 .review-form input:focus,
 .review-form textarea:focus,
 .review-form select:focus {
-  outline: 2px solid #444;
+  outline: 3px solid #004a99;
+  outline-offset: 2px;
   border-color: transparent;
 }
 
-/* Datei-Upload & Vorschau */
+/* File upload preview */
 .file-input-wrapper {
   display: flex;
   align-items: center;
@@ -445,17 +492,21 @@ fieldset legend {
   border-radius: 4px;
   border: 1px solid #333;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
-/* --- BUTTONS & AKTIONEN --- */
+/* ============================================================
+   FORM ACTION BUTTONS
+   ============================================================ */
+
 .form-actions {
   display: flex;
   align-items: center;
   gap: 15px;
   margin-top: 10px;
+  flex-wrap: wrap;
 }
 
-/* Button Gruppe Bearbeitungsseite: Mobile First (untereinander) */
 .form-footer-actions {
   display: flex;
   flex-direction: column;
@@ -472,15 +523,18 @@ fieldset legend {
   gap: 15px;
 }
 
-.btn-submit, .btn-delete {
+.btn-submit,
+.btn-delete {
   color: white;
   border: none;
   padding: 12px 20px;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
+  font: inherit;
+  font-weight: 600;
   transition: background 0.2s;
-  width: 100%; /* Volle Breite auf Mobile */
+  width: 100%;
   text-align: center;
 }
 
@@ -494,9 +548,34 @@ fieldset legend {
 }
 
 .btn-submit:hover { background-color: #555; }
-.btn-delete:hover { background-color: #c0392b; }
+.btn-delete:hover { background-color: #a31407; }
 
-/* --- STERNE RATING --- */
+@media (min-width: 600px) {
+  .form-footer-actions {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .left-actions {
+    flex-direction: row;
+    width: auto;
+  }
+
+  .btn-submit,
+  .btn-delete {
+    width: auto;
+  }
+
+  .btn-delete {
+    margin-top: 0;
+  }
+}
+
+/* ============================================================
+   STAR RATING
+   ============================================================ */
+
 .star-rating-accessible {
   display: flex;
   gap: 5px;
@@ -505,7 +584,7 @@ fieldset legend {
   -webkit-tap-highlight-color: transparent;
 }
 
-.star-rating-accessible input {
+.star-rating-accessible input[type="radio"] {
   position: absolute;
   opacity: 0;
   width: 0;
@@ -518,59 +597,38 @@ fieldset legend {
   cursor: pointer;
   transition: color 0.15s ease-in-out, transform 0.1s ease;
   line-height: 1;
+  font-weight: normal;
 }
 
-.star-rating-accessible input:checked + label,
+/* Highlight the selected star and all stars before it */
 .star-rating-accessible label:has(~ input:checked),
+.star-rating-accessible input:checked + label {
+  color: #cf0000;
+  transform: scale(1.1);
+}
+
+/* Hover highlight */
 .star-rating-accessible label:hover,
 .star-rating-accessible label:has(~ label:hover) {
   color: #cf0000;
   transform: scale(1.1);
 }
 
-.star-rating-accessible input:focus + label { outline: none; }
+/* Keyboard focus ring */
 .star-rating-accessible input:focus-visible + label {
-  outline: 2px solid #333;
+  outline: 2px solid #004a99;
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-/* --- MEDIA QUERIES (DESKTOP ANPASSUNGEN) --- */
-@media (min-width: 600px) {
-  .form-card {
-    padding: 30px;
-    margin: 40px auto;
-  }
+/* ============================================================
+   SEARCH / FILTER
+   ============================================================ */
 
-  .form-row {
-    flex-direction: row; /* Stammwürze/Alkohol nebeneinander */
-    gap: 20px;
-  }
-
-  .form-row .form-group {
-    flex: 1;
-  }
-
-  .form-footer-actions {
-    flex-direction: row; /* Speichern & Löschen nebeneinander */
-    justify-content: space-between;
-  }
-
-  .left-actions {
-    flex-direction: row;
-    width: auto;
-  }
-
-  .btn-submit, .btn-delete {
-    width: auto; /* Buttons schrumpfen auf Inhalt */
-  }
-
-  .btn-delete {
-    margin-top: 0;
-  }
+.search-results-container {
+  margin-bottom: 20px;
 }
 
-/* Spezifisch für die Filter-Sektion */
 .filter-form {
   background: rgba(255, 255, 255, 0.3);
   padding: 15px;
@@ -580,7 +638,7 @@ fieldset legend {
 
 .filter-options {
   display: flex;
-  flex-wrap: wrap; /* Erlaubt Umbruch auf Handys */
+  flex-wrap: wrap;
   gap: 15px;
   align-items: center;
 }
@@ -592,7 +650,6 @@ fieldset legend {
   cursor: pointer;
 }
 
-/* Checkboxen etwas größer für bessere Touch-Bedienung */
 .filter-item input[type="checkbox"] {
   width: 18px;
   height: 18px;
@@ -600,12 +657,17 @@ fieldset legend {
   accent-color: #333;
 }
 
+.filter-item input:focus-visible + label {
+  outline: 2px solid #004a99;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
 .btn-small {
   padding: 8px 15px;
   font-size: 0.9rem;
 }
 
-/* Responsive Anpassung für Filter */
 @media (max-width: 600px) {
   .filter-options {
     flex-direction: column;
@@ -613,18 +675,13 @@ fieldset legend {
   }
 
   .filter-options .btn-submit {
-    width: 100%; /* Button auf Mobile volle Breite */
+    width: 100%;
   }
 }
 
-/* Barrierefreiheit: Fokus für Checkboxen */
-.filter-item input:focus-visible + label {
-  outline: 2px solid #333;
-  outline-offset: 4px;
-  border-radius: 2px;
-}
-
-/* Spezifische Ergänzungen für Textseiten wie die Barrierefreiheitserklärung */
+/* ============================================================
+   ACCESSIBILITY / TEXT CONTENT PAGES
+   ============================================================ */
 
 .accessibility-content {
   text-align: left;
@@ -651,7 +708,7 @@ fieldset legend {
 
 .accessibility-content h2 {
   margin-top: 0;
-  text-align: left; /* Überschreibt das zentrierte h2 aus deinem main h2 */
+  text-align: left;
 }
 
 .accessibility-content ul {
