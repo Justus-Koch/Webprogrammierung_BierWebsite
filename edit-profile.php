@@ -1,8 +1,8 @@
 <?php $title = 'Profil bearbeiten'; ?>
-<?php include './includes/header.php'; ?>
+<?php include_once 'includes/header.php'; ?>
 
 <div class="layout">
-  <?php include './includes/sidebar.php'; ?>
+  <?php include_once 'includes/sidebar.php'; ?>
 
   <main>
     <div class="form-card">
@@ -28,7 +28,7 @@
         <div class="form-footer-actions">
           <div class="left-actions">
             <button type="submit" class="btn-submit">Speichern</button>
-            <a href="./profile.php" class="button-secondary">Abbrechen</a>
+            <a href="profile.php" class="button-secondary">Abbrechen</a>
           </div>
           <button type="button" class="btn-delete"
                   aria-label="Profil unwiderruflich löschen"
@@ -42,4 +42,4 @@
   </main>
 </div>
 
-<?php include './includes/footer.php'; ?>
+<?php include_once 'includes/footer.php'; ?>

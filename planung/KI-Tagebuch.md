@@ -77,3 +77,12 @@ Antwort: Überprüfung der Anforderungne Layout & CSS3-Techniken, visuelle Gesta
 18. Prompt (Gemini, 13.05.2026)
 Verfasse eine zu meiner Website passende Barrierefreiheitserklärung in HTML-Format und passe das Design an die anderen Seiten an. Eine Überprüfung mit dem WAVE-Validator hat keine Fehler oder Warnungen ergeben.
 Antwort: Erstellung der Barrierefreiheitserklärung als HTML und des passenden CSS.
+
+19. Prompt (Claude, 19.05.2026)
+This is my current code base. As you can tell there is only html and css used so far. That is intended because it is a uni project and we are not allowed to use anything else yet, except for php include for things that are found on all sites.
+What i want you to do, is clean up the project a bit. I have tried to make it responsive and accesible, but might have missed a few parts.
+Also clean up the css files and make it into  a reasonable structure. Change nothing content-wise.
+Then give me back all the files or the code for all files so i can replace the files or paste the code
+into my files. If there is any style changes you find nice, you can also incorporate minor style changes
+cosmetically.
+Antwort: Die aufgeräumten Dateien als php code inklusive übersichtlicherem css.
