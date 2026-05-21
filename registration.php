@@ -1,3 +1,39 @@
+<?php
+    require_once './model/User.php';
+    require_once './model/UserDAO.php';
+    require_once './model/MockUser.php';
+
+    session_start();
+
+    $err_message = "";
+
+    if ($_SERVER["REQUEST_METHOD"] === "POST"){
+      $nickname = $_POST['nickname'] ?? '';
+      $email = $_POST['email'] ?? '';
+      $password = $_POST['password'] ?? '';
+      $password_confirm = $_POST['password_confirm'] ?? '';
+
+
+      if (empty($email) || empty($password) || empty($password_confirm)){
+          $err_message = "Alle notwendigen Felder müssen für eine Registrierung ausgefüllt sein.";
+      }else{
+          if(!password_verify($password, $password_confirm)){
+            $err_message = "Die Passwörter stimmen nicht überein.";
+          }else{
+
+            $userDAO = new MockUser();
+            $newUser = new User($email, $password, $nickname);
+            $userDAO->saveUser($newUser); // the user is not actually registrated, only the mock user
+            $_SESSION['authenticated_user'] = $userDAO->findUser("mock");
+
+            header("Location: index.php");
+            exit;
+          }
+      }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -13,7 +49,13 @@
   <div class="form-card">
     <h1>Registrieren</h1>
 
-    <form method="post" action="/register" class="review-form" novalidate>
+    <?php if (!empty($err_message)): ?>
+      <div class="alert alert-danger" style="color: red; margin-bottom: 15px;">
+        <?php echo htmlspecialchars($err_message); ?>
+      </div>
+    <?php endif; ?>
+
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="review-form" novalidate>
 
       <div class="form-group">
         <label for="nickname">Nickname <span aria-hidden="true">*</span></label>
