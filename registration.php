@@ -13,18 +13,16 @@
       $password = $_POST['password'] ?? '';
       $password_confirm = $_POST['password_confirm'] ?? '';
 
-
       if (empty($email) || empty($password) || empty($password_confirm)){
           $err_message = "Alle notwendigen Felder müssen für eine Registrierung ausgefüllt sein.";
       }else{
-          if(!password_verify($password, $password_confirm)){
+          if($password !== $password_confirm){
             $err_message = "Die Passwörter stimmen nicht überein.";
           }else{
-
             $userDAO = new MockUser();
             $newUser = new User($email, $password, $nickname);
-            $userDAO->saveUser($newUser); // the user is not actually registrated, only the mock user
-            $_SESSION['authenticated_user'] = $userDAO->findUser("mock");
+            $user = $userDAO->saveUser($newUser); // the user is not actually registrated, only the mock user is returned
+            $_SESSION['authenticated_user'] = $user;
 
             header("Location: index.php");
             exit;

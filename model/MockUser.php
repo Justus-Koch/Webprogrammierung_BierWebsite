@@ -13,10 +13,11 @@
             }
         }
 
-        public function saveUser(User $user){
+        public function saveUser(User $user): User{
             if (!isset($_SESSION[self::mockUserField])){
                 $_SESSION[self::mockUserField] = new User("bier@gmail.com", password_hash("bier", PASSWORD_DEFAULT), "bierliebhaber", "bier.jpg");
             }
+            return $_SESSION[self::mockUserField];
         }
 
         public function findUser(string $username): ?User{
