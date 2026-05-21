@@ -13,19 +13,19 @@
         }
 
         public function getEmail(): string{
-            return $email;
+            return $this->email;
         }
 
         public function getPassword(): string{
-            return $password;
+            return $this->password;
         }
 
         public function getNickname(): string{
-            return $nickname;
+            return $this->nickname;
         }
 
         public function getProfilePicture(): string{
-            return $profile_picture;
+            return $this->profile_picture;
         }
     }
 ?>

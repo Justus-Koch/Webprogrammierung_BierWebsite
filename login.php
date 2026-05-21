@@ -1,3 +1,36 @@
+<?php
+    require_once './model/User.php';
+    require_once './model/UserDAO.php';
+    require_once './model/MockUser.php';
+
+    session_start();
+
+    $err_message = "";
+
+    if ($_SERVER["REQUEST_METHOD"] === "POST"){
+      $email = $_POST['username'] ?? '';
+      $password = $_POST['password'] ?? '';
+
+      if (empty($email) || empty($password)){
+          $err_message = "Beide Felder müssen für einen Login ausgefüllt sein.";
+      }else{
+          $userDAO = new MockUser();
+          $user = $userDAO->findUser($email);
+
+          if($user && password_verify($password, $user->getPassword())){
+            $_SESSION['authenticated_user'] = $user;
+
+            header("Location: index.php");
+            exit;
+          }else{
+            $err_message = "Zugangsdaten ungültig";
+          }
+      }
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -13,7 +46,13 @@
   <div class="form-card">
     <h1>Anmeldung</h1>
 
-    <form action="/login" method="POST" class="review-form" novalidate>
+    <?php if (!empty($err_message)): ?>
+      <div class="alert alert-danger" style="color: red; margin-bottom: 15px;">
+        <?php echo htmlspecialchars($err_message); ?>
+      </div>
+    <?php endif; ?>
+
+    <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="review-form" novalidate>
 
       <div class="form-group">
         <label for="username">E-Mail <span aria-hidden="true">*</span></label>
