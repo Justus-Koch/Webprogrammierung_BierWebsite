@@ -1,36 +1,3 @@
-<?php
-    require_once './model/User.php';
-    require_once './model/UserDAO.php';
-    require_once './model/MockUser.php';
-
-    session_start();
-
-    $err_message = "";
-
-    if ($_SERVER["REQUEST_METHOD"] === "POST"){
-      $email = $_POST['username'] ?? '';
-      $password = $_POST['password'] ?? '';
-
-      if (empty($email) || empty($password)){
-          $err_message = "Beide Felder müssen für einen Login ausgefüllt sein.";
-      }else{
-          $userDAO = new MockUser();
-          $user = $userDAO->findUser($email);
-
-          if($user && password_verify($password, $user->getPassword())){
-            $_SESSION['authenticated_user'] = $user;
-
-            header("Location: index.php");
-            exit;
-          }else{
-            $err_message = "Zugangsdaten ungültig";
-          }
-      }
-    }
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -80,4 +47,4 @@
   </div>
 </main>
 
-<?php include_once 'includes/footer.php'; ?>
+<?php include_once './php/include/footer.php'; ?>

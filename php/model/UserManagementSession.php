@@ -33,9 +33,16 @@
             }
         }
 
-        public function saveUser($id, $email, $password, $nickname="Bier", $profile_picture="profile_picture.jpg"){
-            $newUser = new User($id, $email, $password, $nickname, $profile_picture);
+        public function saveUser($email, $password, $nickname, $profile_picture){
             $id = $_SESSION["nextID"];
+            if(empty($nickname)){
+                $nickname="Bierliebhaber".$id;
+            }
+            if(empty($profile_picture)){
+                $profile_picture="profile_picture.jpg";
+            }
+            
+            $newUser = new User($id, $email, $password, $nickname, $profile_picture);
             $users[$id] = $newUser;
             $_SESSION["nextID"] = $id + 1;
             $_SESSION["users"] = serialize($users);
@@ -49,9 +56,9 @@
             }
         }
         
-        public function updateUser($id, $email=null, $password=null, $nickname=null, $profile_picture=null){
+        public function updateUser($id, $nickname, $profile_picture){
             if (isset($users[$id])){
-                $users[$id]->update($email, $password, $nickname, $profile_picture);
+                $users[$id]->update($nickname, $profile_picture);
                 $_SESSION["users"] = serialize($users);
             }else{
                 throw new UserNotFoundException();
@@ -65,6 +72,15 @@
             }else{
                 throw new UserNotFoundException();
             }
+        }
+
+        public function canLogin($email, $password){
+            foreach ($users as $user){
+                if($email === $user->getEmail() && $password === $user->getPassword()){
+                    return true;
+                }
+            }
+            return false;
         }
     }
 ?>

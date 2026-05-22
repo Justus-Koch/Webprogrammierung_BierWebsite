@@ -34,13 +34,7 @@
             return $this->profile_picture;
         }
 
-        public function update($email, $password, $nickname, $profile_picture){
-            if (!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL)){
-                $this->email = email;
-            }
-            if (!empty($password)){
-                $this->password = $password;
-            }
+        public function update($nickname, $profile_picture){
             if (!empty($nickname)){
                 $this->nickname = $nickname;
             }

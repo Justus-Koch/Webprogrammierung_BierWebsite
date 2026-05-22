@@ -1,37 +1,3 @@
-<?php
-    require_once './model/User.php';
-    require_once './model/UserDAO.php';
-    require_once './model/MockUser.php';
-
-    session_start();
-
-    $err_message = "";
-
-    if ($_SERVER["REQUEST_METHOD"] === "POST"){
-      $nickname = $_POST['nickname'] ?? '';
-      $email = $_POST['email'] ?? '';
-      $password = $_POST['password'] ?? '';
-      $password_confirm = $_POST['password_confirm'] ?? '';
-
-      if (empty($email) || empty($password) || empty($password_confirm)){
-          $err_message = "Alle notwendigen Felder müssen für eine Registrierung ausgefüllt sein.";
-      }else{
-          if($password !== $password_confirm){
-            $err_message = "Die Passwörter stimmen nicht überein.";
-          }else{
-            $userDAO = new MockUser();
-            $newUser = new User($email, $password, $nickname);
-            $user = $userDAO->saveUser($newUser); // the user is not actually registrated, only the mock user is returned
-            $_SESSION['authenticated_user'] = $user;
-
-            header("Location: index.php");
-            exit;
-          }
-      }
-    }
-
-?>
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -96,14 +62,4 @@
   </div>
 </main>
 
-<footer class="footer">
-  <nav class="footer-content" aria-label="Rechtliche Links">
-    <a href="impressum.php">Impressum</a>
-    <a href="datenschutz.php">Datenschutz</a>
-    <a href="nutzungsbedingungen.php">Nutzungsbedingungen</a>
-    <a href="barrierefreiheit.php">Barrierefreiheitserklärung</a>
-  </nav>
-</footer>
-
-</body>
-</html>
+<?php include_once './php/include/footer.php'; ?>
