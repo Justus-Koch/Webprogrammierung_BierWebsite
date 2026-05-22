@@ -1,3 +1,28 @@
+<?php
+  session_start();
+
+  if ($_SERVER["REQUEST_METHOD"] === "POST"){
+      $email = $_POST['username'] ?? '';
+      $password = $_POST['password'] ?? '';
+
+      if (empty($email) || empty($password)){
+          $err_message = "Beide Felder müssen für einen Login ausgefüllt sein.";
+      }else{
+          $userDAO = new MockUser();
+          $user = $userDAO->findUser($email);
+
+          if($user && password_verify($password, $user->getPassword())){
+            $_SESSION['authenticated_user'] = $user;
+
+            header("Location: index.php");
+            exit;
+          }else{
+            $err_message = "Zugangsdaten ungültig";
+          }
+      }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -23,7 +48,11 @@
       <h1>Prost-Protokoll</h1>
     </div>
     <div class="navbar-right">
-      <a href="login.php" class="button-secondary">Anmelden</a>
+      <?php if(isset($_SESSION["authenticated_user"])):?>
+        <button method=post action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">Abmelden</button>
+      <?php else:?>
+        <a href="login.php" class="button-secondary">Anmelden</a>
+      <?php endif; ?>
     </div>
   </nav>
 </header>
