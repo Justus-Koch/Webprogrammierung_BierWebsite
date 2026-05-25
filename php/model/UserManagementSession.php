@@ -33,7 +33,7 @@
             }
         }
 
-        public function saveUser($email, $password, $nickname, $profile_picture){
+        public function saveUser($email, $password, $nickname=null, $profile_picture=null){
             $id = $_SESSION["nextID"];
             if(empty($nickname)){
                 $nickname="Bierliebhaber".$id;

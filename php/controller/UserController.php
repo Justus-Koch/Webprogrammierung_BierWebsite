@@ -44,7 +44,7 @@
             $userManagement->saveUser($_POST["email"], $_POST["password"], $_POST["nickname"]);
 
             $_SESSION["message"] = "registration_success";
-            header("Location: login.php");
+            header("Location: ../php/view/login.php");
             exit;
         }catch(InternalErrorException $e){
             $this->handleInternalErrorException();
@@ -120,33 +120,33 @@
     private function checkRegistrationParam(){
         if (!isset($_POST["email"]) || !isset($_POST["password"]) || !isset($_POST["password_confirm"]) || !isset($_POST["nickname"])|| !isset($_POST["submit"])) {
             $_SESSION["message"] = "missing_parameters";
-            header("Location: registration.php");
+            header("Location: ../php/view/registration.php");
             exit;
         }else if(empty($_POST["email"]) || empty($_POST["password"]) || empty($_POST["password_confirm"]) ){
             $_SESSION["message"] = "missing_required_parameters";
-            header("Location: registration.php");
+            header("Location: ../php/view/registration.php");
             exit;
         }else if ($_POST["password"] !== $_POST["password_confirm"]){
             $_SESSION["message"] = "passwords_not_equal";
-            header("Location: registration.php");
+            header("Location: ../php/view/registration.php");
             exit;
         }
-        checkValidEmail();
+        $this->checkValidEmail();
     }
 
     private function checkUpdateParam(){
         if (!isset($_POST["nickname"]) || !isset($_POST["profile_picture"]) || !isset($_POST["submit"])) {
             $_SESSION["message"] = "missing_parameters";
-            header("Location: edit-profile.php");
+            header("Location: ../php/view/edit-profile.php");
             exit;
         }
-        checkValidUserID();
+        $this->checkValidUserID();
     }
 
     private function checkValidEmail(){
         if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
             $_SESSION["message"] = "invalid_email";
-            header("Location: registration.php");
+            header("Location: ../php/view/registration.php");
             exit;
         }
     }
@@ -154,7 +154,7 @@
     private function checkValidUserID(){
         if(!isset($_SESSION["userID"]) || empty($_SESSION["userID"])){
             $_SESSION["message"] = "missing_userID";
-            header("Location: profile.php");
+            header("Location: ../php/view/profile.php");
             exit;
         }
     }
@@ -162,13 +162,13 @@
     private function handleUserNotFoundException()
     {
         $_SESSION["message"] = "user_not_found";
-        header("Location: profile.php");
+        header("Location: ../php/view/profile.php");
         exit;
     }
     private function handleInternalErrorException()
     {
         $_SESSION["message"] = "internal_error";
-        header("Location: profile.php");
+        header("Location: ../php/view/profile.php");
         exit;
     }
     }

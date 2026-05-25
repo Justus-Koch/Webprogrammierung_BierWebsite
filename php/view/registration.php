@@ -1,11 +1,16 @@
+<?php
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Registrierung – Prost-Protokoll</title>
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
 </head>
 <body>
 
@@ -13,13 +18,19 @@
   <div class="form-card">
     <h1>Registrieren</h1>
 
-    <?php if (!empty($err_message)): ?>
-      <div class="alert alert-danger" style="color: red; margin-bottom: 15px;">
-        <?php echo htmlspecialchars($err_message); ?>
-      </div>
+    <div class="alert">
+    <?php if (isset($_SESSION["message"]) && $_SESSION["message"] == "passwords_not_equal"): ?>
+      <p>Die Passwörter stimmen nicht überein.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "missing_parameters"): ?>
+      <p>Es fehlen Parameter.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "missing_required_parameters"): ?>
+      <p>Es fehlen notwendige Parameter.</p>
     <?php endif; ?>
+    <?php 
+        unset($_SESSION["message"]); 
+    ?>
 
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="review-form" novalidate>
+    <form method="post" action="../../registration-execute.php" class="review-form" novalidate>
 
       <div class="form-group">
         <label for="nickname">Nickname <span aria-hidden="true">*</span></label>
@@ -53,7 +64,7 @@
 
       <div class="form-footer-actions">
         <div class="left-actions">
-          <button type="submit" class="btn-submit">Konto erstellen</button>
+          <button type="submit" class="btn-submit" name="submit">Konto erstellen</button>
           <a href="login.php" class="button-secondary">Zum Login</a>
         </div>
       </div>
@@ -62,4 +73,4 @@
   </div>
 </main>
 
-<?php include_once './php/include/footer.php'; ?>
+<?php include_once '../../php/include/footer.php'; ?>
