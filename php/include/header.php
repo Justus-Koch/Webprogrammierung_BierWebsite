@@ -23,7 +23,11 @@
       <h1>Prost-Protokoll</h1>
     </div>
     <div class="navbar-right">
+      <?php if (isset($_SESSION["userID"])): ?>
+        <a href="../../logout.php" class="button-secondary">Abmelden</a>
+      <?php else: ?>
         <a href="login.php" class="button-secondary">Anmelden</a>
+      <?php endif; ?>
     </div>
   </nav>
 </header>

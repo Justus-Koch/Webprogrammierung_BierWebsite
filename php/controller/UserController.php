@@ -29,10 +29,10 @@
     }
 
     public function logout(){
-        checkValidUserID();
+        //$this->checkValidUserID();
         unset($_SESSION["userID"]);
         $_SESSION["message"] = "logout_success";
-        header("Location: index.php");
+        header("Location: ../php/view/index.php");
     }
 
     public function registrate(){
@@ -88,7 +88,6 @@
         $this->checkValidUserID();
         try{
             $userManagement = UserManagement::getInstance();
-            // TODO überarbeiten
             return $userManagement->findUser($_SESSION["userID"]);
         }catch(UserNotFoundException $e){
             $this->handleUserNotFoundException();
