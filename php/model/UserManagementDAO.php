@@ -10,6 +10,6 @@
         function findUser($id);
         function updateUser($id, $nickname, $profile_picture);
         function deleteUser($id);
-        function canLogin($email, $password);
+        function login($email, $password);
     }
 ?>

@@ -1,8 +1,19 @@
-<?php $title = 'Feed'; ?>
-<?php include_once './php/include/header.php'; ?>
+<?php 
+  if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_start();
+  }
+
+  if (!isset($abs_path)) {
+      require_once "../../path.php";
+  }
+  $title = 'Feed'; 
+?>
+
+
+<?php include_once $abs_path.'/php/include/header.php'; ?>
 
 <div class="layout">
-  <?php include_once './php/include/sidebar.php'; ?>
+  <?php include_once $abs_path.'/php/include/sidebar.php'; ?>
 
   <main>
     <h2>Bier-Feed</h2>
@@ -24,7 +35,7 @@
       </header>
       <h3>Beispieltitel 1</h3>
       <div class="facts">
-        <img src="./img/bier.jpg" alt="Bier" width="70">
+        <img src= <?php $abs_path."/img/bier.jpg"?> alt="Bier" width="70">
         <p>Biername:<br> Krombacher</p>
         <p>Bierart:<br> Pilsener</p>
         <p>Alkoholgehalt:<br> 4,9%</p>
@@ -117,4 +128,4 @@
   </main>
 </div>
 
-<?php include_once './php/include/footer.php'; ?>
+<?php include_once $abs_path.'/php/include/footer.php'; ?>

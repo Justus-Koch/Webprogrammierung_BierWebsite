@@ -1,13 +1,32 @@
-<?php $title = 'Profil'; ?>
-<?php include_once './php/include/header.php'; ?>
+<?php 
+  if (session_status() !== PHP_SESSION_ACTIVE) {
+      session_start();
+  }
 
+  if (!isset($abs_path)) {
+      require_once "../../path.php";
+  }
+  $title = 'Profil'; 
+  require_once $abs_path.'/php/controller/UserController.php';
+
+  $userController = new UserController();
+
+  //$currentUser = $userController->getUser();
+?>
+
+<?php include_once $abs_path.'/php/include/header.php'; ?>
 <div class="layout">
-  <?php include_once './php/include/sidebar.php'; ?>
+  <?php include_once $abs_path.'/php/include/sidebar.php'; ?>
 
   <main>
+    <?php if (isset($_SESSION["message"]) && $_SESSION["message"] == "internal_error"): ?>
+      <p>Es gibt einen internen Fehler.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "user_not_found"): ?>
+      <p>Es wurde kein Benutzer gefunden.</p>
+    <?php else: ?>
     <section class="profile-card" aria-labelledby="profile-heading">
       <div class="profile-header">
-        <img src="./img/profile_picture.jpg" alt="Profilbild von User_Schluckspecht" class="profile-img">
+        <img src="./img/profile_picture.jpg" alt="Profilbild" class="profile-img">
         <div class="profile-info">
           <h2 id="profile-heading">Profil</h2>
           <h3 class="username">@User_Schluckspecht</h3>
@@ -21,6 +40,7 @@
       </div>
     </section>
 
+    // TODO Reviews einfügen
     <h2>Meine Reviews</h2>
 
     <article class="post">
@@ -59,7 +79,8 @@
       </div>
       <time datetime="2026-04-21">21.04.2026</time>
     </article>
+    <?php endif; ?>
   </main>
 </div>
 
-<?php include_once './php/include/footer.php'; ?>
+<?php include_once $abs_path.'/php/include/footer.php'; ?>

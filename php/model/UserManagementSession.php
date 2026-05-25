@@ -28,7 +28,7 @@
                 for ($i=0; $i < $numOfUsers; $i++){
                     $this->users[$i] = new User($i, "bier@gmail.com", "bier", "Bierliebhaber", "bier.jpg");
                 }
-                $_SESSION["users"] = serialize($users);
+                $_SESSION["users"] = serialize($this->users);
                 $_SESSION["nextID"] = $numOfUsers;
             }
         }
@@ -43,23 +43,23 @@
             }
             
             $newUser = new User($id, $email, $password, $nickname, $profile_picture);
-            $users[$id] = $newUser;
+            $this->users[$id] = $newUser;
             $_SESSION["nextID"] = $id + 1;
-            $_SESSION["users"] = serialize($users);
+            $_SESSION["users"] = serialize($this->users);
         }
 
         public function findUser($id){
-            if (isset($users[$id])){
-                return $users[$id];
+            if (isset($this->users[$id])){
+                return $this->users[$id];
             }else{
                 throw new UserNotFoundException();
             }
         }
         
         public function updateUser($id, $nickname, $profile_picture){
-            if (isset($users[$id])){
-                $users[$id]->update($nickname, $profile_picture);
-                $_SESSION["users"] = serialize($users);
+            if (isset($this->users[$id])){
+                $this->users[$id]->update($nickname, $profile_picture);
+                $_SESSION["users"] = serialize($this->users);
             }else{
                 throw new UserNotFoundException();
             }
@@ -74,13 +74,13 @@
             }
         }
 
-        public function canLogin($email, $password){
-            foreach ($users as $user){
+        public function login($email, $password){
+            foreach ($this->users as $user){
                 if($email === $user->getEmail() && $password === $user->getPassword()){
-                    return true;
+                    return $user->getID();
                 }
             }
-            return false;
+            return -1;
         }
     }
 ?>

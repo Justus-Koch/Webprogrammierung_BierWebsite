@@ -1,6 +1,9 @@
 <?php
-    require_once "./php/model/User.php";
-    require_once "./php/model/UserManagement.php";
+    if (!isset($abs_path)) {
+        require_once "../../path.php";
+    }
+    require_once $abs_path."/php/model/User.php";
+    require_once $abs_path."/php/model/UserManagement.php";
 
     class UserController{
 
@@ -8,20 +11,20 @@
         $this->checkLoginParam();
         try{
             $userManagement = UserManagement::getInstance();
-            $userID = $userManagement.login($_POST["email"], $_POST["password"]);
+            $userID = $userManagement->login($_POST["email"], $_POST["password"]);
 
             if($userID >= 0){
                 $_SESSION["message"] = "login_success";
                 $_SESSION["userID"] = $userID;
-                header("Location: index.php");
+                header("Location: ../php/view/index.php");
                 exit;
             }else{
                 $_SESSION["message"] = "login_failed";
-                header("Location: login.php");
+                header("Location: ../php/view/login.php");
                 exit; 
             }
         }catch(InternalErrorException $e){
-            handleInternalErrorException();
+            $this->handleInternalErrorException();
         }
     }
 
@@ -44,7 +47,7 @@
             header("Location: login.php");
             exit;
         }catch(InternalErrorException $e){
-            handleInternalErrorException();
+            $this->handleInternalErrorException();
         }
 
     }
@@ -59,9 +62,9 @@
             header("Location: profile.php");
             exit;
         }catch(UserNotFoundException $e){
-            handleUserNotFoundException();
+            $this->handleUserNotFoundException();
         }catch(InternalErrorException $e){
-            handleInternalErrorException();
+            $this->handleInternalErrorException();
         }
     }
 
@@ -75,9 +78,22 @@
             header("Location: index.php");
             exit;
         }catch(UserNotFoundException $e){
-            handleUserNotFoundException();
+            $this->handleUserNotFoundException();
         }catch(InternalErrorException $e){
-            handleInternalErrorException();
+            $this->handleInternalErrorException();
+        }
+    }
+
+    public function getUser(){
+        $this->checkValidUserID();
+        try{
+            $userManagement = UserManagement::getInstance();
+            // TODO überarbeiten
+            return $userManagement->findUser($_SESSION["userID"]);
+        }catch(UserNotFoundException $e){
+            $this->handleUserNotFoundException();
+        }catch(InternalErrorException $e){
+            $this->handleInternalErrorException();
         }
     }
 
@@ -88,11 +104,11 @@
     private function checkLoginParam(){
         if (!isset($_POST["email"]) || !isset($_POST["password"]) || !isset($_POST["submit"])) {
             $_SESSION["message"] = "missing_parameters";
-            header("Location: login.php");
+            header("Location: ../php/view/login.php");
             exit;
         }else if(empty($_POST["email"]) || empty($_POST["password"]) ){
             $_SESSION["message"] = "missing_required_parameters";
-            header("Location: login.php");
+            header("Location: ../php/view/login.php");
             exit;
         }
     }
@@ -136,24 +152,24 @@
     }
 
     private function checkValidUserID(){
-        if(empty($_SESSION("userID"))){
+        if(!isset($_SESSION["userID"]) || empty($_SESSION["userID"])){
             $_SESSION["message"] = "missing_userID";
-            header("Location: index.php");
+            header("Location: profile.php");
             exit;
         }
     }
 
     private function handleUserNotFoundException()
     {
-        $_SESSION["message"] = "User_not_found";
-        header("Location: index.php");
+        $_SESSION["message"] = "user_not_found";
+        header("Location: profile.php");
         exit;
     }
     private function handleInternalErrorException()
     {
         $_SESSION["message"] = "internal_error";
-        header("Location: index.php");
+        header("Location: profile.php");
         exit;
     }
     }
-?>
+    ?>
