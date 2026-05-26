@@ -7,11 +7,7 @@
       require_once "../../path.php";
   }
   $title = 'Profil'; 
-  require_once $abs_path.'/php/controller/UserController.php';
-
-  $userController = new UserController();
-
-  //$currentUser = $userController->getUser();
+  require_once $abs_path.'/profile-load.php';
 ?>
 
 <?php include_once $abs_path.'/php/include/header.php'; ?>
@@ -19,17 +15,23 @@
   <?php include_once $abs_path.'/php/include/sidebar.php'; ?>
 
   <main>
-    <?php if (isset($_SESSION["message"]) && $_SESSION["message"] == "internal_error"): ?>
-      <p>Es gibt einen internen Fehler.</p>
-    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "user_not_found"): ?>
-      <p>Es wurde kein Benutzer gefunden.</p>
-    <?php else: ?>
+    <div class="alert"> 
+      <?php if (isset($_SESSION["message"]) && $_SESSION["message"] == "missing_userID"): ?>
+        <p>Es wurde keine Benutzer-ID gefunden.</p>
+      <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "user_not_found"): ?>
+        <p>Kein Benutzer eingeloggt.</p>
+      <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "update_profile_success"): ?>
+        <p>Profiländerungen wurden erfolgreich gespeichert.</p>
+      <?php else: ?>
+    </div>
+
+
     <section class="profile-card" aria-labelledby="profile-heading">
       <div class="profile-header">
-        <img src="./img/profile_picture.jpg" alt="Profilbild" class="profile-img">
+        <img src="<?= "../../img/" . htmlspecialchars($current_user->getProfilePicture()); ?>" alt="Profilbild" class="profile-img">
         <div class="profile-info">
           <h2 id="profile-heading">Profil</h2>
-          <h3 class="username">@User_Schluckspecht</h3>
+          <h3 class="username"><?="@".htmlspecialchars($current_user->getNickname())?></h3>
         </div>
       </div>
       <div class="profile-bio">
@@ -40,12 +42,12 @@
       </div>
     </section>
 
-    // TODO Reviews einfügen
+    <!-- TODO Reviews einfügen -->
     <h2>Meine Reviews</h2>
 
     <article class="post">
       <header class="post-header">
-        <span class="username">@User_Schluckspecht</span>
+        <span class="username"><?="@".htmlspecialchars($current_user->getNickname())?></span>
         <div class="post-actions">
           <a class="button-secondary" href="./edit-review.php">Bearbeiten</a>
           <div class="favourite">

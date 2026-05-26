@@ -15,6 +15,25 @@
 <div class="layout">
   <?php include_once $abs_path.'/php/include/sidebar.php'; ?>
 
+  <div class="alert">
+    <?php if (isset($_SESSION["message"]) && $_SESSION["message"] == "internal_error"): ?>
+      <p>Es gibt einen internen Fehler.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "login_success"): ?>
+      <p>Anmelden erfolgreich.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "logout_success"): ?>
+      <p>Abmelden erfolgreich.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "delete_user_success"): ?>
+      <p>Benutzer erfolgreich gelöscht.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "missing_userID"): ?>
+      <p>Benutzer-ID nicht gefunden.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "user_not_found"): ?>
+      <p>Benutzer nicht gefunden.</p>
+    <?php endif; ?>
+    <?php 
+        unset($_SESSION["message"]); 
+    ?>
+  </div>
+
   <main>
     <h2>Bier-Feed</h2>
 
@@ -35,7 +54,7 @@
       </header>
       <h3>Beispieltitel 1</h3>
       <div class="facts">
-        <img src= <?php $abs_path."/img/bier.jpg"?> alt="Bier" width="70">
+        <img src= "../../img/bier.jpg" alt="Bier" width="70">
         <p>Biername:<br> Krombacher</p>
         <p>Bierart:<br> Pilsener</p>
         <p>Alkoholgehalt:<br> 4,9%</p>
@@ -71,7 +90,7 @@
       </header>
       <h3>Beispieltitel 2</h3>
       <div class="facts">
-        <img src="./img/bier.jpg" alt="Bier" width="70">
+        <img src="../../img/bier.jpg" alt="Bier" width="70">
         <p>Biername:<br> Jever</p>
         <p>Bierart:<br> Pilsener</p>
         <p>Alkoholgehalt:<br> 4,9%</p>
@@ -107,7 +126,7 @@
       </header>
       <h3>Beispieltitel 3</h3>
       <div class="facts">
-        <img src="./img/bier.jpg" alt="Bier" width="70">
+        <img src="../../img/bier.jpg" alt="Bier" width="70">
         <p>Biername:<br> Spaten</p>
         <p>Bierart:<br> Helles</p>
         <p>Alkoholgehalt:<br> 5,0%</p>

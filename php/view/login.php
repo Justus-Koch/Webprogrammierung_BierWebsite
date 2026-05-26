@@ -25,6 +25,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
       <p>Es fehlen Parameter.</p>
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "missing_required_parameters"): ?>
       <p>Es fehlen notwendige Parameter.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "registration_success"): ?>
+      <p>Registrierung erfolgreich.</p>
     <?php endif; ?>
     <?php 
         unset($_SESSION["message"]); 

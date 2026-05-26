@@ -25,6 +25,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
       <p>Es fehlen Parameter.</p>
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "missing_required_parameters"): ?>
       <p>Es fehlen notwendige Parameter.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "invalid_email"): ?>
+      <p>Die eingegebene EMail ist nicht gültig.</p>
     <?php endif; ?>
     <?php 
         unset($_SESSION["message"]); 
@@ -33,7 +35,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     <form method="post" action="../../registration-execute.php" class="review-form" novalidate>
 
       <div class="form-group">
-        <label for="nickname">Nickname <span aria-hidden="true">*</span></label>
+        <label for="nickname">Nickname<span aria-hidden="true">*</span></label>
         <input type="text" id="nickname" name="nickname"
                placeholder="Dein Nickname"
                required aria-required="true"

@@ -26,7 +26,7 @@
                 // Dummy Daten einfügen
                 $numOfUsers = 3;
                 for ($i=0; $i < $numOfUsers; $i++){
-                    $this->users[$i] = new User($i, "bier@gmail.com", "bier", "Bierliebhaber", "bier.jpg");
+                    $this->users[$i] = new User($i, "bier@gmail.com", "bier", "Bierliebhaber".$i, "bier.jpg");
                 }
                 $_SESSION["users"] = serialize($this->users);
                 $_SESSION["nextID"] = $numOfUsers;
@@ -66,9 +66,10 @@
         }
 
         public function deleteUser($id){
-            if (isset($users[$id])){
-                unsset($users[$id]);
-                $_SESSION["users"] = serialize($users);
+            if (isset($this->users[$id])){
+                unset($this->users[$id]);
+                $_SESSION["users"] = serialize($this->users);
+                error_log("User gelöscht: ".$id);
             }else{
                 throw new UserNotFoundException();
             }
