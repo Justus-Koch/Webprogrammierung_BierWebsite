@@ -22,10 +22,8 @@
         <p>Kein Benutzer eingeloggt.</p>
       <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "update_profile_success"): ?>
         <p>Profiländerungen wurden erfolgreich gespeichert.</p>
-      <?php else: ?>
+      <?php endif; ?>
     </div>
-
-
     <section class="profile-card" aria-labelledby="profile-heading">
       <div class="profile-header">
         <img src="<?= "../../img/" . htmlspecialchars($current_user->getProfilePicture()); ?>" alt="Profilbild" class="profile-img">
@@ -81,7 +79,6 @@
       </div>
       <time datetime="2026-04-21">21.04.2026</time>
     </article>
-    <?php endif; ?>
   </main>
 </div>
 

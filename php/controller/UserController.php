@@ -57,9 +57,10 @@
         try{
             $userManagement = UserManagement::getInstance();
             $userManagement->updateUser($_SESSION["userID"], $_POST["nickname"], $_POST["profile_picture"]);
+            error_log("User geupdatet: ".$_POST["nickname"].$_POST["profile_picture"]);
 
             $_SESSION["message"] = "update_profile_success";
-            header("Location: profile.php");
+            header("Location: /php/view/profile.php");
             exit;
         }catch(UserNotFoundException $e){
             $this->handleUserNotFoundException();
@@ -160,7 +161,6 @@
 
     private function checkValidUserID(){
         if(!isset($_SESSION["userID"])){
-            error_log("Session-Check fehlgeschlagen: userID nicht vorhanden.");
             $_SESSION["message"] = "missing_userID";
             return false;
         }
