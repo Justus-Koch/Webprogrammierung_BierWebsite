@@ -145,7 +145,7 @@
     private function checkValidEmail(){
         if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
             $_SESSION["message"] = "invalid_email";
-            header("Location: ../php/view/registration.php");
+            header("Location: ".REGISTRATION_PATH);
             exit;
         }
     }
