@@ -34,3 +34,6 @@
 </div>
 
 <?php include_once './php/include/footer.php'; ?>
+
+</body>
+</html>

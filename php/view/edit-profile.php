@@ -9,6 +9,11 @@
   } 
 
   require_once $abs_path.'/profile-load.php';
+
+  $profile_picture = "../../img/".htmlspecialchars($current_user->getProfilePicture());
+
+  $nickname = isset($_SESSION["nickname"]) ? $_SESSION["nickname"] : $current_user->getNickname();
+  unset($_SESSION["nickname"]);
 ?>
 
 
@@ -21,13 +26,23 @@
   <main>
     <div class="form-card">
       <h1>Profil bearbeiten</h1>
+      <div class="alert"> 
+        <?php if (isset($_SESSION["message"]) && $_SESSION["message"] == "upload_error"): ?>
+          <p>Fehler beim Hochladen der Datei.</p>
+        <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "upload_type_not_allowed"): ?>
+          <p>Dateityp nicht erlaubt.</p>
+        <?php endif; ?>
+        <?php 
+        unset($_SESSION["message"]); 
+    ?>
+    </div>
 
-      <form method="post" class="review-form" action="/profile-edit.php" novalidate>
+      <form method="post" class="review-form"  enctype="multipart/form-data" action="/profile-edit.php" novalidate>
 
         <div class="form-group">
-          <label for="nickname">Spitzname<span aria-hidden="true">*</span></label>
+          <label for="nickname">Spitzname <span aria-hidden="true">*</span></label>
           <input type="text" id="nickname" name="nickname"
-                 value="<?=htmlspecialchars($current_user->getNickname())?>"
+                 value="<?= htmlspecialchars($nickname) ?>"
                  required aria-required="true">
         </div>
 
@@ -35,7 +50,7 @@
           <label for="profile_picture">Profilbild ändern</label>
           <div class="file-input-wrapper">
             <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
-            <img src="<?= "../../img/" . htmlspecialchars($current_user->getProfilePicture()) ?>" alt="Aktuelles Profilbild" width="50" height="50">
+            <img src="<?=$profile_picture?>" alt="Aktuelles Profilbild" id="preview_image" width="120" height="120">
           </div>
         </div>
 
@@ -55,3 +70,23 @@
 </div>
 
 <?php include_once $abs_path.'/php/include/footer.php'; ?>
+
+<script>
+document.getElementById('profile_picture').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    
+    if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            // Ändert das src des Bildes zur Vorschau
+            document.getElementById('preview_image').src = e.target.result;
+        }
+        
+        reader.readAsDataURL(file); // Liest das Bild lokal ein
+    }
+});
+</script>
+
+</body>
+</html>

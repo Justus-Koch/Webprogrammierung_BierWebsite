@@ -147,3 +147,6 @@
 </div>
 
 <?php include_once $abs_path.'/php/include/footer.php'; ?>
+
+</body>
+</html>

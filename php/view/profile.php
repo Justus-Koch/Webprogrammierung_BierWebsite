@@ -23,6 +23,9 @@
       <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "update_profile_success"): ?>
         <p>Profiländerungen wurden erfolgreich gespeichert.</p>
       <?php endif; ?>
+      <?php 
+        unset($_SESSION["message"]); 
+    ?>
     </div>
     <section class="profile-card" aria-labelledby="profile-heading">
       <div class="profile-header">
@@ -31,9 +34,6 @@
           <h2 id="profile-heading">Profil</h2>
           <h3 class="username"><?="@".htmlspecialchars($current_user->getNickname())?></h3>
         </div>
-      </div>
-      <div class="profile-bio">
-        <p>Der Schluckspecht schluckt schlecht</p>
       </div>
       <div class="profile-actions">
         <a href="./edit-profile.php" class="button-secondary">Profil bearbeiten</a>
@@ -83,3 +83,6 @@
 </div>
 
 <?php include_once $abs_path.'/php/include/footer.php'; ?>
+
+</body>
+</html>

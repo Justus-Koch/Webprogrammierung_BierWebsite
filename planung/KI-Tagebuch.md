@@ -86,3 +86,7 @@ Then give me back all the files or the code for all files so i can replace the f
 into my files. If there is any style changes you find nice, you can also incorporate minor style changes
 cosmetically.
 Antwort: Die aufgeräumten Dateien als php code inklusive übersichtlicherem css.
+
+20. Prompt (Gemini, 27.05.2026)
+Das aktuelle ausgewählte Bild soll als Vorschu angezeigt werden (Code von edit-profile.php gegeben).
+Antwort: Java-Script-Function zur Anzeige des Bildes in der Vorschau

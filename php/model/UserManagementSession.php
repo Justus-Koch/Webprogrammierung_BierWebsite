@@ -56,7 +56,7 @@
             }
         }
         
-        public function updateUser($id, $nickname, $profile_picture){
+        public function updateUser($id, $nickname=null, $profile_picture=null){
             if (isset($this->users[$id])){
                 $this->users[$id]->update($nickname, $profile_picture);
                 $_SESSION["users"] = serialize($this->users);

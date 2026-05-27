@@ -2,6 +2,9 @@
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
+
+$nickname = isset($_SESSION["nickname"]) ? $_SESSION["nickname"] : "";
+unset($_SESSION["nickname"]);
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -35,8 +38,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     <form method="post" action="../../registration-execute.php" class="review-form" novalidate>
 
       <div class="form-group">
-        <label for="nickname">Nickname<span aria-hidden="true">*</span></label>
+        <label for="nickname">Nickname <span aria-hidden="true">*</span></label>
         <input type="text" id="nickname" name="nickname"
+               value="<?= htmlspecialchars($nickname)?>"
                placeholder="Dein Nickname"
                required aria-required="true"
                autocomplete="nickname">
@@ -76,3 +80,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 </main>
 
 <?php include_once '../../php/include/footer.php'; ?>
+
+</body>
+</html>

@@ -15,5 +15,3 @@
     btn.setAttribute('aria-expanded', isOpen);
   }
 </script>
-</body>
-</html>
