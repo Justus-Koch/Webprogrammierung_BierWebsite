@@ -1,10 +1,10 @@
 <?php
-require_once "DummyReviewManagementDAO.php";
+require_once "SessionReviewManagementDAO.php";
 
 class ReviewManagement
 {
   public static function getInstance()
   {
-    return DummyReviewManagementDAO::getInstance();
+    return SessionReviewManagementDAO::getInstance();
   }
 }
