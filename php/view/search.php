@@ -1,8 +1,8 @@
 <?php $title = 'Suche'; ?>
-<?php include_once './php/include/header.php'; ?>
+<?php include_once '../include/header.php'; ?>
 
 <div class="layout">
-  <?php include_once './php/include/sidebar.php'; ?>
+  <?php include_once '../include/sidebar.php'; ?>
 
   <main>
     <div class="form-card search-results-container">
@@ -104,7 +104,7 @@
   </main>
 </div>
 
-<?php include_once './php/include/footer.php'; ?>
+<?php include_once '../include/footer.php'; ?>
 
 </body>
 </html>

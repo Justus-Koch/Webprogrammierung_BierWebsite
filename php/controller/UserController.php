@@ -23,7 +23,7 @@
             }else{
                 $_SESSION["message"] = "login_failed";
                 header("Location: /php/view/login.php");
-                exit; 
+                exit;
             }
         }catch(InternalErrorException $e){
             $this->handleInternalErrorException();
@@ -41,7 +41,7 @@
         $this->checkRegistrationParam();
         try{
             $userManagement = UserManagement::getInstance();
-            
+
             $userManagement->saveUser($_POST["email"], $_POST["password"], $_POST["nickname"]);
 
             $_SESSION["message"] = "registration_success";
@@ -56,7 +56,7 @@
     public function updateUser(){
         error_log("Update gestartet: ".$_SESSION["userID"]);
         $this->checkUpdateParam();
-        try{   
+        try{
             if(isset($_FILES["profile_picture"]) && $_FILES["profile_picture"]["error"] !== UPLOAD_ERR_NO_FILE){
                 if(!$_FILES["profile_picture"]["error"] === UPLOAD_ERR_OK){
                     $_SESSION["message"] = "upload_error";
@@ -111,7 +111,7 @@
             $userManagement->deleteUser($_SESSION["userID"]);
             unset($_SESSION["userID"]);
 
-        
+
             $_SESSION["message"] = "delete_user_success";
             header("Location: php/view/index.php");
             exit;

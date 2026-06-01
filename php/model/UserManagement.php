@@ -5,7 +5,8 @@ class UserManagement
 {
     public static function getInstance()
     {
-        return UserManagementSession::getInstance(); // Dummy-Fix-Implementierung
+        return UserManagementSession::getInstance();
     }
 }
 ?>
+

@@ -31,8 +31,8 @@ unset($_SESSION["nickname"]);
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "invalid_email"): ?>
       <p>Die eingegebene EMail ist nicht gültig.</p>
     <?php endif; ?>
-    <?php 
-        unset($_SESSION["message"]); 
+    <?php
+        unset($_SESSION["message"]);
     ?>
 
     <form method="post" action="../../registration-execute.php" class="review-form" novalidate>

@@ -1,13 +1,68 @@
-<?php $title = 'Review erstellen'; ?>
-<?php include_once './php/include/header.php'; ?>
+<?php $title = 'Review erstellen';
+if (!isset($abs_path)) {
+  require_once "../../path.php";
+}
+include_once $abs_path . '/php/include/header.php';
+
+require_once '../model/Review.php';
+require_once '../model/ReviewManagementDAO.php';
+require_once '../model/ReviewManagement.php';
+
+$dao = ReviewManagement::getInstance();
+$errors = [];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $beerName = trim(isset($_POST['beer_name']) ? $_POST['beer_name'] : '');
+  $beerType = isset($_POST['beer_type']) ? $_POST['beer_type'] : '';
+  $alcoholContent = isset($_POST['alcohol_content']) ? $_POST['alcohol_content'] : '';
+  $rating = isset($_POST['rating']) ? $_POST['rating'] : '';
+  $content = trim(isset($_POST['content']) ? $_POST['content'] : '');
+  $originalExtract = isset($_POST['original_extract']) ? $_POST['original_extract'] : '';
+
+  if (empty($beerName)) {
+    $errors[] = 'Biername ist erforderlich.';
+  }
+  if (empty($rating)) {
+    $errors[] = 'Bitte eine Bewertung angeben.';
+  }
+
+  if (empty($errors)) {
+    $review = new Review(
+      null,           // id kommt später von der DB
+      $beerName,
+      $beerType,
+      $alcoholContent,
+      $rating,
+      "KeinBierVorVier",  // author_id kommt später aus der Session
+      date('d/m/Y')
+    );
+    $review->setContent($content);
+    $review->setOriginalExtract($originalExtract);
+
+    $dao->create($review);
+    header('Location: index.php');
+    exit;
+  }
+}
+
+?>
+
+
 
 <div class="layout">
-  <?php include_once './php/include/sidebar.php'; ?>
+  <?php include_once '../include/sidebar.php'; ?>
 
   <main>
     <div class="form-card">
       <h1>Review erstellen</h1>
 
+      <?php if (!empty($errors)): ?>
+        <ul class="error-list">
+          <?php foreach ($errors as $error): ?>
+            <li><?php echo htmlspecialchars($error); ?></li>
+          <?php endforeach; ?>
+        </ul>
+      <?php endif; ?>
       <form method="post" class="review-form" novalidate>
 
         <div class="form-group">
@@ -84,7 +139,7 @@
   </main>
 </div>
 
-<?php include_once './php/include/footer.php'; ?>
+<?php include_once '../include/footer.php'; ?>
 
 </body>
 </html>

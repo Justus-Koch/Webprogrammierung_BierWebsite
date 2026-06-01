@@ -28,8 +28,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "registration_success"): ?>
       <p>Registrierung erfolgreich.</p>
     <?php endif; ?>
-    <?php 
-        unset($_SESSION["message"]); 
+    <?php
+        unset($_SESSION["message"]);
     ?>
 
     <form method="POST" action="../../login-execute.php" class="review-form" novalidate>

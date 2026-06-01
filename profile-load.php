@@ -13,3 +13,4 @@ if (!isset($_SESSION["userID"])) {
 $userController = new UserController();
 $current_user = $userController->getUser();
 ?>
+

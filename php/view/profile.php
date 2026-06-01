@@ -1,4 +1,4 @@
-<?php 
+<?php
   if (session_status() !== PHP_SESSION_ACTIVE) {
       session_start();
   }
@@ -6,7 +6,7 @@
   if (!isset($abs_path)) {
       require_once "../../path.php";
   }
-  $title = 'Profil'; 
+  $title = 'Profil';
   require_once $abs_path.'/profile-load.php';
 ?>
 
@@ -15,7 +15,7 @@
   <?php include_once $abs_path.'/php/include/sidebar.php'; ?>
 
   <main>
-    <div class="alert"> 
+    <div class="alert">
       <?php if (isset($_SESSION["message"]) && $_SESSION["message"] == "missing_userID"): ?>
         <p>Es wurde keine Benutzer-ID gefunden.</p>
       <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "user_not_found"): ?>
@@ -23,8 +23,8 @@
       <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "update_profile_success"): ?>
         <p>Profiländerungen wurden erfolgreich gespeichert.</p>
       <?php endif; ?>
-      <?php 
-        unset($_SESSION["message"]); 
+      <?php
+        unset($_SESSION["message"]);
     ?>
     </div>
     <section class="profile-card" aria-labelledby="profile-heading">
