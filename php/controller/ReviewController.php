@@ -78,6 +78,7 @@ class ReviewController
     $this->checkReviewParam();
     $this->checkReviewId();
     try {
+      
       $instance = ReviewManagement::getInstance();
       $id = intval($_POST['review_id']);
 
