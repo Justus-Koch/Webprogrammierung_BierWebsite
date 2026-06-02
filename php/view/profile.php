@@ -8,7 +8,7 @@ if (!isset($abs_path)) {
   require_once "../../path.php";
 }
 
-require_once $abs_path . '/profile-load.php';
+require_once $abs_path . '/php/profile-load.php';
 require_once $abs_path . '/php/controller/ReviewController.php';
 
 $reviewController = new ReviewController();
