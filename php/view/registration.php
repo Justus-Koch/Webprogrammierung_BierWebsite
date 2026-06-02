@@ -12,8 +12,8 @@ unset($_SESSION["nickname"]);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Registrierung – Prost-Protokoll</title>
-  <link rel="stylesheet" href="../../css/style.css">
-  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
 </head>
 <body>
 
@@ -31,8 +31,8 @@ unset($_SESSION["nickname"]);
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "invalid_email"): ?>
       <p>Die eingegebene EMail ist nicht gültig.</p>
     <?php endif; ?>
-    <?php 
-        unset($_SESSION["message"]); 
+    <?php
+        unset($_SESSION["message"]);
     ?>
 
     <form method="post" action="../../registration-execute.php" class="review-form" novalidate>

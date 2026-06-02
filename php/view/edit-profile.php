@@ -1,4 +1,4 @@
-<?php 
+<?php
   $title = 'Profil bearbeiten';
   if (session_status() !== PHP_SESSION_ACTIVE) {
         session_start();
@@ -6,7 +6,7 @@
 
   if (!isset($abs_path)) {
       require_once "../../path.php";
-  } 
+  }
 
   require_once $abs_path.'/profile-load.php';
 
@@ -21,19 +21,19 @@
 
 <div class="layout">
   <?php include_once $abs_path.'/php/include/sidebar.php'; ?>
-  
+
 
   <main>
     <div class="form-card">
       <h1>Profil bearbeiten</h1>
-      <div class="alert"> 
+      <div class="alert">
         <?php if (isset($_SESSION["message"]) && $_SESSION["message"] == "upload_error"): ?>
           <p>Fehler beim Hochladen der Datei.</p>
         <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "upload_type_not_allowed"): ?>
           <p>Dateityp nicht erlaubt.</p>
         <?php endif; ?>
-        <?php 
-        unset($_SESSION["message"]); 
+        <?php
+        unset($_SESSION["message"]);
     ?>
     </div>
 
@@ -61,7 +61,7 @@
           </div>
       </form>
       <form method="post" class="review-form" onsubmit="return confirm('Möchtest du dein Profil wirklich löschen?')" action="/profile-delete.php" novalidate>
-        <button type="submit" name="submit" type="button" class="btn-delete" aria-label="Profil unwiderruflich löschen">Profil löschen</button> 
+        <button type="submit" name="submit" type="button" class="btn-delete" aria-label="Profil unwiderruflich löschen">Profil löschen</button>
       </form>
       </div>
 
@@ -74,15 +74,15 @@
 <script>
 document.getElementById('profile_picture').addEventListener('change', function(event) {
     const file = event.target.files[0];
-    
+
     if (file) {
         const reader = new FileReader();
-        
+
         reader.onload = function(e) {
             // Ändert das src des Bildes zur Vorschau
             document.getElementById('preview_image').src = e.target.result;
         }
-        
+
         reader.readAsDataURL(file); // Liest das Bild lokal ein
     }
 });

@@ -9,8 +9,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Anmeldung – Prost-Protokoll</title>
-  <link rel="stylesheet" href="../../css/style.css">
-  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
 </head>
 <body>
 
@@ -28,11 +28,11 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "registration_success"): ?>
       <p>Registrierung erfolgreich.</p>
     <?php endif; ?>
-    <?php 
-        unset($_SESSION["message"]); 
+    <?php
+        unset($_SESSION["message"]);
     ?>
 
-    <form method="POST" action="../../login-execute.php" class="review-form" novalidate>
+    <form method="POST" action="../login-execute.php" class="review-form" novalidate>
 
       <div class="form-group">
         <label for="username">E-Mail <span aria-hidden="true">*</span></label>

@@ -1,88 +1,104 @@
-<?php 
-  if (session_status() !== PHP_SESSION_ACTIVE) {
-      session_start();
-  }
+<?php
+$title = 'Profil';
 
-  if (!isset($abs_path)) {
-      require_once "../../path.php";
-  }
-  $title = 'Profil'; 
-  require_once $abs_path.'/profile-load.php';
+if (session_status() !== PHP_SESSION_ACTIVE) {
+  session_start();
+}
+if (!isset($abs_path)) {
+  require_once "../../path.php";
+}
+
+require_once $abs_path . '/php/profile-load.php';
+require_once $abs_path . '/php/controller/ReviewController.php';
+
+$reviewController = new ReviewController();
+$userReviews = $reviewController->loadReviewsByUser($_SESSION['userID']);
+
+include_once $abs_path . '/php/include/header.php';
 ?>
 
-<?php include_once $abs_path.'/php/include/header.php'; ?>
-<div class="layout">
-  <?php include_once $abs_path.'/php/include/sidebar.php'; ?>
+  <div class="layout">
+    <?php include_once $abs_path . '/php/include/sidebar.php'; ?>
 
-  <main>
-    <div class="alert"> 
-      <?php if (isset($_SESSION["message"]) && $_SESSION["message"] == "missing_userID"): ?>
-        <p>Es wurde keine Benutzer-ID gefunden.</p>
-      <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "user_not_found"): ?>
-        <p>Kein Benutzer eingeloggt.</p>
-      <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "update_profile_success"): ?>
-        <p>Profiländerungen wurden erfolgreich gespeichert.</p>
-      <?php endif; ?>
-      <?php 
-        unset($_SESSION["message"]); 
-    ?>
-    </div>
-    <section class="profile-card" aria-labelledby="profile-heading">
-      <div class="profile-header">
-        <img src="<?= "../../img/" . htmlspecialchars($current_user->getProfilePicture()); ?>" alt="Profilbild" class="profile-img">
-        <div class="profile-info">
-          <h2 id="profile-heading">Profil</h2>
-          <h3 class="username"><?="@".htmlspecialchars($current_user->getNickname())?></h3>
-        </div>
+    <main>
+      <div class="alert">
+        <?php if (isset($_SESSION['message']) && $_SESSION['message'] == 'update_profile_success'): ?>
+          <p>Profiländerungen wurden erfolgreich gespeichert.</p>
+        <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'create_review_success'): ?>
+          <p>Review erfolgreich erstellt.</p>
+        <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'update_review_success'): ?>
+          <p>Review erfolgreich aktualisiert.</p>
+        <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'delete_review_success'): ?>
+          <p>Review erfolgreich gelöscht.</p>
+        <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'missing_userID'): ?>
+          <p>Es wurde keine Benutzer-ID gefunden.</p>
+        <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'user_not_found'): ?>
+          <p>Kein Benutzer eingeloggt.</p>
+        <?php endif; ?>
+        <?php unset($_SESSION['message']); ?>
       </div>
-      <div class="profile-actions">
-        <a href="./edit-profile.php" class="button-secondary">Profil bearbeiten</a>
-      </div>
-    </section>
 
-    <!-- TODO Reviews einfügen -->
-    <h2>Meine Reviews</h2>
-
-    <article class="post">
-      <header class="post-header">
-        <span class="username"><?="@".htmlspecialchars($current_user->getNickname())?></span>
-        <div class="post-actions">
-          <a class="button-secondary" href="./edit-review.php">Bearbeiten</a>
-          <div class="favourite">
-            <input type="checkbox" id="favorite1" name="favorite1"
-                   class="favourite-checkbox"
-                   aria-label="Diesen Post zu Favoriten hinzufügen">
-            <label for="favorite1" class="favourite-label">
-              <span class="favourite-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Favorisieren</span>
-            </label>
+      <section class="profile-card" aria-labelledby="profile-heading">
+        <div class="profile-header">
+          <img src="../../img/<?php echo htmlspecialchars($current_user->getProfilePicture()); ?>"
+               alt="Profilbild" class="profile-img">
+          <div class="profile-info">
+            <h2 id="profile-heading">Profil</h2>
+            <h3 class="username">@<?php echo htmlspecialchars($current_user->getNickname()); ?></h3>
           </div>
         </div>
-      </header>
-      <h3>Beispieltitel 1</h3>
-      <div class="facts">
-        <img src="./img/bier.jpg" alt="Bier" width="70">
-        <p>Biername:<br> Krombacher</p>
-        <p>Bierart:<br> Pilsener</p>
-        <p>Alkoholgehalt:<br> 4,9%</p>
-        <p>Stammwürze:<br> 11,5%</p>
-        <p>Bewertung:<br> 5/5</p>
-      </div>
-      <div class="content">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-          irure dolor in reprehenderit in voluptate velit esse cillum
-          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-          non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      </div>
-      <time datetime="2026-04-21">21.04.2026</time>
-    </article>
-  </main>
-</div>
+        <div class="profile-actions">
+          <a href="/php/view/edit-profile.php" class="button-secondary">Profil bearbeiten</a>
+        </div>
+      </section>
 
-<?php include_once $abs_path.'/php/include/footer.php'; ?>
+      <h2>Meine Reviews</h2>
 
-</body>
-</html>
+      <?php if (empty($userReviews)): ?>
+        <p style="text-align:center;">
+          Noch keine Reviews vorhanden.
+          <a href="/php/view/create-review.php">Jetzt erstes Review erstellen!</a>
+        </p>
+      <?php else: ?>
+        <?php foreach ($userReviews as $review):
+          $rid = $review->getId(); ?>
+          <article class="post">
+            <header class="post-header">
+              <span class="username">@<?php echo htmlspecialchars($current_user->getNickname()); ?></span>
+              <div class="post-actions">
+                <a class="button-secondary"
+                   href="/php/view/edit-review.php?id=<?php echo $rid; ?>">Bearbeiten</a>
+                <div class="favourite">
+                  <input type="checkbox" id="favourite_<?php echo $rid; ?>"
+                         name="favourite_<?php echo $rid; ?>"
+                         class="favourite-checkbox"
+                         aria-label="Diesen Post zu Favoriten hinzufügen">
+                  <label for="favourite_<?php echo $rid; ?>" class="favourite-label">
+                    <span class="favourite-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Favorisieren</span>
+                  </label>
+                </div>
+              </div>
+            </header>
+            <h3><?php echo htmlspecialchars($review->getBeerName()); ?></h3>
+            <div class="facts">
+              <img src="../../img/<?php echo htmlspecialchars($review->getPicture()); ?>"
+                   alt="Foto von <?php echo htmlspecialchars($review->getBeerName()); ?>" width="70">
+              <p>Bierart:<br> <?php echo htmlspecialchars($review->getBeerType()); ?></p>
+              <p>Alkoholgehalt:<br> <?php echo htmlspecialchars($review->getAlcoholContent()); ?>%</p>
+              <p>Stammwürze:<br> <?php echo htmlspecialchars($review->getOriginalExtract()); ?>%</p>
+              <p>Bewertung:<br> <?php echo htmlspecialchars($review->getRating()); ?>/5</p>
+            </div>
+            <div class="content">
+              <p><?php echo htmlspecialchars($review->getContent()); ?></p>
+            </div>
+            <time><?php echo htmlspecialchars($review->getCreatedAt()); ?></time>
+          </article>
+        <?php endforeach; ?>
+      <?php endif; ?>
+
+    </main>
+  </div>
+
+<?php include_once $abs_path . '/php/include/footer.php'; ?>
+
