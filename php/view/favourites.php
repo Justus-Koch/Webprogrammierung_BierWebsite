@@ -25,13 +25,16 @@ $userManagement = UserManagement::getInstance();
         <p>Es gibt einen internen Fehler.</p>
       <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "user_not_found"): ?>
         <p>Benutzer nicht gefunden.</p>
+    </div>
+
       <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "favourites_not_found"): ?>
-        <p>Favoriten nicht gefunden.</p>
+        <p style="text-align:center; color:black;">
+          Noch keine Reviews vorhanden.
+        </p>
       <?php else: ?>
       <?php
           unset($_SESSION["message"]);
       ?>
-    </div>
     <?php include_once $abs_path.'/php/view/show-review.php'; ?>
     <?php endif;?>
 </main>
