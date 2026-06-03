@@ -68,16 +68,6 @@ include_once $abs_path . '/php/include/header.php';
               <div class="post-actions">
                 <a class="button-secondary"
                    href="/php/view/edit-review.php?id=<?php echo $rid; ?>">Bearbeiten</a>
-                <div class="favourite">
-                  <input type="checkbox" id="favourite_<?php echo $rid; ?>"
-                         name="favourite_<?php echo $rid; ?>"
-                         class="favourite-checkbox"
-                         aria-label="Diesen Post zu Favoriten hinzufügen">
-                  <label for="favourite_<?php echo $rid; ?>" class="favourite-label">
-                    <span class="favourite-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Favorisieren</span>
-                  </label>
-                </div>
               </div>
             </header>
             <h3><?php echo htmlspecialchars($review->getBeerName()); ?></h3>

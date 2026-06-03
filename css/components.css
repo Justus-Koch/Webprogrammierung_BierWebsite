@@ -295,8 +295,8 @@
 }
 
 /* Checked: red heart */
-.favourite-checkbox:checked + .favourite-label .favourite-icon::before,
-.favourite-checkbox:checked + .favourite-label .favourite-icon::after {
+.favourite-checkbox:checked ~ .favourite-label .favourite-icon::before,
+.favourite-checkbox:checked ~ .favourite-label .favourite-icon::after {
   background-color: #e74c3c;
 }
 

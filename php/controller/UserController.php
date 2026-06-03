@@ -118,6 +118,36 @@
         }
     }
 
+    public function isFavourite($review_id){
+        if(!isset($_SESSION["userID"])){
+            return false;
+        }
+        try{
+            $userManagement = UserManagement::getInstance();
+            return $userManagement->userContainsFavourite($_SESSION["userID"], $review_id);
+        }catch(UserNotFoundException $e){
+            $this->handleUserNotFoundException();
+        }catch(InternalErrorException $e){
+            $this->handleInternalErrorException();
+        }
+    }
+
+    public function addFavourite(){
+        if(!$this->checkValidUserID()){
+            header("Location: /php/view/login.php");
+            exit;
+        }
+        try{
+            $userManagement = UserManagement::getInstance();
+            $review_id = $_POST["review_id"];
+            $userManagement->toggleFavouriteState($_SESSION["userID"], $review_id);
+        }catch(UserNotFoundException $e){
+            $this->handleUserNotFoundException();
+        }catch(InternalErrorException $e){
+            $this->handleInternalErrorException();
+        } 
+    }
+
     /**
      * Checks if all parameters are set and if required parameters are not empty.
      */

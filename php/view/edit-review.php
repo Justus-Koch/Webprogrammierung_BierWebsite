@@ -47,6 +47,10 @@ include_once $abs_path . '/php/include/header.php';
             <p>Biername und Bewertung sind erforderlich.</p>
           <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'review_not_found'): ?>
             <p>Review nicht gefunden.</p>
+          <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "upload_error"): ?>
+            <p>Fehler beim Hochladen der Datei.</p>
+          <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "upload_type_not_allowed"): ?>
+            <p>Dateityp nicht erlaubt.</p>
           <?php endif; ?>
           <?php unset($_SESSION['message']); ?>
         </div>

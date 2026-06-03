@@ -35,7 +35,7 @@ unset($_SESSION["nickname"]);
         unset($_SESSION["message"]);
     ?>
 
-    <form method="post" action="../../registration-execute.php" class="review-form" novalidate>
+    <form method="post" action="../registration-execute.php" class="review-form" novalidate>
 
       <div class="form-group">
         <label for="nickname">Nickname <span aria-hidden="true">*</span></label>

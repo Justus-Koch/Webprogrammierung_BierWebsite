@@ -5,6 +5,7 @@
         private string $password;
         private ?string $nickname;
         private ?string $profile_picture;
+        private $favorites;
         
         public function __construct(int $id, string $email, string $password, string $nickname=null, string $profile_picture=null){
             $this->id = $id;
@@ -12,6 +13,7 @@
             $this->password = $password;
             $this->nickname = $nickname;
             $this->profile_picture = $profile_picture;
+            $this->favorites = [];
         }
 
         public function getId(): int{
@@ -41,6 +43,25 @@
             if (!empty($profile_picture)){
                 $this->profile_picture = $profile_picture;
             }
+        }
+
+        public function addFavorite($reviewID){
+            $this->favorites[] = $reviewID;
+        }
+
+        public function removeFavorite($reviewID){
+            if ($this->favorites === null) {
+                $this->favorites = [];
+            }
+            $key = array_search($reviewID, $this->favorites);
+            if ($key !== false) {
+                unset($this->favorites[$key]);
+            }
+        }
+
+        public function containsFavorite($reviewID){
+            $favorites = $this->favorites ?? [];
+            return in_array($reviewID, $favorites);
         }
     }
 ?>

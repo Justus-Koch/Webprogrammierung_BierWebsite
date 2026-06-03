@@ -83,5 +83,23 @@
             }
             return -1;
         }
+
+        public function toggleFavouriteState($userID, $reviewID){
+            $user = $this->findUser($userID);
+            if ($user->containsFavorite($reviewID)){
+                $user->removeFavorite($reviewID);
+                error_log("Favorit entfernt: ". $reviewID);
+            }else{
+                $user->addFavorite($reviewID);
+                error_log("Favorit hinzugefügt: ". $reviewID);
+            }
+            $_SESSION["users"] = serialize($this->users);
+            
+        }
+
+        public function userContainsFavourite($userID, $reviewID){
+            $user = $this->findUser($userID);
+            return $user->containsFavorite($reviewID);
+        }
     }
 ?>

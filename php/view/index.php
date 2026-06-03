@@ -10,7 +10,7 @@ if (!isset($abs_path)) {
 }
 include_once $abs_path . '/php/include/header.php';
 
-  require_once $abs_path . "/php/reviews-load.php";
+require_once $abs_path . "/php/reviews-load.php";
 ?>
 
 <div class="layout">
@@ -44,19 +44,25 @@ include_once $abs_path . '/php/include/header.php';
           <span class="username">User #<?php echo htmlspecialchars($review->getAuthorId()); ?></span>
           <div class="post-actions">
             <div class="favourite">
-              <input type="checkbox" id="favourite_<?php echo $id; ?>" name="favourite_<?php echo $id; ?>"
+              <form action="../add-favourite.php" method="POST">
+                <input type="hidden" name="review_id" value="<?php echo $id; ?>">
+                <input type="checkbox" id="favourite_<?php echo $id; ?>" name="favourite_<?php echo $id; ?>"
                      class="favourite-checkbox"
-                     aria-label="Diesen Post zu Favoriten hinzufügen">
-              <label for="favourite_<?php echo $id; ?>" class="favourite-label">
-                <span class="favourite-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Favorisieren</span>
-              </label>
+                     aria-label="Diesen Post zu Favoriten hinzufügen"
+                     onchange="this.form.submit()"
+                     <?php echo (isFavourite($id) ? 'checked' : ''); ?>>
+                <label for="favourite_<?php echo $id; ?>" class="favourite-label">
+                  <span class="favourite-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Favorisieren</span>
+                </label>
+              </form>
             </div>
           </div>
         </header>
         <h3><?php echo htmlspecialchars($review->getBeerName()); ?></h3>
         <div class="facts">
-          <img src="<?php echo $review->getPicture(); ?>" alt="Kein Bild vorhanden" width="70">
+          <img src="../../img/<?php echo htmlspecialchars($review->getPicture()); ?>"
+                   alt="Foto von <?php echo htmlspecialchars($review->getBeerName()); ?>" width="70">
           <p>Biername:<br> <?php echo htmlspecialchars($review->getBeerName()); ?></p>
           <p>Bierart:<br> <?php echo htmlspecialchars($review->getBeerType()); ?></p>
           <p>Alkoholgehalt:<br> <?php echo htmlspecialchars($review->getAlcoholContent()); ?></p>
