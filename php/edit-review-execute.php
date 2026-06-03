@@ -11,6 +11,4 @@ require_once $abs_path . "/php/controller/ReviewController.php";
 $reviewController = new ReviewController();
 $reviewController->updateReview();
 
-// updateReview() leitet intern weiter
-header("Location: /php/view/profile.php");
-exit;
+?>

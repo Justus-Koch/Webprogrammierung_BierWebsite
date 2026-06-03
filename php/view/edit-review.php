@@ -31,6 +31,8 @@ include_once $abs_path . '/php/include/header.php';
             <p>Dateityp nicht erlaubt.</p>
           <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "input_too_long"): ?>
             <p>Eingaben zu lang.</p>
+          <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'upload_type_not_allowed'): ?>
+            <p>Dateityp nicht erlaubt.</p>
           <?php endif; ?>
           <?php unset($_SESSION['message']); ?>
         </div>

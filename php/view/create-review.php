@@ -34,6 +34,8 @@ include_once $abs_path . '/php/include/header.php';
             <p>Biername und Bewertung sind erforderlich.</p>
           <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'missing_parameters'): ?>
             <p>Es fehlen Parameter.</p>
+          <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'upload_type_not_allowed'): ?>
+            <p>Dateityp nicht erlaubt.</p>
           <?php endif; ?>
           <?php unset($_SESSION['message']); ?>
         </div>

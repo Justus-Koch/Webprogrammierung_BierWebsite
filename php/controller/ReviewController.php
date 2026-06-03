@@ -78,8 +78,10 @@ class ReviewController
       $new_name = null;
       if(isImageSet($picture_key)){
         $new_name = checkAndUploadImage($picture_key);
+        error_log("Neuer Name null?: ". $new_name ?? "null");
         if($new_name == null){
-          header('Location: /php/view/edit-review.php');
+          error_log("Zurücl zu edit review");
+          header('Location: /php/view/create-review.php');
           exit;
         }
       }
@@ -130,7 +132,7 @@ class ReviewController
       if(isImageSet($picture_key)){
         $new_name = checkAndUploadImage($picture_key);
         if($new_name == null){
-          header('Location: /php/view/edit-review.php');
+          header('Location: /php/view/edit-review.php?id=' . intval($_POST['review_id']));
           exit;
         }
       }

@@ -8,6 +8,7 @@ function checkAndUploadImage($key){
     }
     $types = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
     if(!in_array($_FILES[$key]["type"], $types)){
+        error_log("Dateityp nicht erlaubt");
         $_SESSION["message"] = "upload_type_not_allowed";
         return null;
     }

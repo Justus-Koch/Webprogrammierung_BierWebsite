@@ -9,6 +9,4 @@ require_once $abs_path . "/php/controller/ReviewController.php";
 
 $reviewController = new ReviewController();
 $reviewController->createReview();
-
-header("Location: /php/view/create-review.php");
-exit;
+?>

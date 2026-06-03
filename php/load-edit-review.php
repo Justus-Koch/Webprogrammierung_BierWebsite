@@ -29,8 +29,8 @@ $reviewController = new ReviewController();
 $reviewToEdit = $reviewController->loadReviewById($id);
 
 if ($reviewToEdit === null) {
-  header("Location: /php/view/profile.php");
-  exit;
+  //header("Location: /php/view/profile.php");
+  //exit;
 }
 
 if ($form_data) {
