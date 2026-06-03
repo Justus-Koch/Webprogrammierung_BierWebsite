@@ -1,4 +1,8 @@
 <?php
+if (!isset($abs_path)) {
+  require_once "../../path.php";
+}
+require_once $abs_path . '/php/model/UserManagement.php';
 
 class SessionReviewManagementDAO implements ReviewManagementDAO
 {
@@ -36,6 +40,20 @@ class SessionReviewManagementDAO implements ReviewManagementDAO
 
   public function findAll() {
     return $this->reviews;
+  }
+
+  public function findFavouritesByUserId($id){
+    $result = [];
+    $userManagement = UserManagement::getInstance();
+    $user = $userManagement->findUser($id);
+    foreach ($this->reviews as $review) {
+      $rid = $review->getId();
+        $isFav = $user->containsFavorite($rid);
+        if ($isFav) {
+          $result[] = $review;
+        }
+    }
+    return $result;
   }
 
   public function findById($id) {

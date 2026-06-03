@@ -19,6 +19,14 @@ interface ReviewManagementDAO
   public function findById($id);
 
   /**
+   * Returns the favourite reviews of the user with the given user id
+   * 
+   * @param $id
+   * @return mixed
+   */
+  public function findFavouritesByUserId($id);
+
+  /**
    * Returns a list of all reviews with the specified userId
    *
    * @param $id

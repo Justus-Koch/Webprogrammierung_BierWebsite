@@ -8,7 +8,6 @@ if (!isset($abs_path)) {
 require_once $abs_path . "/php/controller/ReviewController.php";
 
 $controller = new ReviewController();
-$reviews = $controller->loadReviews();
-
+$reviews = $controller->loadFavourites($_SESSION["userID"]);
 ?>
 

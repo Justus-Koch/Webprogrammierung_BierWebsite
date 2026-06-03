@@ -20,6 +20,21 @@ class ReviewController
     }
   }
 
+  public function loadFavourites($authorId){
+    try {
+      $instance = ReviewManagement::getInstance();
+      $favourites = $instance->findFavouritesByUserId($authorId);
+      if(empty($favourites)){
+        $_SESSION["message"] = "favourites_not_found";
+      }
+      return $favourites;
+    } catch(UserNotFoundException $e){
+      $this->handleUserNotFoundException();
+    } catch (InternalErrorException $e) {
+      $this->handleInternalErrorException();
+    }
+  }
+
   public function loadReviewsByUser($authorId) {
     try {
       $instance = ReviewManagement::getInstance();
@@ -183,4 +198,11 @@ class ReviewController
     header('Location: /php/view/index.php');
     exit;
   }
+
+  private function handleUserNotFoundException()
+    {
+        $_SESSION["message"] = "user_not_found";
+        header("Location: /php/view/index.php");
+        exit;
+    }
 }

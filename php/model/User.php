@@ -5,7 +5,7 @@
         private string $password;
         private ?string $nickname;
         private ?string $profile_picture;
-        private $favorites;
+        public $favorites;
         
         public function __construct(int $id, string $email, string $password, string $nickname=null, string $profile_picture=null){
             $this->id = $id;

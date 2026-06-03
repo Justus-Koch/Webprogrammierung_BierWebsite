@@ -30,6 +30,10 @@ class DummyReviewManagementDAO implements ReviewManagementDAO
     return $this->reviews;
   }
 
+  public function findFavouritesByUserId($id){
+    return $this->reviews;
+  }
+
   public function findById($id)
   {
     foreach($this->reviews as $review){
