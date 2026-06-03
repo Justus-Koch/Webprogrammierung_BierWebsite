@@ -31,6 +31,8 @@
           <p>Fehler beim Hochladen der Datei.</p>
         <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "upload_type_not_allowed"): ?>
           <p>Dateityp nicht erlaubt.</p>
+        <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "nickname_too_long"): ?>
+          <p>Spitzname zu lang.</p>
         <?php endif; ?>
         <?php
         unset($_SESSION["message"]);

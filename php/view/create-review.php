@@ -8,6 +8,11 @@ if (!isset($abs_path)) {
   require_once "../../path.php";
 }
 
+$form_data = $_SESSION['form_data'] ?? [];
+unset($_SESSION['form_data']);
+
+$rating = $form_data["rating"] ?? '';
+
 // Nur eingeloggte Nutzer dürfen diese Seite sehen
 if (!isset($_SESSION["userID"])) {
   header("Location: /php/view/login.php");
@@ -46,50 +51,57 @@ include_once $abs_path . '/php/include/header.php';
           <div class="form-group">
             <label for="beer_name">Biername <span aria-hidden="true">*</span></label>
             <input type="text" name="beer_name" id="beer_name"
-                   placeholder="z.B. Augustiner Helles"
-                   required aria-required="true">
+              value="<?= htmlspecialchars($form_data['beer_name'] ?? '') ?>"
+              placeholder="z.B. Augustiner Helles" required aria-required="true">
           </div>
 
           <div class="form-group">
             <label for="beer_type">Bierart</label>
             <select name="beer_type" id="beer_type">
-              <option value="Pils">Pils</option>
-              <option value="Weizen">Weizen</option>
-              <option value="Helles">Helles</option>
-              <option value="Dunkles">Dunkles</option>
+                <option value="Pils" <?= ($form_data['beer_type'] ?? '') == 'Pils' ? 'selected' : '' ?>>Pils</option>
+                <option value="Weizen" <?= ($form_data['beer_type'] ?? '') == 'Weizen' ? 'selected' : '' ?>>Weizen</option>
+                <option value="Helles" <?= ($form_data['beer_type'] ?? '') == 'Helles' ? 'selected' : '' ?>>Helles</option>
+                <option value="Dunkles" <?= ($form_data['beer_type'] ?? '') == 'Dunkles' ? 'selected' : '' ?>>Dunkles</option>
             </select>
           </div>
 
-          <fieldset class="form-row">
+          <div class="form-row">
             <legend class="visually-hidden">Technische Details</legend>
             <div class="form-group flex-1">
               <label for="original_extract">Stammwürze (%)</label>
               <input type="number" min="0" max="30" step="0.01"
-                     name="original_extract" id="original_extract">
+                  name="original_extract" id="original_extract"
+                  value="<?= htmlspecialchars($form_data['original_extract'] ?? '') ?>">
             </div>
             <div class="form-group flex-1">
               <label for="alcohol_content">Alkoholgehalt (%)</label>
-              <input type="number" min="0" max="20" step="0.01"
-                     name="alcohol_content" id="alcohol_content">
+              <input type="number" min="0" max="30" step="0.01"
+                  name="alcohol_content" id="alcohol_content"
+                value="<?= htmlspecialchars($form_data['alcohol_content'] ?? '') ?>">
             </div>
-          </fieldset>
+          </div>
 
           <fieldset class="form-group">
-            <legend>Bewertung (1 bis 5 Sterne)</legend>
+            <legend>Bewertung bearbeiten (1 bis 5 Sterne)</legend>
             <div class="star-rating-accessible">
-              <input type="radio" id="star1" name="rating" value="1" required aria-required="true">
+              <input type="radio" id="star1" name="rating" value="1"
+                <?php echo $rating == 1 ? 'checked' : ''; ?>>
               <label for="star1"><span class="visually-hidden">1 Stern</span>★</label>
 
-              <input type="radio" id="star2" name="rating" value="2">
+              <input type="radio" id="star2" name="rating" value="2"
+                <?php echo $rating == 2 ? 'checked' : ''; ?>>
               <label for="star2"><span class="visually-hidden">2 Sterne</span>★</label>
 
-              <input type="radio" id="star3" name="rating" value="3">
+              <input type="radio" id="star3" name="rating" value="3"
+                <?php echo $rating ? 'checked' : ''; ?>>
               <label for="star3"><span class="visually-hidden">3 Sterne</span>★</label>
 
-              <input type="radio" id="star4" name="rating" value="4">
+              <input type="radio" id="star4" name="rating" value="4"
+                <?php echo $rating == 4 ? 'checked' : ''; ?>>
               <label for="star4"><span class="visually-hidden">4 Sterne</span>★</label>
 
-              <input type="radio" id="star5" name="rating" value="5">
+              <input type="radio" id="star5" name="rating" value="5"
+                <?php echo $rating == 5 ? 'checked' : ''; ?>>
               <label for="star5"><span class="visually-hidden">5 Sterne</span>★</label>
             </div>
           </fieldset>
@@ -97,7 +109,7 @@ include_once $abs_path . '/php/include/header.php';
           <div class="form-group">
             <label for="content">Deine Meinung</label>
             <textarea name="content" id="content" cols="50" rows="6"
-                      placeholder="Beschreibe Geschmack, Geruch und Aussehen..."></textarea>
+                    placeholder="Beschreibe Geschmack, Geruch und Aussehen..."><?= htmlspecialchars($form_data['content'] ?? '') ?></textarea>
           </div>
 
           <div class="form-actions">

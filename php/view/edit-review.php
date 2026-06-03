@@ -24,12 +24,31 @@ if ($id === null) {
   exit;
 }
 
+$form_data = $_SESSION['form_data'] ?? [];
+unset($_SESSION['form_data']);
+
 $reviewController = new ReviewController();
 $reviewToEdit = $reviewController->loadReviewById($id);
 
 if ($reviewToEdit === null) {
   header("Location: /php/view/profile.php");
   exit;
+}
+
+if ($form_data) {
+    $beerName        = $form_data['beer_name'] ?? $reviewToEdit->getBeerName();
+    $beerType        = $form_data['beer_type'] ?? $reviewToEdit->getBeerType();
+    $originalExtract = $form_data['original_extract'] ?? $reviewToEdit->getOriginalExtract();
+    $alcoholContent  = $form_data['alcohol_content'] ?? $reviewToEdit->getAlcoholContent();
+    $rating          = $form_data['rating'] ?? $reviewToEdit->getRating();
+    $content         = $form_data['content'] ?? $reviewToEdit->getContent();
+} else {
+    $beerName        = $reviewToEdit->getBeerName();
+    $beerType        = $reviewToEdit->getBeerType();
+    $originalExtract = $reviewToEdit->getOriginalExtract();
+    $alcoholContent  = $reviewToEdit->getAlcoholContent();
+    $rating          = $reviewToEdit->getRating();
+    $content         = $reviewToEdit->getContent();
 }
 
 include_once $abs_path . '/php/include/header.php';
@@ -51,6 +70,8 @@ include_once $abs_path . '/php/include/header.php';
             <p>Fehler beim Hochladen der Datei.</p>
           <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "upload_type_not_allowed"): ?>
             <p>Dateityp nicht erlaubt.</p>
+          <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "input_too_long"): ?>
+            <p>Eingaben zu lang.</p>
           <?php endif; ?>
           <?php unset($_SESSION['message']); ?>
         </div>
@@ -72,64 +93,64 @@ include_once $abs_path . '/php/include/header.php';
           <div class="form-group">
             <label for="beer_name">Biername <span aria-hidden="true">*</span></label>
             <input type="text" name="beer_name" id="beer_name"
-                   value="<?php echo htmlspecialchars($reviewToEdit->getBeerName()); ?>"
+                   value="<?php echo htmlspecialchars($beerName); ?>"
                    required aria-required="true">
           </div>
 
           <div class="form-group">
             <label for="beer_type">Bierart</label>
             <select name="beer_type" id="beer_type">
-              <option value="Pils" <?php echo $reviewToEdit->getBeerType() === 'Pils' ? 'selected' : ''; ?>>Pils</option>
-              <option value="Weizen" <?php echo $reviewToEdit->getBeerType() === 'Weizen' ? 'selected' : ''; ?>>Weizen</option>
-              <option value="Helles" <?php echo $reviewToEdit->getBeerType() === 'Helles' ? 'selected' : ''; ?>>Helles</option>
-              <option value="Dunkles" <?php echo $reviewToEdit->getBeerType() === 'Dunkles' ? 'selected' : ''; ?>>Dunkles</option>
+              <option value="Pils" <?php echo $beerType === 'Pils' ? 'selected' : ''; ?>>Pils</option>
+              <option value="Weizen" <?php echo $beerType === 'Weizen' ? 'selected' : ''; ?>>Weizen</option>
+              <option value="Helles" <?php echo $beerType === 'Helles' ? 'selected' : ''; ?>>Helles</option>
+              <option value="Dunkles" <?php echo $beerType=== 'Dunkles' ? 'selected' : ''; ?>>Dunkles</option>
             </select>
           </div>
 
-          <fieldset class="form-row">
+          <div class="form-row">
             <legend class="visually-hidden">Technische Details zum Bier</legend>
             <div class="form-group flex-1">
               <label for="original_extract">Stammwürze (%)</label>
               <input type="number" min="0" max="30" step="0.01"
                      name="original_extract" id="original_extract"
-                     value="<?php echo htmlspecialchars($reviewToEdit->getOriginalExtract()); ?>">
+                     value="<?php echo htmlspecialchars($originalExtract); ?>">
             </div>
             <div class="form-group flex-1">
               <label for="alcohol_content">Alkoholgehalt (%)</label>
               <input type="number" min="0" max="20" step="0.01"
                      name="alcohol_content" id="alcohol_content"
-                     value="<?php echo htmlspecialchars($reviewToEdit->getAlcoholContent()); ?>">
+                     value="<?php echo htmlspecialchars($alcoholContent); ?>">
             </div>
-          </fieldset>
+          </div>
 
           <fieldset class="form-group">
             <legend>Bewertung bearbeiten (1 bis 5 Sterne)</legend>
             <div class="star-rating-accessible">
               <input type="radio" id="star1" name="rating" value="1"
-                <?php echo $reviewToEdit->getRating() == 1 ? 'checked' : ''; ?>>
+                <?php echo $rating == 1 ? 'checked' : ''; ?>>
               <label for="star1"><span class="visually-hidden">1 Stern</span>★</label>
 
               <input type="radio" id="star2" name="rating" value="2"
-                <?php echo $reviewToEdit->getRating() == 2 ? 'checked' : ''; ?>>
+                <?php echo $rating == 2 ? 'checked' : ''; ?>>
               <label for="star2"><span class="visually-hidden">2 Sterne</span>★</label>
 
               <input type="radio" id="star3" name="rating" value="3"
-                <?php echo $reviewToEdit->getRating() == 3 ? 'checked' : ''; ?>>
+                <?php echo $rating ? 'checked' : ''; ?>>
               <label for="star3"><span class="visually-hidden">3 Sterne</span>★</label>
 
               <input type="radio" id="star4" name="rating" value="4"
-                <?php echo $reviewToEdit->getRating() == 4 ? 'checked' : ''; ?>>
+                <?php echo $rating == 4 ? 'checked' : ''; ?>>
               <label for="star4"><span class="visually-hidden">4 Sterne</span>★</label>
 
               <input type="radio" id="star5" name="rating" value="5"
-                <?php echo $reviewToEdit->getRating() == 5 ? 'checked' : ''; ?>>
+                <?php echo $rating == 5 ? 'checked' : ''; ?>>
               <label for="star5"><span class="visually-hidden">5 Sterne</span>★</label>
             </div>
           </fieldset>
 
           <div class="form-group">
             <label for="content">Inhalt</label>
-            <textarea name="content" id="content" cols="50" rows="6"><?php echo htmlspecialchars($reviewToEdit->getContent()); ?></textarea>
+            <textarea name="content" id="content" cols="50" rows="6"><?php echo htmlspecialchars($content); ?></textarea>
           </div>
 
           <div class="form-footer-actions">

@@ -38,6 +38,8 @@
     }
 
     public function registrate(){
+        $_SESSION["nickname"] = $_POST["nickname"];
+        $_SESSION["email"] = $_POST["email"];
         $this->checkRegistrationParam();
         try{
             $userManagement = UserManagement::getInstance();
@@ -190,11 +192,21 @@
             header("Location: /php/view/registration.php");
             exit;
         }
+        if (mb_strlen($_POST["nickname"], 'UTF-8') > 50 || mb_strlen($_POST["email"], 'UTF-8') > 50 || mb_strlen($_POST["password"], 'UTF-8') > 50) {
+            $_SESSION["message"] = "input_too_long";
+            header("Location: /php/view/registration.php");
+            exit;
+        }
     }
 
     private function checkUpdateParam(){
         if (!isset($_POST["nickname"]) || !isset($_POST["submit"])) {
             $_SESSION["message"] = "missing_parameters";
+            header("Location: /php/view/edit-profile.php");
+            exit;
+        }
+        if (mb_strlen($_POST["nickname"], 'UTF-8') > 50) {
+            $_SESSION["message"] = "nickname_too_long";
             header("Location: /php/view/edit-profile.php");
             exit;
         }

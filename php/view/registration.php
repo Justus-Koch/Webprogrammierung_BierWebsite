@@ -4,7 +4,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 }
 
 $nickname = isset($_SESSION["nickname"]) ? $_SESSION["nickname"] : "";
+$email = isset($_SESSION["email"]) ? $_SESSION["email"] : "";
 unset($_SESSION["nickname"]);
+unset($_SESSION["email"]);
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -30,6 +32,8 @@ unset($_SESSION["nickname"]);
       <p>Es fehlen notwendige Parameter.</p>
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "invalid_email"): ?>
       <p>Die eingegebene EMail ist nicht gültig.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "input_too_long"): ?>
+      <p>Eingegebene Werte sind zu lang.</p>
     <?php endif; ?>
     <?php
         unset($_SESSION["message"]);
@@ -49,6 +53,7 @@ unset($_SESSION["nickname"]);
       <div class="form-group">
         <label for="email">E-Mail Adresse <span aria-hidden="true">*</span></label>
         <input type="email" id="email" name="email"
+              value="<?= htmlspecialchars($email)?>"
                placeholder="beispiel@mail.de"
                required aria-required="true"
                autocomplete="email">

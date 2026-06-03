@@ -6,3 +6,4 @@ Namen der Studierenden:
 Abgabe zu Aufgabenblatt 3
 
 Hinweise:
+Die Anzeige der Fehler/Erfolgsmeldungen soll nochmal schöner gemacht werden.

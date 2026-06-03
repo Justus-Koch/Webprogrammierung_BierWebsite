@@ -71,6 +71,7 @@ class ReviewController
       header("Location: /php/view/login.php");
       exit;
     }
+    $_SESSION['form_data'] = $_POST;
     $this->checkReviewParam();
     try {
       $picture_key = "picture";
@@ -82,6 +83,7 @@ class ReviewController
           exit;
         }
       }
+      $this->checkInputLengths();
       $instance = ReviewManagement::getInstance();
       $instance->createReview($_POST['beer_name'],
           $_POST['beer_type'],
@@ -107,6 +109,7 @@ class ReviewController
       header("Location: /php/view/login.php");
       exit;
     }
+    $_SESSION['form_data'] = $_POST;
     $this->checkReviewParam();
     $this->checkReviewId();
     try {
@@ -131,6 +134,7 @@ class ReviewController
           exit;
         }
       }
+      $this->checkInputLengths();
 
       $review = new Review(
         $id,
@@ -191,12 +195,12 @@ class ReviewController
     if (!isset($_POST['beer_name']) || !isset($_POST['beer_type']) ||
       !isset($_POST['alcohol_content']) || !isset($_POST['rating'])) {
       $_SESSION['message'] = 'missing_parameters';
-      header('Location: /php/view/index.php');
+      header('Location: /php/view/create-review.php');
       exit;
     }
     if (empty(trim($_POST['beer_name'])) || empty($_POST['rating'])) {
       $_SESSION['message'] = 'missing_required_parameters';
-      header('Location: /php/view/index.php');
+      header('Location: /php/view/create-review.php');
       exit;
     }
   }
@@ -221,4 +225,14 @@ class ReviewController
         header("Location: /php/view/index.php");
         exit;
     }
+
+  private function checkInputLengths(){
+    if (strlen($_POST['beer_name']) > 50 || 
+          strlen($_POST['beer_type']) > 50 || 
+          strlen($_POST['content']) > 500) {
+          $_SESSION["message"] = "input_too_long";
+          header("Location: /php/view/edit-review.php");
+          exit;
+      }
+  }
 }
