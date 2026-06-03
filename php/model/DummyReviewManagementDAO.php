@@ -55,9 +55,31 @@ class DummyReviewManagementDAO implements ReviewManagementDAO
     return $res;
   }
 
-  public function create($review)
-  {
-    $this->reviews[] = $review;
+  public function createReview(
+    $beerName, 
+    $beerType, 
+    $alcoholContent, 
+    $rating, 
+    $authorId, 
+    $createdAt, 
+    $content, 
+    $originalExtract, 
+    $picture
+  ){
+    $newReview = new Review(
+        $newId,
+        $beerName,
+        $beerType,
+        $alcoholContent,
+        $rating,
+        $authorId,
+        $createdAt,
+    );
+
+    $newReview->setContent($content ?? '');
+    $newReview->setOriginalExtract($originalExtract ?? '');
+    $newReview->setPicture($picture ?? "bier.jpg");
+    $this->reviews[] = $newReview;
   }
 
   public function update($review)

@@ -37,10 +37,27 @@ interface ReviewManagementDAO
   /**
    * Creates a new review
    *
-   * @param $review
-   * @return mixed
+   * @param string $beerName
+   * @param string $beerType
+   * @param float|string $alcoholContent
+   * @param int $rating
+   * @param int $authorId
+   * @param string $createdAt
+   * @param string $content
+   * @param string $originalExtract
+   * @param string $picture
    */
-  public function create($review);
+  public function createReview(
+    $beerName, 
+    $beerType, 
+    $alcoholContent, 
+    $rating, 
+    $authorId, 
+    $createdAt, 
+    $content, 
+    $originalExtract, 
+    $picture
+  );
 
   /**
    * Updates a review

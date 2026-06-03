@@ -4,7 +4,7 @@
     }
     require_once $abs_path."/php/model/User.php";
     require_once $abs_path."/php/model/UserManagement.php";
-    define("IMAGE_PATH", $abs_path."/img/");
+    require_once $abs_path."/php/util/imageHandling.php";
 
     class UserController{
 
@@ -57,39 +57,20 @@
         error_log("Update gestartet: ".$_SESSION["userID"]);
         $this->checkUpdateParam();
         try{
-            if(isset($_FILES["profile_picture"]) && $_FILES["profile_picture"]["error"] !== UPLOAD_ERR_NO_FILE){
-                if(!$_FILES["profile_picture"]["error"] === UPLOAD_ERR_OK){
-                    $_SESSION["message"] = "upload_error";
-                    header("Location: /php/view/edit-profile.php");
-                    exit;
-                }
-                $types = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
-                if(!in_array($_FILES["profile_picture"]["type"], $types)){
-                    $_SESSION["message"] = "upload_type_not_allowed";
-                    header("Location: /php/view/edit-profile.php");
-                    exit;
-                }
-                //Namen prüfen
-                $file_type = ".". explode("/", $_FILES["profile_picture"]["type"])[1];
-                $new_name = $_SESSION["userID"].time().$file_type;
-                $new_dest = IMAGE_PATH.$new_name;
-                error_log("New destination: ".$new_dest);
-                $success = move_uploaded_file($_FILES["profile_picture"]["tmp_name"], $new_dest);
-                if($success){
-                    $userManagement = UserManagement::getInstance();
+            $userManagement = UserManagement::getInstance();
+            if(isImageSet("profile_picture")){
+                $new_name = checkAndUploadImage("profile_picture");
+                if($new_name != null){
                     $userManagement->updateUser($_SESSION["userID"], $_POST["nickname"], $new_name);
                 }else{
-                    $_SESSION["message"] = "upload_error";
                     header("Location: /php/view/edit-profile.php");
                     exit;
                 }
-
+                
             }else{
-                $userManagement = UserManagement::getInstance();
                 $userManagement->updateUser($_SESSION["userID"], $_POST["nickname"]);
             }
 
-            error_log("User geupdatet: ".$_POST["nickname"]);
             $_SESSION["message"] = "update_profile_success";
             header("Location: /php/view/profile.php");
             exit;

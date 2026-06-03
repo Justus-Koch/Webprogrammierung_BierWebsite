@@ -51,7 +51,7 @@ include_once $abs_path . '/php/include/header.php';
           <?php unset($_SESSION['message']); ?>
         </div>
 
-        <form method="POST" action="../edit-review-execute.php" class="review-form" novalidate>
+        <form method="POST" action="../edit-review-execute.php" class="review-form" enctype="multipart/form-data" novalidate>
 
           <!-- Review-ID as Hidden Field -->
           <input type="hidden" name="review_id" value="<?php echo $reviewToEdit->getId(); ?>">
@@ -61,7 +61,7 @@ include_once $abs_path . '/php/include/header.php';
             <div class="file-input-wrapper">
               <input type="file" name="picture" id="picture" accept="image/*">
               <img src="../../img/<?php echo htmlspecialchars($reviewToEdit->getPicture()); ?>"
-                   width="50" height="50" alt="Aktuelles Foto">
+                   width="50" height="50" alt="Aktuelles Foto" id="preview_image">
             </div>
           </div>
 
@@ -133,7 +133,7 @@ include_once $abs_path . '/php/include/header.php';
               <button type="submit" class="btn-submit" name="submit">Änderungen speichern</button>
               <a href="/php/view/profile.php" class="button-secondary">Abbrechen</a>
             </div>
-          </div>
+          
 
         </form>
 
@@ -146,9 +146,31 @@ include_once $abs_path . '/php/include/header.php';
           </button>
         </form>
 
+        </div>
+
       </div>
     </main>
   </div>
 
-<?php include_once $abs_path . '/php/include/footer.php'; ?>
+<?php include_once $abs_path.'/php/include/footer.php'; ?>
+
+<script>
+document.getElementById('picture').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            // Ändert das src des Bildes zur Vorschau
+            document.getElementById('preview_image').src = e.target.result;
+        }
+
+        reader.readAsDataURL(file); // Liest das Bild lokal ein
+    }
+});
+</script>
+
+</body>
+</html>
 

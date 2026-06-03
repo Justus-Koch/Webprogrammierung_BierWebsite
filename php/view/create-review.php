@@ -33,13 +33,13 @@ include_once $abs_path . '/php/include/header.php';
           <?php unset($_SESSION['message']); ?>
         </div>
 
-        <form method="POST" action="../create-review-execute.php" class="review-form" novalidate>
+        <form method="POST" action="../create-review-execute.php" class="review-form" enctype="multipart/form-data" novalidate>
 
           <div class="form-group">
             <label for="picture">Bier-Foto hochladen (optional)</label>
             <div class="file-input-wrapper">
               <input type="file" name="picture" id="picture" accept="image/*">
-              <img src="../../img/bier.jpg" width="50" height="50" alt="Vorschau des ausgewählten Bildes">
+              <img src="" id="preview_image" width="50" height="50" alt="Vorschau des ausgewählten Bildes">
             </div>
           </div>
 
@@ -110,5 +110,25 @@ include_once $abs_path . '/php/include/header.php';
     </main>
   </div>
 
-<?php include_once $abs_path . '/php/include/footer.php'; ?>
+<?php include_once $abs_path.'/php/include/footer.php'; ?>
+
+<script>
+document.getElementById('picture').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            // Ändert das src des Bildes zur Vorschau
+            document.getElementById('preview_image').src = e.target.result;
+        }
+
+        reader.readAsDataURL(file); // Liest das Bild lokal ein
+    }
+});
+</script>
+
+</body>
+</html>
 

@@ -69,27 +69,37 @@ class SessionReviewManagementDAO implements ReviewManagementDAO
     return $result;
   }
 
-  public function create($review) {
+  public function createReview(
+    $beerName, 
+    $beerType, 
+    $alcoholContent, 
+    $rating, 
+    $authorId, 
+    $createdAt, 
+    $content, 
+    $originalExtract, 
+    $picture) {
     // Neue ID aus der Session holen
     $newId = $_SESSION["nextReviewID"];
-    // Review mit korrekter ID neu erstellen (da ID im Konstruktor gesetzt wird)
+
     $newReview = new Review(
-      $newId,
-      $review->getBeerName(),
-      $review->getBeerType(),
-      $review->getAlcoholContent(),
-      $review->getRating(),
-      $review->getAuthorId(),
-      $review->getCreatedAt()
+        $newId,
+        $beerName,
+        $beerType,
+        $alcoholContent,
+        $rating,
+        $authorId,
+        $createdAt,
     );
-    $newReview->setContent($review->getContent());
-    $newReview->setOriginalExtract($review->getOriginalExtract());
-    $newReview->setPicture($review->getPicture());
+
+    $newReview->setContent($content ?? '');
+    $newReview->setOriginalExtract($originalExtract ?? '');
+    $newReview->setPicture($picture ?? "bier.jpg");
 
     $this->reviews[] = $newReview;
     $_SESSION["nextReviewID"] = $newId + 1;
     $_SESSION["reviews"] = serialize($this->reviews);
-  }
+}
 
   public function update($review) {
     foreach ($this->reviews as $key => $value) {

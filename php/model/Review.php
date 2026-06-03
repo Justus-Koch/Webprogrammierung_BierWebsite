@@ -24,6 +24,7 @@ class Review
    * @param $rating
    * @param $authorId
    * @param $createdAt
+   * @param $picture
    */
   public function __construct($id, $beerName, $beerType, $alcoholContent, $rating, $authorId, $createdAt)
   {
@@ -37,43 +38,11 @@ class Review
   }
 
   /**
-   * @param mixed $beerName
-   */
-  public function setBeerName($beerName)
-  {
-    $this->beerName = $beerName;
-  }
-
-  /**
-   * @param mixed $beerType
-   */
-  public function setBeerType($beerType)
-  {
-    $this->beerType = $beerType;
-  }
-
-  /**
    * @param mixed $originalExtract
    */
   public function setOriginalExtract($originalExtract)
   {
     $this->originalExtract = $originalExtract;
-  }
-
-  /**
-   * @param mixed $alcoholContent
-   */
-  public function setAlcoholContent($alcoholContent)
-  {
-    $this->alcoholContent = $alcoholContent;
-  }
-
-  /**
-   * @param mixed $rating
-   */
-  public function setRating($rating)
-  {
-    $this->rating = $rating;
   }
 
   /**

@@ -7,6 +7,7 @@ require_once $abs_path . '/php/model/Review.php';
 require_once $abs_path . '/php/model/ReviewManagementDAO.php';
 require_once $abs_path . '/php/model/DummyReviewManagementDAO.php';
 require_once $abs_path . '/php/model/ReviewManagement.php';
+require_once $abs_path . '/php/util/imageHandling.php';
 
 class ReviewController
 {
@@ -49,22 +50,26 @@ class ReviewController
   public function createReview() {
     $this->checkReviewParam();
     try {
+      $picture_key = "picture";
+      $new_name = null;
+      if(isImageSet($picture_key)){
+        $new_name = checkAndUploadImage($picture_key);
+        if($new_name == null){
+          header('Location: /php/view/edit-review.php');
+          exit;
+        }
+      }
       $instance = ReviewManagement::getInstance();
+      $instance->createReview($_POST['beer_name'],
+          $_POST['beer_type'],
+          $_POST['alcohol_content'],
+          $_POST['rating'],
+          $_SESSION['userID'],
+          date('d/m/Y'),
+          $_POST['content'],
+          $_POST['original_extract'],
+          $new_name);
 
-      $review = new Review(
-        null,
-        $_POST['beer_name'],
-        $_POST['beer_type'],
-        $_POST['alcohol_content'],
-        $_POST['rating'],
-        $_SESSION['userID'],
-        date('d/m/Y')
-      );
-      $review->setContent($_POST['content'] ?? '');
-      $review->setOriginalExtract($_POST['original_extract'] ?? '');
-      $review->setPicture('bier.jpg'); // Bildupload kommt später
-
-      $instance->create($review);
 
       $_SESSION['message'] = 'create_review_success';
       header('Location: /php/view/profile.php');
@@ -90,6 +95,16 @@ class ReviewController
         exit;
       }
 
+      $picture_key = "picture";
+      $new_name = null;
+      if(isImageSet($picture_key)){
+        $new_name = checkAndUploadImage($picture_key);
+        if($new_name == null){
+          header('Location: /php/view/edit-review.php');
+          exit;
+        }
+      }
+
       $review = new Review(
         $id,
         $_POST['beer_name'],
@@ -101,7 +116,7 @@ class ReviewController
       );
       $review->setContent($_POST['content'] ?? '');
       $review->setOriginalExtract($_POST['original_extract'] ?? '');
-      $review->setPicture($existing->getPicture()); // Bild vorerst behalten
+      $review->setPicture($new_name ?? $existing->getPicture());
 
       $instance->update($review);
 

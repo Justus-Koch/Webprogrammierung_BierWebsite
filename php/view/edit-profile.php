@@ -8,7 +8,7 @@
       require_once "../../path.php";
   }
 
-  require_once $abs_path.'/profile-load.php';
+  require_once $abs_path.'/php/profile-load.php';
 
   $profile_picture = "../../img/".htmlspecialchars($current_user->getProfilePicture());
 
@@ -37,7 +37,7 @@
     ?>
     </div>
 
-      <form method="post" class="review-form"  enctype="multipart/form-data" action="/profile-edit.php" novalidate>
+      <form method="post" class="review-form"  enctype="multipart/form-data" action="../profile-edit.php" novalidate>
 
         <div class="form-group">
           <label for="nickname">Spitzname <span aria-hidden="true">*</span></label>
