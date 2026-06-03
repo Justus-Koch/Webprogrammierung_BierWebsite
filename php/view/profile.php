@@ -9,10 +9,6 @@ if (!isset($abs_path)) {
 }
 
 require_once $abs_path . '/php/profile-load.php';
-require_once $abs_path . '/php/controller/ReviewController.php';
-
-$reviewController = new ReviewController();
-$userReviews = $reviewController->loadReviewsByUser($_SESSION['userID']);
 
 include_once $abs_path . '/php/include/header.php';
 ?>

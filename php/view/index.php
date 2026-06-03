@@ -12,7 +12,6 @@ include_once $abs_path . '/php/include/header.php';
 require_once $abs_path."/php/model/User.php";
 require_once $abs_path."/php/model/UserManagement.php";
 $userManagement = UserManagement::getInstance();
-
 require_once $abs_path . "/php/reviews-load.php";
 require_once $abs_path . "/php/is-favourite.php";
 ?>

@@ -60,6 +60,7 @@
             header("Location: /php/view/login.php");
             exit;
         }
+        $_SESSION["nickname"] = $_POST["nickname"];
         $this->checkUpdateParam();
         try{
             $userManagement = UserManagement::getInstance();
