@@ -12,6 +12,7 @@ include_once $abs_path . '/php/include/header.php';
 
 require_once $abs_path . "/php/favourites-load.php";
 require_once $abs_path . "/php/is-favourite.php";
+$userManagement = UserManagement::getInstance();
 ?>
 
 <div class="layout">
