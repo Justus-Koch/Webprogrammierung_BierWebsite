@@ -14,3 +14,4 @@ session_destroy();
 header("Location: /php/view/index.php");
 exit;
 ?>
+

@@ -83,7 +83,7 @@
 
     public function deleteUser(){
         if(!$this->checkValidUserID()){
-            header("Location: php/view/edit-profile.php");
+            header("Location: /php/view/edit-profile.php");
             exit;
         }
         try{
@@ -94,7 +94,7 @@
 
 
             $_SESSION["message"] = "delete_user_success";
-            header("Location: php/view/index.php");
+            header("Location: /php/view/index.php");
             exit;
         }catch(UserNotFoundException $e){
             $this->handleUserNotFoundException();
@@ -105,7 +105,7 @@
 
     public function getUser(){
         if(!$this->checkValidUserID()){
-            header("Location: ./index.php");
+            header("Location: /php/view/index.php");
             exit;
         }
         try{

@@ -2,7 +2,11 @@
       $id = $review->getId();?>
       <article class="post">
         <header class="post-header">
-          <span class="username">User #<?php echo htmlspecialchars($review->getAuthorId()); ?></span>
+          <span class="username">User #<?php try {
+              echo htmlspecialchars($userManagement->findUser($review->getAuthorId())->getNickname());
+            } catch (UserNotFoundException $e) {
+              echo "Username not found";
+            } ?></span>
           <div class="post-actions">
             <div class="favourite">
               <form action="../add-favourite.php" method="POST">
