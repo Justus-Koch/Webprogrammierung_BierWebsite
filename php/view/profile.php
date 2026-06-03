@@ -30,8 +30,6 @@ include_once $abs_path . '/php/include/header.php';
           <p>Review erfolgreich aktualisiert.</p>
         <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'delete_review_success'): ?>
           <p>Review erfolgreich gelöscht.</p>
-        <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'missing_userID'): ?>
-          <p>Es wurde keine Benutzer-ID gefunden.</p>
         <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'user_not_found'): ?>
           <p>Kein Benutzer eingeloggt.</p>
         <?php endif; ?>

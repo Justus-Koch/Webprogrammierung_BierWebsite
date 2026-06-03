@@ -10,6 +10,4 @@ require_once $abs_path . "/php/controller/UserController.php";
 $userController = new UserController();
 $userController->registrate();
 
-header("Location: /php/view/registration.php");
-exit;
 ?>

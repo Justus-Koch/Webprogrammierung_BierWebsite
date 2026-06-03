@@ -20,10 +20,14 @@ class ReviewController
     }
   }
 
-  public function loadFavourites($authorId){
+  public function loadFavourites(){
+    if (!isset($_SESSION["userID"])) {
+      header("Location: /php/view/login.php");
+      exit;
+    }
     try {
       $instance = ReviewManagement::getInstance();
-      $favourites = $instance->findFavouritesByUserId($authorId);
+      $favourites = $instance->findFavouritesByUserId($_SESSION["userID"]);
       if(empty($favourites)){
         $_SESSION["message"] = "favourites_not_found";
       }
@@ -63,6 +67,10 @@ class ReviewController
   }
 
   public function createReview() {
+    if (!isset($_SESSION["userID"])) {
+      header("Location: /php/view/login.php");
+      exit;
+    }
     $this->checkReviewParam();
     try {
       $picture_key = "picture";
@@ -95,6 +103,10 @@ class ReviewController
   }
 
   public function updateReview() {
+    if (!isset($_SESSION["userID"])) {
+      header("Location: /php/view/login.php");
+      exit;
+    }
     $this->checkReviewParam();
     $this->checkReviewId();
     try {
@@ -144,6 +156,10 @@ class ReviewController
   }
 
   public function deleteReview() {
+    if (!isset($_SESSION["userID"])) {
+      header("Location: /php/view/login.php");
+      exit;
+    }
     if (!isset($_POST['review_id'])) {
       $_SESSION['message'] = 'missing_parameters';
       header('Location: /php/view/profile.php');

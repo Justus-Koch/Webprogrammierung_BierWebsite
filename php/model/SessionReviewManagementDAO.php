@@ -15,12 +15,12 @@ class SessionReviewManagementDAO implements ReviewManagementDAO
       $this->reviews = unserialize($_SESSION["reviews"]);
     } else {
       // Dummy-Daten beim ersten Aufruf
-      $tempReview1 = new Review(1, "Paulaner Helles", "Helles", "5.0", 4, "Schluckspecht", date('d/m/Y'));
+      $tempReview1 = new Review(1, "Paulaner Helles", "Helles", "5.0", 4, "1", date('d/m/Y'));
       $tempReview1->setOriginalExtract("11.9");
       $tempReview1->setContent("Ein leckeres helles Bier aus Bayern. Gschichten ausm Paulaner Garten");
       $tempReview1->setPicture("bier.jpg");
 
-      $tempReview2 = new Review(2, "Staropramen Dunkel", "Dunkles", "5.2", 3, "Bierabetiker", date('d/m/Y'));
+      $tempReview2 = new Review(2, "Staropramen Dunkel", "Dunkles", "5.2", 3, "2", date('d/m/Y'));
       $tempReview2->setOriginalExtract("12.7");
       $tempReview2->setContent("Ein Schluck Tschechien. Prost meine mit-Bierabetiker");
       $tempReview2->setPicture("bier.jpg");

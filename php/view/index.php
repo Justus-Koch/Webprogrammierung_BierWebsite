@@ -30,7 +30,7 @@ require_once $abs_path . "/php/is-favourite.php";
         <p>Abmelden erfolgreich.</p>
       <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "delete_user_success"): ?>
         <p>Benutzer erfolgreich gelöscht.</p>
-      <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "missing_userID"): ?>
+      <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "missing_user_id"): ?>
         <p>Benutzer-ID nicht gefunden.</p>
       <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "user_not_found"): ?>
         <p>Benutzer nicht gefunden.</p>

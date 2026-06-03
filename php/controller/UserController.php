@@ -54,7 +54,10 @@
     }
 
     public function updateUser(){
-        error_log("Update gestartet: ".$_SESSION["userID"]);
+        if (!isset($_SESSION["userID"])) {
+            header("Location: /php/view/login.php");
+            exit;
+        }
         $this->checkUpdateParam();
         try{
             $userManagement = UserManagement::getInstance();
@@ -82,8 +85,8 @@
     }
 
     public function deleteUser(){
-        if(!$this->checkValidUserID()){
-            header("Location: /php/view/edit-profile.php");
+        if (!isset($_SESSION["userID"])) {
+            header("Location: /php/view/login.php");
             exit;
         }
         try{
@@ -104,7 +107,8 @@
     }
 
     public function getUser(){
-        if(!$this->checkValidUserID()){
+        if(!isset($_SESSION["userID"])){
+            $_SESSION["message"] = "missing_user_id";
             header("Location: /php/view/index.php");
             exit;
         }
@@ -133,7 +137,7 @@
     }
 
     public function addFavourite(){
-        if(!$this->checkValidUserID()){
+        if (!isset($_SESSION["userID"])) {
             header("Location: /php/view/login.php");
             exit;
         }
@@ -194,19 +198,6 @@
             header("Location: /php/view/edit-profile.php");
             exit;
         }
-        else if(!$this->checkValidUserID()){
-            header("Location: /php/view/edit-profile.php");
-            exit;
-        }
-    }
-
-
-    private function checkValidUserID(){
-        if(!isset($_SESSION["userID"])){
-            $_SESSION["message"] = "missing_userID";
-            return false;
-        }
-        return true;
     }
 
     private function handleUserNotFoundException()

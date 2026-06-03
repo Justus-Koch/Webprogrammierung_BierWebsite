@@ -23,8 +23,6 @@ $userManagement = UserManagement::getInstance();
     <div class="alert">
       <?php if (isset($_SESSION["message"]) && $_SESSION["message"] == "internal_error"): ?>
         <p>Es gibt einen internen Fehler.</p>
-      <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "missing_userID"): ?>
-        <p>Benutzer-ID nicht gefunden.</p>
       <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "user_not_found"): ?>
         <p>Benutzer nicht gefunden.</p>
       <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "favourites_not_found"): ?>

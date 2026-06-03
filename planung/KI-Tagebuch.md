@@ -90,3 +90,7 @@ Antwort: Die aufgeräumten Dateien als php code inklusive übersichtlicherem css
 20. Prompt (Gemini, 27.05.2026)
 Das aktuelle ausgewählte Bild soll als Vorschau angezeigt werden (Code von edit-profile.php gegeben).
 Antwort: Java-Script-Function zur Anzeige des Bildes in der Vorschau
+
+21. Prompt (Gemini, 03.06.2026)
+Wie kann ich in PHP über header auf die vorherige Seite zurückleiten?
+Antwort: $previousPage = $_SERVER['HTTP_REFERER'] ?? '/';
