@@ -1,110 +1,135 @@
-<?php $title = 'Suche'; ?>
-<?php include_once '../include/header.php'; ?>
+<?php
+$title = 'Suche';
 
-<div class="layout">
-  <?php include_once '../include/sidebar.php'; ?>
+if (session_status() !== PHP_SESSION_ACTIVE) {
+  session_start();
+}
+if (!isset($abs_path)) {
+  require_once "../../path.php";
+}
 
-  <main>
-    <div class="form-card search-results-container">
-      <h2>Suchergebnisse</h2>
+require_once $abs_path . '/php/controller/ReviewController.php';
+require_once $abs_path . '/php/model/User.php';
+require_once $abs_path . '/php/model/UserManagement.php';
 
-      <form method="GET" action="./search.php" class="filter-form">
-        <fieldset class="form-group fieldset-reset">
-          <legend>Ergebnisse filtern</legend>
-          <div class="filter-options">
-            <div class="filter-item">
-              <input type="checkbox" id="filter1" name="type[]" value="pils">
-              <label for="filter1">Pilsner</label>
+$reviewController = new ReviewController();
+$userManagement = UserManagement::getInstance();
+
+// Suchanfrage und Filter aus der URL holen
+$query = isset($_GET['q']) ? trim($_GET['q']) : '';
+$typeFilter = isset($_GET['type']) ? $_GET['type'] : [];
+
+// Reviews laden
+if (!empty($query)) {
+  $results = $reviewController->searchReviews($query);
+} else {
+  // Kein Suchbegriff — alle Reviews zeigen
+  $results = $reviewController->loadReviews();
+}
+
+// Typ-Filter clientseitig anwenden falls gesetzt
+if (!empty($typeFilter)) {
+  $results = array_filter($results, function($review) use ($typeFilter) {
+    return in_array(strtolower($review->getBeerType()), array_map('strtolower', $typeFilter));
+  });
+}
+
+include_once $abs_path . '/php/include/header.php';
+?>
+
+  <div class="layout">
+    <?php include_once $abs_path . '/php/include/sidebar.php'; ?>
+
+    <main>
+      <div class="form-card search-results-container">
+        <h2>Suchergebnisse</h2>
+
+        <form method="GET" action="search.php" class="filter-form" role="search">
+          <!-- Suchbegriff als Hidden Field mitführen damit er beim Filtern erhalten bleibt -->
+          <input type="hidden" name="q" value="<?php echo htmlspecialchars($query); ?>">
+
+          <fieldset class="form-group fieldset-reset">
+            <legend>Ergebnisse filtern</legend>
+            <div class="filter-options">
+              <div class="filter-item">
+                <input type="checkbox" id="filter1" name="type[]" value="Pils"
+                  <?php echo in_array('Pils', $typeFilter) ? 'checked' : ''; ?>>
+                <label for="filter1">Pils</label>
+              </div>
+              <div class="filter-item">
+                <input type="checkbox" id="filter2" name="type[]" value="Weizen"
+                  <?php echo in_array('Weizen', $typeFilter) ? 'checked' : ''; ?>>
+                <label for="filter2">Weizen</label>
+              </div>
+              <div class="filter-item">
+                <input type="checkbox" id="filter3" name="type[]" value="Helles"
+                  <?php echo in_array('Helles', $typeFilter) ? 'checked' : ''; ?>>
+                <label for="filter3">Helles</label>
+              </div>
+              <div class="filter-item">
+                <input type="checkbox" id="filter4" name="type[]" value="Dunkles"
+                  <?php echo in_array('Dunkles', $typeFilter) ? 'checked' : ''; ?>>
+                <label for="filter4">Dunkles</label>
+              </div>
+              <button type="submit" class="btn-submit btn-small">Filter anwenden</button>
             </div>
-            <div class="filter-item">
-              <input type="checkbox" id="filter2" name="type[]" value="weizen">
-              <label for="filter2">Weizen</label>
+          </fieldset>
+        </form>
+
+        <?php if (!empty($query)): ?>
+          <p>Ergebnisse für: <strong><?php echo htmlspecialchars($query); ?></strong></p>
+        <?php endif; ?>
+      </div>
+
+      <?php if (empty($results)): ?>
+        <p style="text-align:center;">Keine Reviews gefunden.</p>
+      <?php else: ?>
+        <?php foreach ($results as $review):
+          $rid = $review->getId(); ?>
+          <article class="post">
+            <header class="post-header">
+            <span class="username">
+              <?php
+              try {
+                echo '@' . htmlspecialchars($userManagement->findUser($review->getAuthorId())->getNickname());
+              } catch (UserNotFoundException $e) {
+                echo 'Unbekannter Nutzer';
+              }
+              ?>
+            </span>
+              <div class="post-actions">
+                <div class="favourite">
+                  <input type="checkbox" id="favourite_<?php echo $rid; ?>"
+                         name="favourite_<?php echo $rid; ?>"
+                         class="favourite-checkbox"
+                         aria-label="Diesen Post zu Favoriten hinzufügen">
+                  <label for="favourite_<?php echo $rid; ?>" class="favourite-label">
+                    <span class="favourite-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Favorisieren</span>
+                  </label>
+                </div>
+              </div>
+            </header>
+            <h3><?php echo htmlspecialchars($review->getBeerName()); ?></h3>
+            <div class="facts">
+              <img src="../../img/<?php echo htmlspecialchars($review->getPicture()); ?>"
+                   alt="Foto von <?php echo htmlspecialchars($review->getBeerName()); ?>" width="70">
+              <p>Biername:<br> <?php echo htmlspecialchars($review->getBeerName()); ?></p>
+              <p>Bierart:<br> <?php echo htmlspecialchars($review->getBeerType()); ?></p>
+              <p>Alkoholgehalt:<br> <?php echo htmlspecialchars($review->getAlcoholContent()); ?>%</p>
+              <p>Stammwürze:<br> <?php echo htmlspecialchars($review->getOriginalExtract()); ?>%</p>
+              <p>Bewertung:<br> <?php echo htmlspecialchars($review->getRating()); ?>/5</p>
             </div>
-            <div class="filter-item">
-              <input type="checkbox" id="filter3" name="type[]" value="helles">
-              <label for="filter3">Helles</label>
+            <div class="content">
+              <p><?php echo htmlspecialchars($review->getContent()); ?></p>
             </div>
-            <button type="submit" class="btn-submit btn-small">Filter anwenden</button>
-          </div>
-        </fieldset>
-      </form>
-    </div>
+            <time><?php echo htmlspecialchars($review->getCreatedAt()); ?></time>
+          </article>
+        <?php endforeach; ?>
+      <?php endif; ?>
 
-    <article class="post">
-      <header class="post-header">
-        <span class="username">@User_Schluckspecht</span>
-        <div class="post-actions">
-          <div class="favourite">
-            <input type="checkbox" id="favorite1" name="favorite1"
-                   class="favourite-checkbox"
-                   aria-label="Diesen Post zu Favoriten hinzufügen">
-            <label for="favorite1" class="favourite-label">
-              <span class="favourite-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Favorisieren</span>
-            </label>
-          </div>
-        </div>
-      </header>
-      <h3>Beispieltitel 1</h3>
-      <div class="facts">
-        <img src="./img/bier.jpg" alt="Bier" width="70">
-        <p>Biername:<br> Krombacher</p>
-        <p>Bierart:<br> Pilsener</p>
-        <p>Alkoholgehalt:<br> 4,9%</p>
-        <p>Stammwürze:<br> 11,5%</p>
-        <p>Bewertung:<br> 5/5</p>
-      </div>
-      <div class="content">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-          irure dolor in reprehenderit in voluptate velit esse cillum
-          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-          non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      </div>
-      <time datetime="2026-04-21">21.04.2026</time>
-    </article>
+    </main>
+  </div>
 
-    <article class="post">
-      <header class="post-header">
-        <span class="username">@User_Bierabetiker</span>
-        <div class="post-actions">
-          <div class="favourite">
-            <input type="checkbox" id="favorite2" name="favorite2"
-                   class="favourite-checkbox"
-                   aria-label="Diesen Post zu Favoriten hinzufügen">
-            <label for="favorite2" class="favourite-label">
-              <span class="favourite-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Favorisieren</span>
-            </label>
-          </div>
-        </div>
-      </header>
-      <h3>Beispieltitel 2</h3>
-      <div class="facts">
-        <img src="./img/bier.jpg" alt="Bier" width="70">
-        <p>Biername:<br> Jever</p>
-        <p>Bierart:<br> Pilsener</p>
-        <p>Alkoholgehalt:<br> 4,9%</p>
-        <p>Stammwürze:<br> 11,7%</p>
-        <p>Bewertung:<br> 5/5</p>
-      </div>
-      <div class="content">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-          irure dolor in reprehenderit in voluptate velit esse cillum
-          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-          non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      </div>
-      <time datetime="2026-04-21">21.04.2026</time>
-    </article>
-  </main>
-</div>
+<?php include_once $abs_path . '/php/include/footer.php'; ?>
 
-<?php include_once '../include/footer.php'; ?>
-
-</body>
-</html>

@@ -9,6 +9,9 @@ if (!isset($abs_path)) {
   require_once "../../path.php";
 }
 include_once $abs_path . '/php/include/header.php';
+require_once $abs_path."/php/model/User.php";
+require_once $abs_path."/php/model/UserManagement.php";
+$userManagement = UserManagement::getInstance();
 
   require_once $abs_path . "/php/reviews-load.php";
 ?>
@@ -41,7 +44,11 @@ include_once $abs_path . '/php/include/header.php';
       $id = $review->getId();?>
       <article class="post">
         <header class="post-header">
-          <span class="username">User #<?php echo htmlspecialchars($review->getAuthorId()); ?></span>
+          <span class="username">User #<?php try {
+              echo htmlspecialchars($userManagement->findUser($review->getAuthorId())->getNickname());
+            } catch (UserNotFoundException $e) {
+              echo "Username not found";
+            } ?></span>
           <div class="post-actions">
             <div class="favourite">
               <input type="checkbox" id="favourite_<?php echo $id; ?>" name="favourite_<?php echo $id; ?>"
