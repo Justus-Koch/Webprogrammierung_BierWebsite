@@ -15,7 +15,7 @@ $rating = $form_data["rating"] ?? '';
 
 // Nur eingeloggte Nutzer dürfen diese Seite sehen
 if (!isset($_SESSION["userID"])) {
-  header("Location: /php/view/login.php");
+  header("Location: " . ROOT ."php/view/login.php");
   exit;
 }
 
@@ -40,7 +40,7 @@ include_once $abs_path . '/php/include/header.php';
           <?php unset($_SESSION['message']); ?>
         </div>
 
-        <form method="POST" action="../create-review-execute.php" class="review-form" enctype="multipart/form-data" novalidate>
+        <form method="POST" action="<?php echo ROOT; ?>php/create-review-execute.php" class="review-form" enctype="multipart/form-data" novalidate>
 
           <div class="form-group">
             <label for="picture">Bier-Foto hochladen (optional)</label>
@@ -116,7 +116,7 @@ include_once $abs_path . '/php/include/header.php';
 
           <div class="form-actions">
             <button type="submit" class="btn-submit" name="submit">Review veröffentlichen</button>
-            <a href="index.php" class="button-secondary">Abbrechen</a>
+            <a href="<?php echo ROOT; ?>php/view/index.php" class="button-secondary">Abbrechen</a>
           </div>
 
         </form>

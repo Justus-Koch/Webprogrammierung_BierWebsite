@@ -10,6 +10,6 @@ require_once $abs_path . "/php/controller/UserController.php";
 $userController = new UserController();
 $userController->login();
 
-header("Location: /php/view/login.php");
+header("Location: ". ROOT . "php/view/login.php");
 exit;
 ?>

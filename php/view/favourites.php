@@ -41,7 +41,7 @@ $userManagement = UserManagement::getInstance();
 </main>
 </div>
 
-<?php include_once '../include/footer.php'; ?>
+<?php include_once $abs_path.'/php/include/footer.php'; ?>
 
 </body>
 </html>

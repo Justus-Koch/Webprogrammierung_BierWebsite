@@ -1,9 +1,15 @@
+<?php
+if (!isset($abs_path)) {
+  require_once '../../path.php';;
+}
+?>
+
 <footer class="footer">
   <nav class="footer-content" aria-label="Rechtliche Links">
-    <a href="impressum.php">Impressum</a>
-    <a href="datenschutz.php">Datenschutz</a>
-    <a href="nutzungsbedingungen.php">Nutzungsbedingungen</a>
-    <a href="barrierefreiheit.php">Barrierefreiheitserklärung</a>
+    <a href="<?php echo ROOT; ?>php/view/impressum.php">Impressum</a>
+    <a href="<?php echo ROOT; ?>php/view/datenschutz.php">Datenschutz</a>
+    <a href="<?php echo ROOT; ?>php/view/nutzungsbedingungen.php">Nutzungsbedingungen</a>
+    <a href="<?php echo ROOT; ?>php/view/barrierefreiheit.php">Barrierefreiheitserklärung</a>
   </nav>
 </footer>
 

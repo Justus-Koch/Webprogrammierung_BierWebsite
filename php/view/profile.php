@@ -34,7 +34,7 @@ include_once $abs_path . '/php/include/header.php';
 
       <section class="profile-card" aria-labelledby="profile-heading">
         <div class="profile-header">
-          <img src="../../img/<?php echo htmlspecialchars($current_user->getProfilePicture()); ?>"
+          <img src="<?php echo ROOT; ?>img/<?php echo htmlspecialchars($current_user->getProfilePicture()); ?>"
                alt="Profilbild" class="profile-img">
           <div class="profile-info">
             <h2 id="profile-heading">Profil</h2>
@@ -42,7 +42,7 @@ include_once $abs_path . '/php/include/header.php';
           </div>
         </div>
         <div class="profile-actions">
-          <a href="/php/view/edit-profile.php" class="button-secondary">Profil bearbeiten</a>
+          <a href="<?php echo ROOT; ?>php/view/edit-profile.php" class="button-secondary">Profil bearbeiten</a>
         </div>
       </section>
 
@@ -51,7 +51,7 @@ include_once $abs_path . '/php/include/header.php';
       <?php if (empty($userReviews)): ?>
         <p style="text-align:center;">
           Noch keine Reviews vorhanden.
-          <a href="/php/view/create-review.php">Jetzt erstes Review erstellen!</a>
+          <a href="<?php echo ROOT; ?>php/view/create-review.php">Jetzt erstes Review erstellen!</a>
         </p>
       <?php else: ?>
         <?php foreach ($userReviews as $review):
@@ -61,12 +61,12 @@ include_once $abs_path . '/php/include/header.php';
               <span class="username">@<?php echo htmlspecialchars($current_user->getNickname()); ?></span>
               <div class="post-actions">
                 <a class="button-secondary"
-                   href="/php/view/edit-review.php?id=<?php echo $rid; ?>">Bearbeiten</a>
+                   href="<?php echo ROOT; ?>php/view/edit-review.php?id=<?php echo $rid; ?>">Bearbeiten</a>
               </div>
             </header>
             <h3><?php echo htmlspecialchars($review->getBeerName()); ?></h3>
             <div class="facts">
-              <img src="../../img/<?php echo htmlspecialchars($review->getPicture()); ?>"
+              <img src="<?php echo ROOT; ?>/img/<?php echo htmlspecialchars($review->getPicture()); ?>"
                    alt="Foto von <?php echo htmlspecialchars($review->getBeerName()); ?>" width="70">
               <p>Bierart:<br> <?php echo htmlspecialchars($review->getBeerType()); ?></p>
               <p>Alkoholgehalt:<br> <?php echo htmlspecialchars($review->getAlcoholContent()); ?>%</p>

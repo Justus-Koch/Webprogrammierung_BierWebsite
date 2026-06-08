@@ -6,8 +6,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 }
 
 if (!isset($abs_path)) {
-  require_once "../../path.php";
+  require_once '../../path.php';
 }
+
 include_once $abs_path . '/php/include/header.php';
 require_once $abs_path."/php/model/User.php";
 require_once $abs_path."/php/model/UserManagement.php";
@@ -44,7 +45,7 @@ require_once $abs_path . "/php/is-favourite.php";
   </main>
 </div>
 
-<?php include_once '../include/footer.php'; ?>
+<?php include_once $abs_path.'/php/include/footer.php'; ?>
 
 </body>
 </html>

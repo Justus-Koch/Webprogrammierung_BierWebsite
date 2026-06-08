@@ -10,7 +10,7 @@
 
   require_once $abs_path.'/php/profile-load.php';
 
-  $profile_picture = "../../img/".htmlspecialchars($current_user->getProfilePicture());
+  $profile_picture = ROOT."img/".htmlspecialchars($current_user->getProfilePicture());
 
   $nickname = isset($_SESSION["nickname"]) ? $_SESSION["nickname"] : $current_user->getNickname();
   unset($_SESSION["nickname"]);
@@ -39,7 +39,7 @@
     ?>
     </div>
 
-      <form method="post" class="review-form"  enctype="multipart/form-data" action="../profile-edit.php" novalidate>
+      <form method="post" class="review-form"  enctype="multipart/form-data" action="<?php echo ROOT; ?>php/profile-edit.php" novalidate>
 
         <div class="form-group">
           <label for="nickname">Spitzname <span aria-hidden="true">*</span></label>
@@ -59,10 +59,10 @@
         <div class="form-footer-actions">
           <div class="left-actions">
             <button type="submit" class="btn-submit" name="submit">Speichern</button>
-            <a href="profile.php" class="button-secondary">Abbrechen</a>
+            <a href="<?php echo ROOT; ?>profile.php" class="button-secondary">Abbrechen</a>
           </div>
       </form>
-      <form method="post" class="review-form" onsubmit="return confirm('Möchtest du dein Profil wirklich löschen?')" action="/profile-delete.php" novalidate>
+      <form method="post" class="review-form" onsubmit="return confirm('Möchtest du dein Profil wirklich löschen?')" action="<?php echo ROOT; ?>php/profile-delete.php" novalidate>
         <button type="submit" name="submit" type="button" class="btn-delete" aria-label="Profil unwiderruflich löschen">Profil löschen</button>
       </form>
       </div>

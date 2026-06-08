@@ -11,7 +11,7 @@ $userController = new UserController();
 $userController->logout();
 session_destroy();
 
-header("Location: /php/view/index.php");
+header("Location: ". ROOT . "php/view/index.php");
 exit;
 ?>
 

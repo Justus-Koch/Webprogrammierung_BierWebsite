@@ -3,6 +3,10 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
+if (!isset($abs_path)) {
+  require_once "../../path.php";
+}
+
 $nickname = isset($_SESSION["nickname"]) ? $_SESSION["nickname"] : "";
 $email = isset($_SESSION["email"]) ? $_SESSION["email"] : "";
 unset($_SESSION["nickname"]);
@@ -14,8 +18,8 @@ unset($_SESSION["email"]);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Registrierung – Prost-Protokoll</title>
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="<?php echo ROOT; ?>css/style.css">
+  <link rel="stylesheet" href="<?php echo ROOT; ?>css/components.css">
 </head>
 <body>
 
@@ -39,7 +43,7 @@ unset($_SESSION["email"]);
         unset($_SESSION["message"]);
     ?>
 
-    <form method="post" action="../registration-execute.php" class="review-form" novalidate>
+    <form method="post" action="<?php echo ROOT; ?>php/registration-execute.php" class="review-form" novalidate>
 
       <div class="form-group">
         <label for="nickname">Nickname <span aria-hidden="true">*</span></label>
@@ -84,7 +88,7 @@ unset($_SESSION["email"]);
   </div>
 </main>
 
-<?php include_once '../../php/include/footer.php'; ?>
+<?php include_once $abs_path.'/php/include/footer.php'; ?>
 
 </body>
 </html>

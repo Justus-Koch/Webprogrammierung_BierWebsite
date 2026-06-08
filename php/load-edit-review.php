@@ -8,7 +8,7 @@ if (!isset($abs_path)) {
 
 // Nur eingeloggte Nutzer dürfen diese Seite sehen
 if (!isset($_SESSION["userID"])) {
-  header("Location: /php/view/login.php");
+  header("Location: ". ROOT . "php/view/login.php");
   exit;
 }
 
@@ -18,7 +18,7 @@ require_once $abs_path . '/php/controller/ReviewController.php';
 $id = isset($_GET['id']) ? intval($_GET['id']) : null;
 
 if ($id === null) {
-  header("Location: /php/view/profile.php");
+  header("Location: ". ROOT . "php/view/profile.php");
   exit;
 }
 
@@ -29,7 +29,7 @@ $reviewController = new ReviewController();
 $reviewToEdit = $reviewController->loadReviewById($id);
 
 if ($reviewToEdit === null) {
-  //header("Location: /php/view/profile.php");
+  //header("Location: ". ROOT . "php/view/profile.php");
   //exit;
 }
 

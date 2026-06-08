@@ -8,7 +8,7 @@ if (!isset($abs_path)) {
 require_once $abs_path . "/php/controller/UserController.php";
 
 if (!isset($_SESSION["userID"])) {
-    header("Location: /php/view/login.php");
+    header("Location: ". ROOT . "php/view/login.php");
     exit;
 }
 

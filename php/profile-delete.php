@@ -12,7 +12,7 @@ $current_user = $userController->deleteUser();
 
 session_destroy();
 
-header("Location: /php/view/index.php");
+header("Location: ". ROOT . "php/view/index.php");
 exit;
 ?>
 

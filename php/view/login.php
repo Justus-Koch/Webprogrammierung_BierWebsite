@@ -2,6 +2,9 @@
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
+if (!isset($abs_path)) {
+  require_once "../../path.php";
+}
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -9,8 +12,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Anmeldung – Prost-Protokoll</title>
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="<?php echo ROOT; ?>css/style.css">
+  <link rel="stylesheet" href="<?php echo ROOT; ?>css/components.css">
 </head>
 <body>
 
@@ -32,7 +35,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
         unset($_SESSION["message"]);
     ?>
 
-    <form method="POST" action="../login-execute.php" class="review-form" novalidate>
+    <form method="POST" action="<?php echo ROOT; ?>php/login-execute.php" class="review-form" novalidate>
 
       <div class="form-group">
         <label for="username">E-Mail <span aria-hidden="true">*</span></label>
@@ -58,6 +61,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
   </div>
 </main>
 
-<?php include_once '../include/footer.php'; ?>
+<?php include_once $abs_path.'/php/include/footer.php'; ?>
 </body>
 </html>

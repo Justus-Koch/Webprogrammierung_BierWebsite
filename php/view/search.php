@@ -8,7 +8,7 @@ if (!isset($abs_path)) {
   require_once "../../path.php";
 }
 
-require_once $abs_path.'/php/load-search-php';
+require_once $abs_path . '/php/load-search.php';
 
 include_once $abs_path . '/php/include/header.php';
 ?>
@@ -88,7 +88,7 @@ include_once $abs_path . '/php/include/header.php';
             </header>
             <h3><?php echo htmlspecialchars($review->getBeerName()); ?></h3>
             <div class="facts">
-              <img src="../../img/<?php echo htmlspecialchars($review->getPicture()); ?>"
+              <img src="<?php echo ROOT; ?>img/<?php echo htmlspecialchars($review->getPicture()); ?>"
                    alt="Foto von <?php echo htmlspecialchars($review->getBeerName()); ?>" width="70">
               <p>Biername:<br> <?php echo htmlspecialchars($review->getBeerName()); ?></p>
               <p>Bierart:<br> <?php echo htmlspecialchars($review->getBeerType()); ?></p>

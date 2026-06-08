@@ -37,7 +37,7 @@ include_once $abs_path . '/php/include/header.php';
           <?php unset($_SESSION['message']); ?>
         </div>
 
-        <form method="POST" action="../edit-review-execute.php" class="review-form" enctype="multipart/form-data" novalidate>
+        <form method="POST" action="<?php echo ROOT; ?>php/edit-review-execute.php" class="review-form" enctype="multipart/form-data" novalidate>
 
           <!-- Review-ID as Hidden Field -->
           <input type="hidden" name="review_id" value="<?php echo $reviewToEdit->getId(); ?>">
@@ -46,7 +46,7 @@ include_once $abs_path . '/php/include/header.php';
             <label for="picture">Bild ändern (optional)</label>
             <div class="file-input-wrapper">
               <input type="file" name="picture" id="picture" accept="image/*">
-              <img src="../../img/<?php echo htmlspecialchars($reviewToEdit->getPicture()); ?>"
+              <img src="<?php echo ROOT; ?>img/<?php echo htmlspecialchars($reviewToEdit->getPicture()); ?>"
                    width="50" height="50" alt="Aktuelles Foto" id="preview_image">
             </div>
           </div>
@@ -117,14 +117,14 @@ include_once $abs_path . '/php/include/header.php';
           <div class="form-footer-actions">
             <div class="left-actions">
               <button type="submit" class="btn-submit" name="submit">Änderungen speichern</button>
-              <a href="/php/view/profile.php" class="button-secondary">Abbrechen</a>
+              <a href="<?php echo ROOT; ?>php/view/profile.php" class="button-secondary">Abbrechen</a>
             </div>
           
 
         </form>
 
         <!-- Löschen als eigenes Formular, damit es einen separaten execute hat -->
-        <form method="POST" action="../delete-review-execute.php"
+        <form method="POST" action="<?php echo ROOT; ?>php/delete-review-execute.php"
               onsubmit="return confirm('Möchtest du dieses Review wirklich löschen?')">
           <input type="hidden" name="review_id" value="<?php echo $reviewToEdit->getId(); ?>">
           <button type="submit" class="btn-delete" aria-label="Dieses Review unwiderruflich löschen">

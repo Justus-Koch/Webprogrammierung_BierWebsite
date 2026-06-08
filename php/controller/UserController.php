@@ -18,11 +18,11 @@
                 $_SESSION["message"] = "login_success";
                 $_SESSION["userID"] = $userID;
                 error_log("user id bei login gesetzt". $_SESSION["userID"]);
-                header("Location: /php/view/index.php");
+                header("Location: ". ROOT . "php/view/index.php");
                 exit;
             }else{
                 $_SESSION["message"] = "login_failed";
-                header("Location: /php/view/login.php");
+                header("Location: ". ROOT . "php/view/login.php");
                 exit;
             }
         }catch(InternalErrorException $e){
@@ -33,7 +33,7 @@
     public function logout(){
         unset($_SESSION["userID"]);
         $_SESSION["message"] = "logout_success";
-        header("Location: /php/view/index.php");
+        header("Location: ". ROOT . "php/view/index.php");
         exit;
     }
 
@@ -47,7 +47,7 @@
             $userManagement->saveUser($_POST["email"], $_POST["password"], $_POST["nickname"]);
 
             $_SESSION["message"] = "registration_success";
-            header("Location: /php/view/login.php");
+            header("Location: ". ROOT . "php/view/login.php");
             exit;
         }catch(InternalErrorException $e){
             $this->handleInternalErrorException();
@@ -57,7 +57,7 @@
 
     public function updateUser(){
         if (!isset($_SESSION["userID"])) {
-            header("Location: /php/view/login.php");
+            header("Location: ". ROOT . "php/view/login.php");
             exit;
         }
         $_SESSION["nickname"] = $_POST["nickname"];
@@ -69,7 +69,7 @@
                 if($new_name != null){
                     $userManagement->updateUser($_SESSION["userID"], $_POST["nickname"], $new_name);
                 }else{
-                    header("Location: /php/view/edit-profile.php");
+                    header("Location: ". ROOT . "php/view/edit-profile.php");
                     exit;
                 }
                 
@@ -78,7 +78,7 @@
             }
 
             $_SESSION["message"] = "update_profile_success";
-            header("Location: /php/view/profile.php");
+            header("Location: ". ROOT . "php/view/profile.php");
             exit;
         }catch(UserNotFoundException $e){
             $this->handleUserNotFoundException();
@@ -89,7 +89,7 @@
 
     public function deleteUser(){
         if (!isset($_SESSION["userID"])) {
-            header("Location: /php/view/login.php");
+            header("Location: ". ROOT . "php/view/login.php");
             exit;
         }
         try{
@@ -100,7 +100,7 @@
 
 
             $_SESSION["message"] = "delete_user_success";
-            header("Location: /php/view/index.php");
+            header("Location: ". ROOT . "php/view/index.php");
             exit;
         }catch(UserNotFoundException $e){
             $this->handleUserNotFoundException();
@@ -112,7 +112,7 @@
     public function getUser(){
         if(!isset($_SESSION["userID"])){
             $_SESSION["message"] = "missing_user_id";
-            header("Location: /php/view/index.php");
+            header("Location: ". ROOT . "php/view/index.php");
             exit;
         }
         try{
@@ -141,7 +141,7 @@
 
     public function addFavourite(){
         if (!isset($_SESSION["userID"])) {
-            header("Location: /php/view/login.php");
+            header("Location: ". ROOT . "php/view/login.php");
             exit;
         }
         try{
@@ -162,11 +162,11 @@
     private function checkLoginParam(){
         if (!isset($_POST["email"]) || !isset($_POST["password"]) || !isset($_POST["submit"])) {
             $_SESSION["message"] = "missing_parameters";
-            header("Location: /php/view/login.php");
+            header("Location: ". ROOT . "php/view/login.php");
             exit;
         }else if(empty($_POST["email"]) || empty($_POST["password"]) ){
             $_SESSION["message"] = "missing_required_parameters";
-            header("Location: /php/view/login.php");
+            header("Location: ". ROOT . "php/view/login.php");
             exit;
         }
     }
@@ -178,24 +178,24 @@
     private function checkRegistrationParam(){
         if (!isset($_POST["email"]) || !isset($_POST["password"]) || !isset($_POST["password_confirm"]) || !isset($_POST["nickname"]) || !isset($_POST["submit"])) {
             $_SESSION["message"] = "missing_parameters";
-            header("Location: /php/view/registration.php");
+            header("Location: ". ROOT . "php/view/registration.php");
             exit;
         }else if(empty($_POST["email"]) || empty($_POST["password"]) || empty($_POST["password_confirm"]) || empty($_POST["nickname"]) ){
             $_SESSION["message"] = "missing_required_parameters";
-            header("Location: /php/view/registration.php");
+            header("Location: ". ROOT . "php/view/registration.php");
             exit;
         }else if ($_POST["password"] !== $_POST["password_confirm"]){
             $_SESSION["message"] = "passwords_not_equal";
-            header("Location: /php/view/registration.php");
+            header("Location: ". ROOT . "php/view/registration.php");
             exit;
         }else if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
             $_SESSION["message"] = "invalid_email";
-            header("Location: /php/view/registration.php");
+            header("Location: ". ROOT . "php/view/registration.php");
             exit;
         }
         if (mb_strlen($_POST["nickname"], 'UTF-8') > 50 || mb_strlen($_POST["email"], 'UTF-8') > 50 || mb_strlen($_POST["password"], 'UTF-8') > 50) {
             $_SESSION["message"] = "input_too_long";
-            header("Location: /php/view/registration.php");
+            header("Location: ". ROOT . "php/view/registration.php");
             exit;
         }
     }
@@ -203,12 +203,12 @@
     private function checkUpdateParam(){
         if (!isset($_POST["nickname"]) || !isset($_POST["submit"])) {
             $_SESSION["message"] = "missing_parameters";
-            header("Location: /php/view/edit-profile.php");
+            header("Location: ". ROOT . "php/view/edit-profile.php");
             exit;
         }
         if (mb_strlen($_POST["nickname"], 'UTF-8') > 50) {
             $_SESSION["message"] = "nickname_too_long";
-            header("Location: /php/view/edit-profile.php");
+            header("Location: ". ROOT . "php/view/edit-profile.php");
             exit;
         }
     }
@@ -216,13 +216,13 @@
     private function handleUserNotFoundException()
     {
         $_SESSION["message"] = "user_not_found";
-        header("Location: /php/view/index.php");
+        header("Location: ". ROOT . "php/view/index.php");
         exit;
     }
     private function handleInternalErrorException()
     {
         $_SESSION["message"] = "internal_error";
-        header("Location: /php/view/index.php");
+        header("Location: ". ROOT . "php/view/index.php");
         exit;
     }
     }

@@ -1,8 +1,12 @@
-<?php $title = 'Impressum'; ?>
-<?php include_once './php/include/header.php'; ?>
+<?php $title = 'Impressum'; 
+if (!isset($abs_path)) {
+  require_once "../../path.php";
+}
+?>
+<?php include_once $abs_path.'/php/include/header.php'; ?>
 
 <div class="layout">
-  <?php include_once './php/include/sidebar.php'; ?>
+  <?php include_once $abs_path.'/php/include/sidebar.php'; ?>
 
   <main>
     <h2>Impressum</h2>
@@ -16,7 +20,7 @@
   </main>
 </div>
 
-<?php include_once './php/include/footer.php'; ?>
+<?php include_once $abs_path.'/php/include/footer.php'; ?>
 
 </body>
 </html>
