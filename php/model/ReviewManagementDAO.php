@@ -20,7 +20,7 @@ interface ReviewManagementDAO
 
   /**
    * Returns the favourite reviews of the user with the given user id
-   * 
+   *
    * @param $id
    * @return mixed
    */
@@ -56,14 +56,14 @@ interface ReviewManagementDAO
    * @param string $picture
    */
   public function createReview(
-    $beerName, 
-    $beerType, 
-    $alcoholContent, 
-    $rating, 
-    $authorId, 
-    $createdAt, 
-    $content, 
-    $originalExtract, 
+    $beerName,
+    $beerType,
+    $alcoholContent,
+    $rating,
+    $authorId,
+    $createdAt,
+    $content,
+    $originalExtract,
     $picture
   );
 

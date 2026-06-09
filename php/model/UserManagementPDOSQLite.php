@@ -61,7 +61,7 @@ class UserManagementPDOSQLite implements UserManagementDAO{
             throw new InternalErrorException();
         }
     }
-    
+
     public function updateUser($id, $nickname=null, $profile_picture=null){
         try {
             $db = getConnection();
@@ -73,7 +73,7 @@ class UserManagementPDOSQLite implements UserManagementDAO{
             if (!$command->execute(array($nickname, $profile_picture, $id))){
                 throw new InternalErrorException();
             }
-            
+
         }catch(PDOException $exc){
             throw new UserNotFoundException();
         }
@@ -90,7 +90,7 @@ class UserManagementPDOSQLite implements UserManagementDAO{
             if (!$command->execute(array($id))){
                 throw new InternalErrorException();
             }
-            
+
         }catch(PDOException $exc){
             throw new UserNotFoundException();
         }
@@ -142,7 +142,7 @@ class UserManagementPDOSQLite implements UserManagementDAO{
             error_log("Fehler bei toggleFavouriteState: " . $e->getMessage());
             throw new InternalErrorException();
         }
-        
+
     }
 
     public function userContainsFavourite($userID, $reviewID){
@@ -161,3 +161,4 @@ class UserManagementPDOSQLite implements UserManagementDAO{
 
 }
 ?>
+
