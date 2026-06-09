@@ -11,8 +11,5 @@ $userController = new UserController();
 $current_user = $userController->deleteUser();
 
 session_destroy();
-
-header("Location: ". ROOT . "php/view/index.php");
-exit;
 ?>
 

@@ -23,7 +23,6 @@ class ReviewController
   public function loadFavourites(){
     if (!isset($_SESSION["userID"])) {
       header("Location: ". ROOT . "php/view/login.php");
-      header("Location: ". ROOT . "php/view/login.php");
       exit;
     }
     try {

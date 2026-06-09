@@ -10,8 +10,5 @@ require_once $abs_path . "/php/controller/UserController.php";
 $userController = new UserController();
 $userController->logout();
 session_destroy();
-
-header("Location: ". ROOT . "php/view/index.php");
-exit;
 ?>
 
