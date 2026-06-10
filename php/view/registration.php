@@ -38,6 +38,8 @@ unset($_SESSION["email"]);
       <p>Die eingegebene EMail ist nicht gültig.</p>
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "input_too_long"): ?>
       <p>Eingegebene Werte sind zu lang.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "email_already_in_use"): ?>
+      <p>Ein Benutzer mit dieser Email existiert schon.</p>
     <?php endif; ?>
     <?php
         unset($_SESSION["message"]);

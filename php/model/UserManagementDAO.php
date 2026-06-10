@@ -8,10 +8,10 @@
     interface UserManagementDAO{
 
         /**
-         * Saves a new user with the given email, password, nickname and a optional profile picture
+         * Saves a new user with the given email, password and nickname.
          * Throws an InternalErrorException if there is an internal error.
          */
-        function saveUser($email, $password, $nickname, $profile_picture);
+        function saveUser($email, $password, $nickname);
         /**
          * Return the user with the given id.
          * Throws an UserNotFoundException if an user with this id does not exist.

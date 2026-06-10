@@ -17,15 +17,21 @@ class UserManagementPDOSQLite implements UserManagementDAO{
         return self::$instance;
     }
 
-    public function saveUser($email, $password, $nickname=null, $profile_picture=null){
+    public function saveUser($email, $password, $nickname=null){
         try{
             if(empty($nickname)){
                 $nickname="Bierliebhaber";
             }
-            if(empty($profile_picture)){
-                $profile_picture="profile_picture.jpg";
-            }
+            $profile_picture="profile_picture.jpg";
             $db = getConnection();
+
+            $checkMail = $db->prepare("SELECT 1 FROM user WHERE email = ?");
+            $checkMail->execute([$email]);
+            if($checkMail->fetch()){
+                return false;
+            }
+
+            $db->beginTransaction();
             $sql = "INSERT INTO user (email, password, nickname, profile_picture) VALUES (?, ?, ?, ?)";
             $command = $db->prepare($sql);
             if (!$command) {
@@ -34,8 +40,11 @@ class UserManagementPDOSQLite implements UserManagementDAO{
             if (!$command->execute(array($email, $password, $nickname, $profile_picture))){
                 throw new InternalErrorException();
             }
-            return $db->lastInsertId();
+            $lastId = $db->lastInsertId();
+            $db->commit();
+            return $lastId;
         }catch(PDOException $exc){
+            $db->rollBack();
             throw new InternalErrorException();
         }
     }
@@ -116,10 +125,7 @@ class UserManagementPDOSQLite implements UserManagementDAO{
             $command->execute([$email]);
             $user = $command->fetchObject();
 
-            error_log("DEBUG USER OBJECT: " . print_r($user, true));
-
-            if ($user && ($password === $user->password)) {
-                error_log("USERID:". $user->user_id);
+            if ($user && password_verify($password, $user->password)) {
                 return $user->user_id;
             }
             return -1;
@@ -160,7 +166,6 @@ class UserManagementPDOSQLite implements UserManagementDAO{
     public function userContainsFavourite($userID, $reviewID){
         try {
             $db = getConnection();
-            // TODO: das funktioniert erst wenn die reviews auch existieren
             $checkFavourite = $db->prepare("SELECT 1 FROM likes WHERE user_id = ? AND review_id = ?");
             $checkFavourite->execute([$userID, $reviewID]);
 

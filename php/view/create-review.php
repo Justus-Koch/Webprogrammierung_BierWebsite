@@ -86,7 +86,7 @@ include_once $abs_path . '/php/include/header.php';
           </div>
 
           <fieldset class="form-group">
-            <legend>Bewertung bearbeiten (1 bis 5 Sterne)</legend>
+            <legend>Bewertung bearbeiten (1 bis 5 Sterne) <span aria-hidden="true">*</span></legend>
             <div class="star-rating-accessible">
               <input type="radio" id="star1" name="rating" value="1"
                 <?php echo $rating == 1 ? 'checked' : ''; ?>>

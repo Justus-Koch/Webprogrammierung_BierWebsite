@@ -44,11 +44,15 @@
         try{
             $userManagement = UserManagement::getInstance();
 
-            $userManagement->saveUser($_POST["email"], $_POST["password"], $_POST["nickname"]);
-
-            $_SESSION["message"] = "registration_success";
-            header("Location: ". ROOT . "php/view/login.php");
-            exit;
+            if($userManagement->saveUser($_POST["email"], password_hash($_POST["password"], PASSWORD_DEFAULT), $_POST["nickname"])){
+                $_SESSION["message"] = "registration_success";
+                header("Location: ". ROOT . "php/view/login.php");
+                exit;
+            }else{
+                $_SESSION["message"] = "email_already_in_use";
+                header("Location: ". ROOT . "php/view/registration.php");
+                exit;
+            }
         }catch(InternalErrorException $e){
             $this->handleInternalErrorException();
         }

@@ -33,7 +33,7 @@
             }
         }
 
-        public function saveUser($email, $password, $nickname=null, $profile_picture=null){
+        public function saveUser($email, $password, $nickname=null){
             $id = $_SESSION["nextID"];
             if(empty($nickname)){
                 $nickname="Bierliebhaber".$id;
@@ -46,6 +46,7 @@
             $this->users[$id] = $newUser;
             $_SESSION["nextID"] = $id + 1;
             $_SESSION["users"] = serialize($this->users);
+            return true;
         }
 
         public function findUser($id){
@@ -77,7 +78,7 @@
 
         public function login($email, $password){
             foreach ($this->users as $user){
-                if($email === $user->getEmail() && $password === $user->getPassword()){
+                if($email === $user->getEmail() && password_verify($password, $user->password)){
                     return $user->getID();
                 }
             }
