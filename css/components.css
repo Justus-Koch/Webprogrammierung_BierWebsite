@@ -727,7 +727,16 @@ fieldset legend {
   font-family: monospace;
 }
 
+/* ============================================================
+   INFO MESSAGE DESIGN
+   ============================================================ */
+
 .alert{
   color: red; 
+  margin-bottom: 15px;
+}
+
+.success{
+  color: green; 
   margin-bottom: 15px;
 }

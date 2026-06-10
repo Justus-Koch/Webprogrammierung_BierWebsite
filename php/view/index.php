@@ -17,24 +17,25 @@ require_once $abs_path . "/php/reviews-load.php";
   <?php include_once $abs_path.'/php/include/sidebar.php'; ?>
 
   <main>
-    <div class="alert">
-      <?php if (isset($_SESSION["message"]) && $_SESSION["message"] == "internal_error"): ?>
-        <p>Es gibt einen internen Fehler.</p>
-      <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "login_success"): ?>
-        <p>Anmelden erfolgreich.</p>
-      <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "logout_success"): ?>
-        <p>Abmelden erfolgreich.</p>
-      <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "delete_user_success"): ?>
-        <p>Benutzer erfolgreich gelöscht.</p>
-      <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "missing_user_id"): ?>
-        <p>Benutzer-ID nicht gefunden.</p>
-      <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "user_not_found"): ?>
-        <p>Benutzer nicht gefunden.</p>
-      <?php endif; ?>
-      <?php
-          unset($_SESSION["message"]);
-      ?>
-    </div>
+    <div class="success">
+    <?php if (isset($_SESSION["message"]) && $_SESSION["message"] == "login_success"): ?>
+      <p>Anmelden erfolgreich.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "logout_success"): ?>
+      <p>Abmelden erfolgreich.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "delete_user_success"): ?>
+      <p>Benutzer erfolgreich gelöscht.</p>
+    <?php endif; ?>
+    </div class="alert">
+    <?php if (isset($_SESSION["message"]) && $_SESSION["message"] == "internal_error"): ?>
+      <p>Es gibt einen internen Fehler.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "missing_user_id"): ?>
+      <p>Benutzer-ID nicht gefunden.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "user_not_found"): ?>
+      <p>Benutzer nicht gefunden.</p>
+    <?php endif; ?>
+    <?php
+        unset($_SESSION["message"]);
+    ?>
     <h2>Bier-Feed</h2>
 
     <?php include_once $abs_path.'/php/view/show-review.php'; ?>

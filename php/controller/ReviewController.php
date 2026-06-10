@@ -75,12 +75,11 @@ class ReviewController
     $this->checkReviewParam();
     try {
       $picture_key = "picture";
-      $new_name = null;
+      $new_name = "bier.jpg";
       if(isImageSet($picture_key)){
         $new_name = checkAndUploadImage($picture_key);
         error_log("Neuer Name null?: ". $new_name ?? "null");
         if($new_name == null){
-          error_log("Zurücl zu edit review");
           header('Location: ' . ROOT . 'php/view/create-review.php');
           exit;
         }
@@ -195,12 +194,12 @@ class ReviewController
 
   private function checkReviewParam() {
     if (!isset($_POST['beer_name']) || !isset($_POST['beer_type']) ||
-      !isset($_POST['alcohol_content']) || !isset($_POST['rating'])) {
+      !isset($_POST['alcohol_content'])) {
       $_SESSION['message'] = 'missing_parameters';
       header('Location: ' . ROOT . 'php/view/create-review.php');
       exit;
     }
-    if (empty(trim($_POST['beer_name'])) || empty($_POST['rating'])) {
+    if (empty(trim($_POST['beer_name'])) || !isset($_POST['rating']) || empty($_POST['rating'])) {
       $_SESSION['message'] = 'missing_required_parameters';
       header('Location: ' . ROOT . 'php/view/create-review.php');
       exit;
