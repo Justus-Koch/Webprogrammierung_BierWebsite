@@ -44,7 +44,7 @@ function createDB()
                 content          TEXT,
                 picture          VARCHAR(255),
                 alcohol_content  DECIMAL(4,2),
-                original_gravity DECIMAL(5,3),
+                original_gravity DECIMAL(4,2),
                 beer_name        VARCHAR(100) NOT NULL,
                 FOREIGN KEY (user_id) REFERENCES user(user_id)
                     ON DELETE CASCADE ON UPDATE CASCADE

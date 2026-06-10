@@ -94,3 +94,7 @@ Antwort: Java-Script-Function zur Anzeige des Bildes in der Vorschau
 21. Prompt (Gemini, 03.06.2026)
 Wie kann ich in PHP über header auf die vorherige Seite zurückleiten?
 Antwort: $previousPage = $_SERVER['HTTP_REFERER'] ?? '/';
+
+22. Prompt (ChatGPT, 10.06.2026)
+Wie kann ich abfragen, ob der UNIQUE-Constraint verletzt wurde?
+Antwort: Abfrage des Exception-Codes auf 23000.

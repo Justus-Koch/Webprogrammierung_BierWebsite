@@ -56,12 +56,12 @@ interface ReviewManagementDAO
      * Throws a ReviewNotFoundException if the review does not exist.
      * Throws an InternalErrorException if there is an internal error.
      */
-    public function update($review);
+    public function update($review, $user_id);
 
     /**
      * Deletes the given review.
      * Throws a ReviewNotFoundException if the review does not exist.
      * Throws an InternalErrorException if there is an internal error.
      */
-    public function delete($review);
+    public function delete($review, $user_id);
 }

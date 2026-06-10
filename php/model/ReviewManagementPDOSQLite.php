@@ -148,7 +148,7 @@ class ReviewManagementPDOSQLite implements ReviewManagementDAO
         }
     }
 
-    public function update($review)
+    public function update($review, $user_id)
     {
         try {
             $db = getConnection();
@@ -160,7 +160,7 @@ class ReviewManagementPDOSQLite implements ReviewManagementDAO
                         rating           = ?,
                         content          = ?,
                         picture          = ?
-                    WHERE review_id = ?";
+                    WHERE review_id = ? AND user_id = ?";
             $command = $db->prepare($sql);
             if (!$command) {
                 throw new InternalErrorException();
@@ -173,7 +173,9 @@ class ReviewManagementPDOSQLite implements ReviewManagementDAO
                 $review->getRating(),
                 $review->getContent(),
                 $review->getPicture(),
-                $review->getId()
+                $review->getId(),
+                $user_id
+
             ])) {
                 throw new InternalErrorException();
             }

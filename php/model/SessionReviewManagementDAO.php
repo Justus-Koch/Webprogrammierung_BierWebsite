@@ -119,9 +119,9 @@ class SessionReviewManagementDAO implements ReviewManagementDAO
     $_SESSION["reviews"] = serialize($this->reviews);
 }
 
-  public function update($review) {
+  public function update($review, $user_id) {
     foreach ($this->reviews as $key => $value) {
-      if ($value->getId() === $review->getId()) {
+      if ($value->getId() === $review->getId() && $value->getAuthorId === $user_id) {
         $this->reviews[$key] = $review;
         $_SESSION["reviews"] = serialize($this->reviews);
         return;
@@ -130,9 +130,9 @@ class SessionReviewManagementDAO implements ReviewManagementDAO
     throw new ReviewNotFoundException();
   }
 
-  public function delete($id) {
+  public function delete($id, $user_id) {
     foreach ($this->reviews as $key => $value) {
-      if ($value->getId() === $id) {
+      if ($value->getId() === $id && $value->getAuthorId === $user_id) {
         array_splice($this->reviews, $key, 1);
         $_SESSION["reviews"] = serialize($this->reviews);
         return;

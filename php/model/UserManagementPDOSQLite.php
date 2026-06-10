@@ -25,13 +25,6 @@ class UserManagementPDOSQLite implements UserManagementDAO{
             $profile_picture="profile_picture.jpg";
             $db = getConnection();
 
-            $checkMail = $db->prepare("SELECT 1 FROM user WHERE email = ?");
-            $checkMail->execute([$email]);
-            if($checkMail->fetch()){
-                return false;
-            }
-
-            $db->beginTransaction();
             $sql = "INSERT INTO user (email, password, nickname, profile_picture) VALUES (?, ?, ?, ?)";
             $command = $db->prepare($sql);
             if (!$command) {
@@ -41,10 +34,12 @@ class UserManagementPDOSQLite implements UserManagementDAO{
                 throw new InternalErrorException();
             }
             $lastId = $db->lastInsertId();
-            $db->commit();
             return $lastId;
         }catch(PDOException $exc){
-            $db->rollBack();
+            // UNIQUE constraint
+            if ($exc->getCode() == 23000) {
+                return false;
+            }
             throw new InternalErrorException();
         }
     }

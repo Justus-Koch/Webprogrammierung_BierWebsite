@@ -150,7 +150,7 @@ class ReviewController
       $review->setOriginalExtract($_POST['original_extract'] ?? '');
       $review->setPicture($new_name ?? $existing->getPicture());
 
-      $instance->update($review);
+      $instance->update($review, $_SESSION["userID"]);
 
       $_SESSION['message'] = 'update_review_success';
       header('Location: ' . ROOT . 'php/view/profile.php');
@@ -184,7 +184,7 @@ class ReviewController
         exit;
       }
 
-      $instance->delete($id);
+      $instance->delete($id, $_SESSION["userID"]);
 
       $_SESSION['message'] = 'delete_review_success';
       header('Location: ' . ROOT . 'php/view/profile.php');
