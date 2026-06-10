@@ -25,7 +25,8 @@ require_once $abs_path . "/php/reviews-load.php";
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "delete_user_success"): ?>
       <p>Benutzer erfolgreich gelöscht.</p>
     <?php endif; ?>
-    </div class="alert">
+    </div>
+    <div class="alert">
     <?php if (isset($_SESSION["message"]) && $_SESSION["message"] == "internal_error"): ?>
       <p>Es gibt einen internen Fehler.</p>
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "missing_user_id"): ?>
@@ -36,6 +37,7 @@ require_once $abs_path . "/php/reviews-load.php";
     <?php
         unset($_SESSION["message"]);
     ?>
+    </div>
     <h2>Bier-Feed</h2>
 
     <?php include_once $abs_path.'/php/view/show-review.php'; ?>

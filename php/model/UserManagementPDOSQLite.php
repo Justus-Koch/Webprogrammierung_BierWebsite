@@ -52,6 +52,7 @@ class UserManagementPDOSQLite implements UserManagementDAO{
                 throw new InternalErrorException();
             }
             $userData = $command->fetchObject();
+            error_log("USER DATA: " . print_r($userData, true));
             if(empty($userData)){
                 throw new UserNotFoundException();
             }else{
@@ -62,16 +63,27 @@ class UserManagementPDOSQLite implements UserManagementDAO{
         }
     }
 
-    public function updateUser($id, $nickname=null, $profile_picture=null){
+    public function updateUser($id, $nickname, $profile_picture=null){
         try {
             $db = getConnection();
-            $sql = "UPDATE user SET nickname = ?, profile_picture = ? WHERE user_id = ?";
-            $command = $db->prepare($sql);
-            if (!$command) {
-                throw new InternalErrorException();
-            }
-            if (!$command->execute(array($nickname, $profile_picture, $id))){
-                throw new InternalErrorException();
+            if($profile_picture == null){
+                $sql = "UPDATE user SET nickname = ? WHERE user_id = ?";
+                $command = $db->prepare($sql);
+                if (!$command) {
+                    throw new InternalErrorException();
+                }
+                if (!$command->execute(array($nickname, $id))){
+                    throw new InternalErrorException();
+                }
+            }else{
+                $sql = "UPDATE user SET nickname = ?, profile_picture = ? WHERE user_id = ?";
+                $command = $db->prepare($sql);
+                if (!$command) {
+                    throw new InternalErrorException();
+                }
+                if (!$command->execute(array($nickname, $profile_picture, $id))){
+                    throw new InternalErrorException();
+                }
             }
 
         }catch(PDOException $exc){

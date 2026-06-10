@@ -29,7 +29,7 @@ if (!isset($abs_path)) {
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "missing_required_parameters"): ?>
       <p>Es fehlen notwendige Parameter.</p>
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "registration_success"): ?>
-      <p>Registrierung erfolgreich.</p>
+      <p class="success">Registrierung erfolgreich.</p>
     <?php endif; ?>
     <?php
         unset($_SESSION["message"]);

@@ -17,7 +17,7 @@ include_once $abs_path . '/php/include/header.php';
     <?php include_once $abs_path . '/php/include/sidebar.php'; ?>
 
     <main>
-      <div class="alert">
+      <div class="success">
         <?php if (isset($_SESSION['message']) && $_SESSION['message'] == 'update_profile_success'): ?>
           <p>Profiländerungen wurden erfolgreich gespeichert.</p>
         <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'create_review_success'): ?>
@@ -27,7 +27,7 @@ include_once $abs_path . '/php/include/header.php';
         <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'delete_review_success'): ?>
           <p>Review erfolgreich gelöscht.</p>
         <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'user_not_found'): ?>
-          <p>Kein Benutzer eingeloggt.</p>
+          <p class="alert">Kein Benutzer eingeloggt.</p>
         <?php endif; ?>
         <?php unset($_SESSION['message']); ?>
       </div>
