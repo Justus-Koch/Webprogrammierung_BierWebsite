@@ -62,7 +62,7 @@ class SessionReviewManagementDAO implements ReviewManagementDAO
         return $review;
       }
     }
-    return null;
+    throw new ReviewNotFoundException();
   }
 
   public function findByUserId($authorId) {
@@ -124,10 +124,10 @@ class SessionReviewManagementDAO implements ReviewManagementDAO
       if ($value->getId() === $review->getId()) {
         $this->reviews[$key] = $review;
         $_SESSION["reviews"] = serialize($this->reviews);
-        return true;
+        return;
       }
     }
-    return false;
+    throw new ReviewNotFoundException();
   }
 
   public function delete($id) {
@@ -135,9 +135,9 @@ class SessionReviewManagementDAO implements ReviewManagementDAO
       if ($value->getId() === $id) {
         array_splice($this->reviews, $key, 1);
         $_SESSION["reviews"] = serialize($this->reviews);
-        return true;
+        return;
       }
     }
-    return false;
+    throw new ReviewNotFoundException();
   }
 }

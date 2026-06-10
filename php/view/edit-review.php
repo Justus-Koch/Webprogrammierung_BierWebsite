@@ -37,6 +37,9 @@ include_once $abs_path . '/php/include/header.php';
           <?php unset($_SESSION['message']); ?>
         </div>
 
+        <?php if ($reviewToEdit == null): ?>
+            <p>Review nicht gefunden</p>
+        <?php else: ?>    
         <form method="POST" action="<?php echo ROOT; ?>php/edit-review-execute.php" class="review-form" enctype="multipart/form-data" novalidate>
 
           <!-- Review-ID as Hidden Field -->
@@ -133,6 +136,7 @@ include_once $abs_path . '/php/include/header.php';
         </form>
 
         </div>
+        <?php endif; ?>
 
       </div>
     </main>

@@ -1,0 +1,3 @@
+<Files "PDOSQLite.php">
+    Deny from all
+</Files>

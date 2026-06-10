@@ -32,8 +32,6 @@ class ReviewController
         $_SESSION["message"] = "favourites_not_found";
       }
       return $favourites;
-    } catch(UserNotFoundException $e){
-      $this->handleUserNotFoundException();
     } catch (InternalErrorException $e) {
       $this->handleInternalErrorException();
     }
@@ -52,7 +50,9 @@ class ReviewController
     try {
       $instance = ReviewManagement::getInstance();
       return $instance->findById($id);
-    } catch (InternalErrorException $e) {
+    } catch (ReviewNotFoundException $e) {
+      $this->handleReviewNotFoundException();
+    }catch (InternalErrorException $e) {
       $this->handleInternalErrorException();
     }
   }
@@ -155,6 +155,8 @@ class ReviewController
       $_SESSION['message'] = 'update_review_success';
       header('Location: ' . ROOT . 'php/view/profile.php');
       exit;
+    } catch (ReviewNotFoundException $e) {
+      $this->handleReviewNotFoundException();
     } catch (InternalErrorException $e) {
       $this->handleInternalErrorException();
     }
@@ -187,7 +189,9 @@ class ReviewController
       $_SESSION['message'] = 'delete_review_success';
       header('Location: ' . ROOT . 'php/view/profile.php');
       exit;
-    } catch (InternalErrorException $e) {
+    } catch (ReviewNotFoundException $e) {
+      $this->handleReviewNotFoundException();
+    }catch (InternalErrorException $e) {
       $this->handleInternalErrorException();
     }
   }
@@ -220,10 +224,10 @@ class ReviewController
     exit;
   }
 
-  private function handleUserNotFoundException()
+  private function handleReviewNotFoundException()
     {
-        $_SESSION["message"] = "user_not_found";
-        header("Location: '. ROOT . 'php/view/index.php");
+        $_SESSION["message"] = "review_not_found";
+        header('Location: '. ROOT . 'php/view/index.php');
         exit;
     }
 

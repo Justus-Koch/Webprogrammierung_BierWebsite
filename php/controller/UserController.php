@@ -9,6 +9,7 @@
     class UserController{
 
     public function login(){
+        $_SESSION["email"] = $_POST["email"];
         $this->checkLoginParam();
         try{
             $userManagement = UserManagement::getInstance();

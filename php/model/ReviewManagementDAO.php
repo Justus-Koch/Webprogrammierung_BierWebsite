@@ -1,5 +1,7 @@
 <?php
 
+class ReviewNotFoundException extends Exception{}
+
 interface ReviewManagementDAO
 {
     /**
@@ -17,14 +19,12 @@ interface ReviewManagementDAO
 
     /**
      * Returns the favourite reviews of the user with the given user id.
-     * Throws an UserNotFoundException if an user with this id does not exist.
      * Throws an InternalErrorException if there is an internal error.
      */
     public function findFavouritesByUserId($id);
 
     /**
      * Returns a list of all reviews with the specified userId.
-     * Throws an UserNotFoundException if an user with this id does not exist.
      * Throws an InternalErrorException if there is an internal error.
      */
     public function findByUserId($id);

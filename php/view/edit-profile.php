@@ -59,7 +59,7 @@
         <div class="form-footer-actions">
           <div class="left-actions">
             <button type="submit" class="btn-submit" name="submit">Speichern</button>
-            <a href="<?php echo ROOT; ?>profile.php" class="button-secondary">Abbrechen</a>
+            <a href="<?php echo ROOT; ?>php/view/profile.php" class="button-secondary">Abbrechen</a>
           </div>
       </form>
       <form method="post" class="review-form" onsubmit="return confirm('Möchtest du dein Profil wirklich löschen?')" action="<?php echo ROOT; ?>php/profile-delete.php" novalidate>

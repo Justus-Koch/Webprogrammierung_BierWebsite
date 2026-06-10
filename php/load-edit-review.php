@@ -28,11 +28,6 @@ unset($_SESSION['form_data']);
 $reviewController = new ReviewController();
 $reviewToEdit = $reviewController->loadReviewById($id);
 
-if ($reviewToEdit === null) {
-  //header("Location: ". ROOT . "php/view/profile.php");
-  //exit;
-}
-
 if ($form_data) {
     $beerName        = $form_data['beer_name'] ?? $reviewToEdit->getBeerName();
     $beerType        = $form_data['beer_type'] ?? $reviewToEdit->getBeerType();

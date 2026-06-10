@@ -46,7 +46,7 @@ class ReviewManagementPDOSQLite implements ReviewManagementDAO
             $command->execute([$id]);
             $row = $command->fetchObject();
             if (empty($row)) {
-                return null;
+                throw new ReviewNotFoundException();
             }
             return $this->rowToReview($row);
         } catch (PDOException $e) {
@@ -177,7 +177,9 @@ class ReviewManagementPDOSQLite implements ReviewManagementDAO
             ])) {
                 throw new InternalErrorException();
             }
-            return $command->rowCount() > 0;
+            if($command->rowCount() == 0){
+                throw new ReviewNotFoundException();
+            }
         } catch (PDOException $e) {
             throw new InternalErrorException();
         }
@@ -195,7 +197,9 @@ class ReviewManagementPDOSQLite implements ReviewManagementDAO
             if (!$command->execute([$id])) {
                 throw new InternalErrorException();
             }
-            return $command->rowCount() > 0;
+            if($command->rowCount() == 0){
+                throw new ReviewNotFoundException();
+            }
         } catch (PDOException $e) {
             throw new InternalErrorException();
         }

@@ -33,6 +33,8 @@ require_once $abs_path . "/php/reviews-load.php";
       <p>Benutzer-ID nicht gefunden.</p>
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "user_not_found"): ?>
       <p>Benutzer nicht gefunden.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "review_not_found"): ?>
+      <p>Review nicht gefunden.</p>
     <?php endif; ?>
     <?php
         unset($_SESSION["message"]);
