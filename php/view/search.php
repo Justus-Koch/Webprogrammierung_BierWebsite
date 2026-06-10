@@ -57,51 +57,10 @@ include_once $abs_path . '/php/include/header.php';
         <?php endif; ?>
       </div>
 
-      <?php if (empty($results)): ?>
+      <?php if (empty($reviews)): ?>
         <p style="text-align:center;">Keine Reviews gefunden.</p>
       <?php else: ?>
-        <?php foreach ($results as $review):
-          $rid = $review->getId(); ?>
-          <article class="post">
-            <header class="post-header">
-            <span class="username">
-              <?php
-              try {
-                echo '@' . htmlspecialchars($userManagement->findUser($review->getAuthorId())->getNickname());
-              } catch (UserNotFoundException $e) {
-                echo 'Unbekannter Nutzer';
-              }
-              ?>
-            </span>
-              <div class="post-actions">
-                <div class="favourite">
-                  <input type="checkbox" id="favourite_<?php echo $rid; ?>"
-                         name="favourite_<?php echo $rid; ?>"
-                         class="favourite-checkbox"
-                         aria-label="Diesen Post zu Favoriten hinzufügen">
-                  <label for="favourite_<?php echo $rid; ?>" class="favourite-label">
-                    <span class="favourite-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Favorisieren</span>
-                  </label>
-                </div>
-              </div>
-            </header>
-            <h3><?php echo htmlspecialchars($review->getBeerName()); ?></h3>
-            <div class="facts">
-              <img src="<?php echo ROOT; ?>img/<?php echo htmlspecialchars($review->getPicture()); ?>"
-                   alt="Foto von <?php echo htmlspecialchars($review->getBeerName()); ?>" width="70">
-              <p>Biername:<br> <?php echo htmlspecialchars($review->getBeerName()); ?></p>
-              <p>Bierart:<br> <?php echo htmlspecialchars($review->getBeerType()); ?></p>
-              <p>Alkoholgehalt:<br> <?php echo htmlspecialchars($review->getAlcoholContent()); ?>%</p>
-              <p>Stammwürze:<br> <?php echo htmlspecialchars($review->getOriginalExtract()); ?>%</p>
-              <p>Bewertung:<br> <?php echo htmlspecialchars($review->getRating()); ?>/5</p>
-            </div>
-            <div class="content">
-              <p><?php echo htmlspecialchars($review->getContent()); ?></p>
-            </div>
-            <time><?php echo htmlspecialchars($review->getCreatedAt()); ?></time>
-          </article>
-        <?php endforeach; ?>
+        <?php include_once $abs_path.'/php/view/show-review.php'; ?>
       <?php endif; ?>
 
     </main>

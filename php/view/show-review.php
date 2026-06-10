@@ -1,4 +1,14 @@
-<?php foreach ($reviews as $review):
+<?php 
+if (!isset($abs_path)) {
+  require_once "../path.php";
+}
+
+require_once $abs_path . "/php/is-favourite.php";
+require_once $abs_path . "/php/model/User.php";
+require_once $abs_path . "/php/model/UserManagement.php";
+$userManagement = UserManagement::getInstance();
+
+foreach ($reviews as $review):
       $id = $review->getId();?>
       <article class="post">
         <header class="post-header">
@@ -9,7 +19,7 @@
             } ?></span>
           <div class="post-actions">
             <div class="favourite">
-              <form action="../add-favourite.php" method="POST">
+              <form action= "<?php echo ROOT; ?>php/add-favourite.php" method="POST">
                 <input type="hidden" name="review_id" value="<?php echo $id; ?>">
                 <input type="checkbox" id="favourite_<?php echo $id; ?>" name="favourite_<?php echo $id; ?>"
                      class="favourite-checkbox"

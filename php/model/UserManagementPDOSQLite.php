@@ -121,7 +121,7 @@ class UserManagementPDOSQLite implements UserManagementDAO{
             $db = getConnection();
             $db->beginTransaction();
 
-            $checkFavourite = $db->prepare("SELECT 1 FROM likes WHERE user_id = ? AND review_id = ? FOR UPDATE");
+            $checkFavourite = $db->prepare("SELECT 1 FROM likes WHERE user_id = ? AND review_id = ?");
             $checkFavourite->execute([$userID, $reviewID]);
 
             if ($checkFavourite->fetch()) {

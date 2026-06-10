@@ -13,15 +13,15 @@ $typeFilter = isset($_GET['type']) ? $_GET['type'] : [];
 
 // Reviews laden
 if (!empty($query)) {
-  $results = $reviewController->searchReviews($query);
+  $reviews = $reviewController->searchReviews($query);
 } else {
   // Kein Suchbegriff — alle Reviews zeigen
-  $results = $reviewController->loadReviews();
+  $reviews = $reviewController->loadReviews();
 }
 
 // Typ-Filter clientseitig anwenden falls gesetzt
 if (!empty($typeFilter)) {
-  $results = array_filter($results, function($review) use ($typeFilter) {
+  $reviews = array_filter($reviews, function($review) use ($typeFilter) {
     return in_array(strtolower($review->getBeerType()), array_map('strtolower', $typeFilter));
   });
 }
