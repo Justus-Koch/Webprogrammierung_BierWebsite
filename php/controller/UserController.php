@@ -133,19 +133,42 @@
         }
     }
 
-    public function addFavourite(){
+    public function addFavourite(bool $isAjax = false) {
         if (!isset($_SESSION["userID"])) {
+            if ($isAjax) {
+                echo json_encode([
+                    "success" => false,
+                    "error" => "not_logged_in",
+                    "redirect" => ROOT . "php/view/login.php"
+                ]);
+                exit;
+                }
             $this->redirect("login.php");
         }
-        try{
+        try {
             $userManagement = UserManagement::getInstance();
-            $review_id = $_POST["review_id"];
-            $userManagement->toggleFavouriteState($_SESSION["userID"], $review_id);
-        }catch(UserNotFoundException $e){
+            $userManagement->toggleFavouriteState($_SESSION["userID"], $_POST["review_id"]);
+            if ($isAjax) {
+                header('Content-Type: application/json');
+                echo json_encode(["success" => true]);
+                exit;
+            }
+        } catch (UserNotFoundException $e) {
+            if ($isAjax) {
+                echo json_encode(["success" => false, "error" => "user_not_found"]);
+                exit;
+            }
             $this->handleUserNotFoundException();
-        }catch(InternalErrorException $e){
+        } catch (InternalErrorException $e) {
+            if ($isAjax) {
+                echo json_encode(["success" => false, "error" => "internal_error"]);
+                exit;
+            }
             $this->handleInternalErrorException();
-        } 
+        }
+        $previousPage = $_SERVER['HTTP_REFERER'] ?? ROOT . "php/view/index.php";
+        header("Location: " . $previousPage);
+        exit;
     }
 
     /**

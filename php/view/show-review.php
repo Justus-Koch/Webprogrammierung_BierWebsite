@@ -19,17 +19,21 @@ foreach ($reviews as $review):
             } ?></span>
           <div class="post-actions">
             <div class="favourite">
-              <form action= "<?php echo ROOT; ?>php/add-favourite.php" method="POST">
+              <form action="<?php echo ROOT; ?>php/add-favourite.php" method="POST">
                 <input type="hidden" name="review_id" value="<?php echo $id; ?>">
-                <input type="checkbox" id="favourite_<?php echo $id; ?>" name="favourite_<?php echo $id; ?>"
-                     class="favourite-checkbox"
-                     aria-label="Diesen Post zu Favoriten hinzufügen"
-                     onchange="this.form.submit()"
-                     <?php echo (isFavourite($id) ? 'checked' : ''); ?>>
+                <input type="checkbox" id="favourite_<?php echo $id; ?>"
+                    name="favourite_<?php echo $id; ?>"
+                    class="favourite-checkbox"
+                    aria-label="Diesen Post zu Favoriten hinzufügen"
+                    data-review-id="<?php echo $id; ?>"
+                    <?php echo (isFavourite($id) ? 'checked' : ''); ?>>
                 <label for="favourite_<?php echo $id; ?>" class="favourite-label">
                   <span class="favourite-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Favorisieren</span>
                 </label>
+                <noscript>
+                  <button class="button-secondary" type="submit">Favorisieren</button>
+                </noscript>
               </form>
             </div>
           </div>

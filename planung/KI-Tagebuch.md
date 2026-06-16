@@ -102,3 +102,7 @@ Antwort: Abfrage des Exception-Codes auf 23000.
 23. Prompt (Gemini, 16.06.2026)
 Implementiere die Echtzeit-Validierung der Nutzereingaben bei Registrierung und Anmeldung (bestehender Code gegeben) mit JavaScript. Vermeide doppelten Code. 
 Antwort: notwendiges JavaScript und Anpassungen an PHP in login/registration
+
+24. Prompt (Claude, 16.06.2026)
+Meine Website hat eine Funktion zum Hinzufügen von Favoriten. Momentan wird die Seite beim Hinzufügen jedes Favoriten neu geladne. Ich möchte mit AJAX umsetzen, dass der reload nicht passiert. Es soll auch noch ohne Java-Script funktionieren (Code zum Hinzufügen von Favoriten gegeben).
+Antwort: Java-Script-Code und Anpassung an dem bestehenden php zum Hinzufügen von Favoriten.

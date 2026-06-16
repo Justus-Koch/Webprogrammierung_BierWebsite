@@ -13,11 +13,4 @@ if (!isset($abs_path)) {
   </nav>
 </footer>
 
-<script>
-  function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar-nav');
-    const btn = document.querySelector('.menuButton');
-    const isOpen = sidebar.classList.toggle('active');
-    btn.setAttribute('aria-expanded', isOpen);
-  }
-</script>
+<script src="<?php echo ROOT; ?>js/favourites.js"></script>
