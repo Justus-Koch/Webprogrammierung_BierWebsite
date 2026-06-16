@@ -47,6 +47,31 @@ include_once $abs_path . '/php/include/header.php';
                   <?php echo in_array('Dunkles', $typeFilter) ? 'checked' : ''; ?>>
                 <label for="filter4">Dunkles</label>
               </div>
+              <div class="filter-item">
+                <input type="checkbox" id="filter5" name="type[]" value="India Pale Ale"
+                  <?php echo in_array('India Pale Ale', $typeFilter) ? 'checked' : ''; ?>>
+                <label for="filter5">India Pale Ale</label>
+              </div>
+              <div class="filter-item">
+                <input type="checkbox" id="filter6" name="type[]" value="Bock"
+                  <?php echo in_array('Bock', $typeFilter) ? 'checked' : ''; ?>>
+                <label for="filter6">Bock</label>
+              </div>
+              <div class="filter-item">
+                <input type="checkbox" id="filter7" name="type[]" value="Kellerbier"
+                  <?php echo in_array('Kellerbier', $typeFilter) ? 'checked' : ''; ?>>
+                <label for="filter7">Kellerbier</label>
+              </div>
+              <div class="filter-item">
+                <input type="checkbox" id="filter8" name="type[]" value="Rotbier"
+                  <?php echo in_array('Rotbier', $typeFilter) ? 'checked' : ''; ?>>
+                <label for="filter8">Rotbier</label>
+              </div>
+              <div class="filter-item">
+                <input type="checkbox" id="filter9" name="type[]" value="Export"
+                  <?php echo in_array('Export', $typeFilter) ? 'checked' : ''; ?>>
+                <label for="filter9">Export</label>
+              </div>
               <button type="submit" class="btn-submit btn-small">Filter anwenden</button>
             </div>
           </fieldset>
