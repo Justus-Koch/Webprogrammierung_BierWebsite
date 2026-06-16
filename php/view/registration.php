@@ -91,6 +91,7 @@ unset($_SESSION["email"]);
 </main>
 
 <?php include_once $abs_path.'/php/include/footer.php'; ?>
-
+<script src="<?php echo ROOT; ?>js/form-helpers.js"></script>
+<script src="<?php echo ROOT; ?>js/registration-validation.js"></script>
 </body>
 </html>

@@ -51,7 +51,7 @@
         <div class="form-group">
           <label for="profile_picture">Profilbild ändern</label>
           <div class="file-input-wrapper">
-            <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+            <input type="file" id="picture" name="profile_picture" accept="image/*">
             <img src="<?=$profile_picture?>" alt="Aktuelles Profilbild" id="preview_image" width="120" height="120">
           </div>
         </div>
@@ -73,22 +73,7 @@
 
 <?php include_once $abs_path.'/php/include/footer.php'; ?>
 
-<script>
-document.getElementById('profile_picture').addEventListener('change', function(event) {
-    const file = event.target.files[0];
-
-    if (file) {
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            // Ändert das src des Bildes zur Vorschau
-            document.getElementById('preview_image').src = e.target.result;
-        }
-
-        reader.readAsDataURL(file); // Liest das Bild lokal ein
-    }
-});
-</script>
+<script src="<?php echo ROOT; ?>js/picture-preview.js"></script>
 
 </body>
 </html>
