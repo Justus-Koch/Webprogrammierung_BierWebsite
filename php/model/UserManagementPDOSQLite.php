@@ -132,7 +132,8 @@ class UserManagementPDOSQLite implements UserManagementDAO{
     public function toggleFavouriteState($userID, $reviewID){
         try {
             $db = getConnection();
-            $db->beginTransaction();
+            //$db->beginTransaction();
+            $db->exec('BEGIN IMMEDIATE TRANSACTION'); 
 
             $checkFavourite = $db->prepare("SELECT 1 FROM likes WHERE user_id = ? AND review_id = ?");
             $checkFavourite->execute([$userID, $reviewID]);
@@ -147,14 +148,19 @@ class UserManagementPDOSQLite implements UserManagementDAO{
                 $status = "hinzugefügt";
             }
 
-            $db->commit();
+            $db->exec('COMMIT');
             error_log("Favorit $status: Review $reviewID für User $userID");
-
         } catch (PDOException $e) {
-            $db->rollBack();
-            error_log("Fehler bei toggleFavouriteState: " . $e->getMessage());
-            throw new InternalErrorException();
+        if (isset($db)) {
+            try {
+                $db->exec('ROLLBACK');
+            } catch (PDOException $rbEx) {
+                error_log("Rollback fehlgeschlagen: " . $rbEx->getMessage());
+            }
         }
+        error_log("Fehler bei toggleFavouriteState: " . $e->getMessage());
+        throw new InternalErrorException();
+    }
 
     }
 

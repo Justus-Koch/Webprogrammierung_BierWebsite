@@ -2,7 +2,10 @@
 function getConnection()
 {
   global $abs_path;
-  createDB();
+  $db_file = $abs_path . '/db/prostProtokoll.db';
+  if (!file_exists($db_file)) {
+      createDB();
+  }
 
   try {
     $user = 'root';
@@ -11,6 +14,7 @@ function getConnection()
     $db = new PDO($dsn, $user, $pw);
     $db->exec("PRAGMA foreign_keys = ON;");
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $db->exec("PRAGMA busy_timeout = 3000;"); 
     return $db;
   } catch (PDOException $e) {
     throw new InternalErrorException();
@@ -106,7 +110,6 @@ function createDB()
         'bier.jpg', $user1Id
       ]);
     }
-
     unset($db);
   } catch (PDOException $e) {
     error_log('createDB fehlgeschlagen: ' . $e->getMessage());

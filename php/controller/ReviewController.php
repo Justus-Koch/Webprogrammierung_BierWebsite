@@ -22,8 +22,7 @@ class ReviewController
 
   public function loadFavourites(){
     if (!isset($_SESSION["userID"])) {
-      header("Location: ". ROOT . "php/view/login.php");
-      exit;
+      $this->redirect("login.php");
     }
     try {
       $instance = ReviewManagement::getInstance();
@@ -68,8 +67,7 @@ class ReviewController
 
   public function createReview() {
     if (!isset($_SESSION["userID"])) {
-      header("Location: ". ROOT . "php/view/login.php");
-      exit;
+      $this->redirect("login.php");
     }
     $_SESSION['form_data'] = $_POST;
     $this->checkReviewParam();
@@ -80,8 +78,7 @@ class ReviewController
         $new_name = checkAndUploadImage($picture_key);
         error_log("Neuer Name null?: ". $new_name ?? "null");
         if($new_name == null){
-          header('Location: ' . ROOT . 'php/view/create-review.php');
-          exit;
+           $this->redirect("create-review.php");
         }
       }
       $this->checkInputLengths();
@@ -98,8 +95,7 @@ class ReviewController
 
 
       $_SESSION['message'] = 'create_review_success';
-      header('Location: ' . ROOT . 'php/view/profile.php');
-      exit;
+      $this->redirect("profile.php");
     } catch (InternalErrorException $e) {
       $this->handleInternalErrorException();
     }
@@ -107,8 +103,7 @@ class ReviewController
 
   public function updateReview() {
     if (!isset($_SESSION["userID"])) {
-      header("Location: ". ROOT . "php/view/login.php");
-      exit;
+      $this->redirect("login.php");
     }
     $_SESSION['form_data'] = $_POST;
     $this->checkReviewParam();
@@ -122,8 +117,7 @@ class ReviewController
       $existing = $instance->findById($id);
       if ($existing === null || $existing->getAuthorId() !== $_SESSION['userID']) {
         $_SESSION['message'] = 'review_not_found';
-        header('Location: ' . ROOT . 'php/view/profile.php');
-        exit;
+        $this->redirect("profile.php");
       }
 
       $picture_key = "picture";
@@ -131,8 +125,7 @@ class ReviewController
       if(isImageSet($picture_key)){
         $new_name = checkAndUploadImage($picture_key);
         if($new_name == null){
-          header('Location: '. ROOT . 'php/view/edit-review.php?id=' . intval($_POST['review_id']));
-          exit;
+          $this->redirect("edit-review.php?id=" . intval($_POST['review_id']));
         }
       }
       $this->checkInputLengths();
@@ -153,8 +146,7 @@ class ReviewController
       $instance->update($review, $_SESSION["userID"]);
 
       $_SESSION['message'] = 'update_review_success';
-      header('Location: ' . ROOT . 'php/view/profile.php');
-      exit;
+      $this->redirect("profile.php");
     } catch (ReviewNotFoundException $e) {
       $this->handleReviewNotFoundException();
     } catch (InternalErrorException $e) {
@@ -164,13 +156,11 @@ class ReviewController
 
   public function deleteReview() {
     if (!isset($_SESSION["userID"])) {
-      header("Location: ". ROOT . "php/view/login.php");
-      exit;
+      $this->redirect("login.php");
     }
     if (!isset($_POST['review_id'])) {
       $_SESSION['message'] = 'missing_parameters';
-      header('Location: ' . ROOT . 'php/view/profile.php');
-      exit;
+      $this->redirect("profile.php");
     }
     try {
       $instance = ReviewManagement::getInstance();
@@ -180,15 +170,13 @@ class ReviewController
       $existing = $instance->findById($id);
       if ($existing === null || $existing->getAuthorId() !== $_SESSION['userID']) {
         $_SESSION['message'] = 'review_not_found';
-        header('Location: ' . ROOT . 'php/view/profile.php');
-        exit;
+        $this->redirect("profile.php");
       }
 
       $instance->delete($id, $_SESSION["userID"]);
 
       $_SESSION['message'] = 'delete_review_success';
-      header('Location: ' . ROOT . 'php/view/profile.php');
-      exit;
+      $this->redirect("profile.php");
     } catch (ReviewNotFoundException $e) {
       $this->handleReviewNotFoundException();
     }catch (InternalErrorException $e) {
@@ -200,35 +188,30 @@ class ReviewController
     if (!isset($_POST['beer_name']) || !isset($_POST['beer_type']) ||
       !isset($_POST['alcohol_content'])) {
       $_SESSION['message'] = 'missing_parameters';
-      header('Location: ' . ROOT . 'php/view/create-review.php');
-      exit;
+      $this->redirect("create-review.php");
     }
     if (empty(trim($_POST['beer_name'])) || !isset($_POST['rating']) || empty($_POST['rating'])) {
       $_SESSION['message'] = 'missing_required_parameters';
-      header('Location: ' . ROOT . 'php/view/create-review.php');
-      exit;
+      $this->redirect("create-review.php");
     }
   }
 
   private function checkReviewId() {
     if (!isset($_POST['review_id'])) {
       $_SESSION['message'] = 'missing_parameters';
-      header('Location: ' . ROOT . 'php/view/profile.php');
-      exit;
+      $this->redirect("profile.php");
     }
   }
 
   private function handleInternalErrorException() {
     $_SESSION['message'] = 'internal_error';
-    header('Location: ' . ROOT . 'php/view/index.php');
-    exit;
+    $this->redirect("index.php");
   }
 
   private function handleReviewNotFoundException()
     {
         $_SESSION["message"] = "review_not_found";
-        header('Location: '. ROOT . 'php/view/index.php');
-        exit;
+        $this->redirect("index.php");
     }
 
   private function checkInputLengths(){
@@ -236,8 +219,15 @@ class ReviewController
           strlen($_POST['beer_type']) > 50 || 
           strlen($_POST['content']) > 500) {
           $_SESSION["message"] = "input_too_long";
-          header("Location: ". ROOT . "php/view/edit-review.php");
-          exit;
+          $this->redirect("edit-review.php");
       }
+  }
+
+  private function redirect($newPage){
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");  
+    header("Pragma: no-cache"); // Kompatibilität HTTP/1.0  
+    header("Expires: 0"); // Kompatibilität für alte Proxies 
+    header("Location: ". ROOT . "php/view/" . $newPage);
+    exit;
   }
 }
