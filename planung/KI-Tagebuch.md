@@ -98,3 +98,7 @@ Antwort: $previousPage = $_SERVER['HTTP_REFERER'] ?? '/';
 22. Prompt (ChatGPT, 10.06.2026)
 Wie kann ich abfragen, ob der UNIQUE-Constraint verletzt wurde?
 Antwort: Abfrage des Exception-Codes auf 23000.
+
+23. Prompt (Gemini, 16.06.2026)
+Implementiere die Echtzeit-Validierung der Nutzereingaben bei Registrierung und Anmeldung (bestehender Code gegeben) mit JavaScript. Vermeide doppelten Code. 
+Antwort: notwendiges JavaScript und Anpassungen an PHP in login/registration
