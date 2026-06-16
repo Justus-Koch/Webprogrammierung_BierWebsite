@@ -66,6 +66,11 @@ include_once $abs_path . '/php/include/header.php';
                 <option value="Weizen" <?= ($form_data['beer_type'] ?? '') == 'Weizen' ? 'selected' : '' ?>>Weizen</option>
                 <option value="Helles" <?= ($form_data['beer_type'] ?? '') == 'Helles' ? 'selected' : '' ?>>Helles</option>
                 <option value="Dunkles" <?= ($form_data['beer_type'] ?? '') == 'Dunkles' ? 'selected' : '' ?>>Dunkles</option>
+                <option value="India Pale Ale" <?= ($form_data['beer_type'] ?? '') == 'India Pale Ale' ? 'selected' : '' ?>>India Pale Ale</option>
+                <option value="Bock" <?= ($form_data['beer_type'] ?? '') == 'Bock' ? 'selected' : '' ?>>Bock</option>
+                <option value="Kellerbier" <?= ($form_data['beer_type'] ?? '') == 'Kellerbier' ? 'selected' : '' ?>>Kellerbier</option>
+                <option value="Rotbier" <?= ($form_data['beer_type'] ?? '') == 'Rotbier' ? 'selected' : '' ?>>Rotbier</option>
+                <option value="Export" <?= ($form_data['beer_type'] ?? '') == 'Export' ? 'selected' : '' ?>>Export</option>
             </select>
           </div>
 
