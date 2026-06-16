@@ -86,10 +86,10 @@ class DummyReviewManagementDAO implements ReviewManagementDAO
     $this->reviews[] = $newReview;
   }
 
-  public function update($review)
+  public function update($review, $user_id)
   {
     foreach($this->reviews as $key => $value){
-      if ($value->getId() === $review->getId()){
+      if ($value->getId() === $review->getId() && $value->getAuthorId === $user_id){
         $this->reviews[$key] = $review;
         return true;
       }
@@ -97,10 +97,10 @@ class DummyReviewManagementDAO implements ReviewManagementDAO
     return false;
   }
 
-  public function delete($review)
+  public function delete($review, $user_id)
   {
     foreach($this->reviews as $key => $value){
-      if ($value->getId() === $review->getId()){
+      if ($value->getId() === $review->getId() && $value->getAuthorId === $user_id){
         array_splice($this->reviews, $key, 1);
         return true;
       }

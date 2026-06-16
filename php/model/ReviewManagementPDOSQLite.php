@@ -187,16 +187,16 @@ class ReviewManagementPDOSQLite implements ReviewManagementDAO
         }
     }
     
-    public function delete($id)
+    public function delete($id, $user_id)
     {
         try {
             $db = getConnection();
-            $sql = "DELETE FROM review WHERE review_id = ?";
+            $sql = "DELETE FROM review WHERE review_id = ? and user_id = ?";
             $command = $db->prepare($sql);
             if (!$command) {
                 throw new InternalErrorException();
             }
-            if (!$command->execute([$id])) {
+            if (!$command->execute([$id, $user_id])) {
                 throw new InternalErrorException();
             }
             if($command->rowCount() == 0){
