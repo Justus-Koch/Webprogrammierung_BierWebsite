@@ -1,4 +1,4 @@
-<?php 
+<?php
 if (!isset($abs_path)) {
   require_once "../path.php";
 }
@@ -54,3 +54,4 @@ foreach ($reviews as $review):
         <time><?php echo htmlspecialchars($review->getCreatedAt()); ?></time>
       </article>
     <?php endforeach; ?>
+

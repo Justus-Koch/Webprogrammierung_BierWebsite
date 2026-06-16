@@ -57,14 +57,19 @@ include_once $abs_path . '/php/include/header.php';
         <?php endif; ?>
       </div>
 
-      <?php if (empty($reviews)): ?>
-        <p style="text-align:center;">Keine Reviews gefunden.</p>
-      <?php else: ?>
-        <?php include_once $abs_path.'/php/view/show-review.php'; ?>
-      <?php endif; ?>
+      <div id="ajax-results">
+        <?php if (!empty($reviews)): ?>
+          <?php include_once $abs_path.'/php/view/show-review.php'; ?>
+        <?php elseif (!empty($query)): ?>
+          <p>Keine Ergebnisse gefunden.</p>
+        <?php endif; ?>
+      </div>
 
     </main>
   </div>
 
 <?php include_once $abs_path . '/php/include/footer.php'; ?>
-
+<script>
+  const ROOT = "<?php echo ROOT; ?>";
+</script>
+<script src="<?php echo ROOT; ?>js/ajax-search-helper.js"></script>

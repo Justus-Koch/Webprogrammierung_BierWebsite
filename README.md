@@ -8,3 +8,4 @@ JavaScript/AJAX:
 - Validierung von Email, Passwort (und Spitzname) bei Anmeldung/Registrierung
 - Vorschau der hochgeladenen Bilder
 - kein Reload der ganzen Seite beim Hinzufügen von Favoriten
+- dynamisches suchen während dem eingeben von queries
