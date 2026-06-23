@@ -38,8 +38,10 @@ unset($_SESSION["email"]);
       <p>Die eingegebene EMail ist nicht gültig.</p>
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "input_too_long"): ?>
       <p>Eingegebene Werte sind zu lang.</p>
-    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "email_already_in_use"): ?>
-      <p>Ein Benutzer mit dieser Email existiert schon.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "user_already_exists"): ?>
+      <p>Der Benutzer existiert bereits.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "checkbox_privacy_not_accepted"): ?>
+      <p>Die Datenschutzerklärung und die Nutzungsbedingungen müssen akzeptiert werden.</p>
     <?php endif; ?>
     <?php
         unset($_SESSION["message"]);
@@ -77,6 +79,15 @@ unset($_SESSION["email"]);
         <input type="password" id="password_confirm" name="password_confirm"
                required aria-required="true"
                autocomplete="new-password">
+      </div>
+
+      <div class="form-group checkbox-group">
+        <input type="checkbox" id="checkbox_privacy" name="checkbox_privacy" value="1" required aria-required="true">
+        <label for="checkbox_privacy">
+          Ich akzeptiere die <a href="<?php echo ROOT; ?>php/view/datenschutz.php" target="_blank">Datenschutzerklärung</a> 
+          und die <a href="<?php echo ROOT; ?>php/view/nutzungsbedingungen.php" target="_blank">Nutzungsbedingungen</a> 
+          (inkl. der Regelungen zu Rechten an Texten und Fotos). <span aria-hidden="true">*</span>
+        </label>
       </div>
 
       <div class="form-footer-actions">

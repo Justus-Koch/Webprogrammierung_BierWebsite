@@ -33,7 +33,7 @@ function createDB()
     $db->exec("
             CREATE TABLE IF NOT EXISTS user (
                 user_id         INTEGER PRIMARY KEY AUTOINCREMENT,
-                nickname        VARCHAR(50),
+                nickname        VARCHAR(50) NOT NULL UNIQUE,
                 profile_picture VARCHAR(255),
                 password        VARCHAR(255) NOT NULL,
                 email           VARCHAR(100) NOT NULL UNIQUE

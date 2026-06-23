@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = document.getElementById("email");
     const password = document.getElementById("password");
     const passwordConfirm = document.getElementById("password_confirm");
+    const checkbox_privacy = document.getElementById("checkbox_privacy");
 
     const validateNickname = () => {
         const isValid = nickname.value.trim() !== "";
@@ -22,14 +23,26 @@ document.addEventListener("DOMContentLoaded", () => {
         return isMatchValid;
     };
 
+    const validateCheckbox = () => {
+        const isValid = checkbox_privacy.checked; 
+        toggleError(checkbox_privacy, isValid, "Die Datenschutzerklärung und die Nutzungsbedingungen müssen akzeptiert werden.");
+        return isValid
+    }
+
     // Live-Validierung
     nickname.addEventListener("input", validateNickname);
     email.addEventListener("input", () => validateEmailField(email));
     password.addEventListener("input", validatePasswords);
     passwordConfirm.addEventListener("input", validatePasswords);
+    checkbox_privacy.addEventListener("change", validateCheckbox);
 
     form.addEventListener("submit", (event) => {
-        if (!validateNickname() || !validateEmailField(email) || !validatePasswords()) {
+        const isNicknameValid = validateNickname();
+        const isEmailValid = validateEmailField(email);
+        const isPasswordsValid = validatePasswords();
+        const isCheckboxValid = validateCheckbox();
+
+        if (!isNicknameValid || !isEmailValid || !isPasswordsValid || !isCheckboxValid) {
             event.preventDefault();
         }
     });

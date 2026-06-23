@@ -46,7 +46,7 @@
                 $_SESSION["message"] = "registration_success";
                 $this->redirect("login.php");
             }else{
-                $_SESSION["message"] = "email_already_in_use";
+                $_SESSION["message"] = "user_already_exists";
                 $this->redirect("registration.php");
             }
         }catch(InternalErrorException $e){
@@ -201,6 +201,9 @@
             $this->redirect("registration.php");
         }else if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
             $_SESSION["message"] = "invalid_email";
+            $this->redirect("registration.php");
+        }else if (!isset($_POST["checkbox_privacy"]) || $_POST["checkbox_privacy"] !== "1") {
+            $_SESSION["message"] = "checkbox_privacy_not_accepted";
             $this->redirect("registration.php");
         }
         if (mb_strlen($_POST["nickname"], 'UTF-8') > 50 || mb_strlen($_POST["email"], 'UTF-8') > 50 || mb_strlen($_POST["password"], 'UTF-8') > 50) {

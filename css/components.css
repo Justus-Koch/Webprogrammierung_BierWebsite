@@ -374,7 +374,7 @@ main h2 {
   border: 1px solid #111;
   border-radius: 12px;
   width: 95%;
-  max-width: 600px;
+  max-width: 800px;
   margin: 20px auto;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -493,6 +493,50 @@ fieldset legend {
   border: 1px solid #333;
   object-fit: cover;
   flex-shrink: 0;
+}
+
+/* ============================================================
+   CHECKBOX (AGB & DATENSCHUTZ OPT-IN)
+   ============================================================ */
+
+.checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 18px;          
+  height: 18px;
+  margin-top: 2px;
+  cursor: pointer;
+  flex-shrink: 0;
+  accent-color: #004a99;
+}
+
+.checkbox-group input[type="checkbox"]:focus {
+  outline: 3px solid #004a99;
+  outline-offset: 2px;
+}
+
+.checkbox-group label {
+  font-weight: normal; 
+  color: #333;          
+  font-size: 0.95rem;  
+  line-height: 1.4;    
+  cursor: pointer;      
+  margin: 0;             
+}
+
+.checkbox-group label a {
+  color: #004a99;    
+  text-decoration: underline;
+}
+
+.checkbox-group label a:hover {
+  text-decoration: none; 
 }
 
 /* ============================================================
@@ -698,16 +742,22 @@ fieldset legend {
   border-bottom: none;
 }
 
-.accessibility-content h1,
-.accessibility-content h2 {
+.accessibility-content h1 {
   color: #2c3e50;
   border-bottom: 1px solid #333;
   padding-bottom: 10px;
-  margin-top: 25px;
 }
 
+.accessibility-content h1,
 .accessibility-content h2 {
-  margin-top: 0;
+  color: #2c3e50;
+  padding-bottom: 5px;
+}
+
+.accessibility-content h1,
+.accessibility-content h2,
+.accessibility-content h3,
+.accessibility-content h4 {
   text-align: left;
 }
 
