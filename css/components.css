@@ -502,9 +502,10 @@ fieldset legend {
 .checkbox-group {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  gap: 10px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  flex-direction: row;
 }
 
 .checkbox-group input[type="checkbox"] {

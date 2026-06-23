@@ -81,12 +81,11 @@ unset($_SESSION["email"]);
                autocomplete="new-password">
       </div>
 
-      <div class="form-group checkbox-group">
+      <div class="checkbox-group">
         <input type="checkbox" id="checkbox_privacy" name="checkbox_privacy" value="1" required aria-required="true">
         <label for="checkbox_privacy">
           Ich akzeptiere die <a href="<?php echo ROOT; ?>php/view/datenschutz.php" target="_blank">Datenschutzerklärung</a> 
-          und die <a href="<?php echo ROOT; ?>php/view/nutzungsbedingungen.php" target="_blank">Nutzungsbedingungen</a> 
-          (inkl. der Regelungen zu Rechten an Texten und Fotos). <span aria-hidden="true">*</span>
+          und die <a href="<?php echo ROOT; ?>php/view/nutzungsbedingungen.php" target="_blank">Nutzungsbedingungen</a>.<span aria-hidden="true">*</span>
         </label>
       </div>
 
