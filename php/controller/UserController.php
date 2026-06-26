@@ -36,25 +36,61 @@
     }
 
     public function registrate(){
+        global $abs_path;
         $_SESSION["nickname"] = $_POST["nickname"];
         $_SESSION["email"] = $_POST["email"];
         $this->checkRegistrationParam();
         try{
             $userManagement = UserManagement::getInstance();
-
-            if($userManagement->saveUser($_POST["email"], password_hash($_POST["password"], PASSWORD_DEFAULT), $_POST["nickname"])){
-                $_SESSION["message"] = "registration_success";
-                $this->redirect("login.php");
+            $content = "<!DOCTYPE html>\n<html lang='de'>\n<head>\n<meta charset='UTF-8'>\n<title>Simulierte E-Mail</title>\n</head>\n<body>\n";
+            $content .= "<p>Email an: " . $_POST["email"] . "</p>\n";
+            $content .= "<p>Bitte ignoriere die E-Mail, wenn du es nicht warst, der sich versucht hat zu registrieren.</p>\n";
+            $token = bin2hex(random_bytes(16));
+            
+            if($userManagement->saveUser($_POST["email"], password_hash($_POST["password"], PASSWORD_DEFAULT), $token, $_POST["nickname"])){
+                $confirmationLink = ROOT . "php/registration-confirm.php?token=" . $token;
+                $content .= "<p>Ansonsten klicke auf folgenden Link, um die Registrierung abzuschließen:</p>\n";
+                $content .= "<p><a href=" . $confirmationLink . ">Registrierung abschließen</a></p>";
             }else{
-                $_SESSION["message"] = "user_already_exists";
-                $this->redirect("registration.php");
+                $resetLink = ROOT . "php/view/registration.php"; 
+                $content .= "<p>Du bist bereits registriert. Solltest du dein Passwort vergessen haben, klicke bitte hier: ";
+                $content .= "<a href='" . $resetLink . "'>Passwort ändern</a></p>";
             }
+            
+            $dir_name = "confirmation/";
+            $dir = $abs_path . "/" . $dir_name;
+            if(!is_dir($dir)){
+                mkdir($dir);
+            }
+            $filename = "confirmation_". uniqid() . ".html"; 
+            file_put_contents($dir . $filename, $content);
+            
+            $_SESSION["message"] = "email_sent";
+            $_SESSION["mail_file"] = ROOT . $dir_name . $filename;
+            $this->redirect("registration.php");
+        }catch(InternalErrorException $e){
+            error_log("Registrierungsfehler: " . $e);
+            $this->handleInternalErrorException();
+        }
+    }
+
+    public function confirmRegistration(){
+        if(!isset($_GET["token"]) || empty($_GET["token"])){
+            $_SESSION["message"] = "registration_confirmation_failed";
+            redirect("registration.php");
+        }
+        $token = $_GET["token"];
+        try{
+            $userManagement = UserManagement::getInstance();
+            $userManagement->confirmUser($token);
+            $_SESSION["message"] = "registration_success";
+            $this->redirect("login.php");
+        }catch(UserNotFoundException $e){
+            $this->handleUserNotFoundException();
         }catch(InternalErrorException $e){
             $this->handleInternalErrorException();
         }
-
     }
-
     public function updateUser(){
         if (!isset($_SESSION["userID"])) {
             $this->redirect("login.php");
@@ -240,6 +276,24 @@
         header("Expires: 0"); // Kompatibilität für alte Proxies 
         header("Location: ". ROOT . "php/view/" . $newPage);
         exit;
+    }
+
+    private function sendConfirmationMail($success){
+        $_SESSION["message"] = "mail_sent";
+        
+        if($success){
+            $link = "";
+            $mailContent .= "Ansonsten klicke auf folgenden Link, um die Registrierung abzuschließen: ${link}";
+        }else{
+            $mailContent .= "Du bist aber bereits registriert.";
+        }
+
+        $dir = $abs_path . "/confirmation";
+        if(!is_dir($dir)){
+            mkdir($dir);
+        }
+        $filename = "confirmation_". uniqid() . "txt";
+        file_put_contents($filename, $mailContent);
     }
 }
 ?>

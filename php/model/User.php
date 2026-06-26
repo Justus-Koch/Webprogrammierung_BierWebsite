@@ -6,13 +6,17 @@
         private ?string $nickname;
         private ?string $profile_picture;
         public $favorites;
+        private string $token;
+        private bool $is_active;
         
-        public function __construct(int $id, string $email, string $password, string $nickname=null, string $profile_picture=null){
+        public function __construct(int $id, string $email, string $password, string $token, string $nickname=null, string $profile_picture=null){
             $this->id = $id;
             $this->email = $email;
             $this->password = $password;
             $this->nickname = $nickname;
             $this->profile_picture = $profile_picture;
+            $this->token = $token;
+            $this->is_active = FALSE;
             $this->favorites = [];
         }
 
@@ -28,12 +32,16 @@
             return $this->password;
         }
 
-        public function getNickname(): string{
+        public function getNickname(): ?string{
             return $this->nickname;
         }
 
-        public function getProfilePicture(): string{
+        public function getProfilePicture(): ?string{
             return $this->profile_picture;
+        }
+
+        public function activate(){
+            $this->is_active = TRUE;
         }
 
         public function update($nickname, $profile_picture){

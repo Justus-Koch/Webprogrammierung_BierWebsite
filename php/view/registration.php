@@ -38,10 +38,15 @@ unset($_SESSION["email"]);
       <p>Die eingegebene EMail ist nicht gültig.</p>
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "input_too_long"): ?>
       <p>Eingegebene Werte sind zu lang.</p>
-    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "user_already_exists"): ?>
-      <p>Der Benutzer existiert bereits.</p>
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "checkbox_privacy_not_accepted"): ?>
       <p>Die Datenschutzerklärung und die Nutzungsbedingungen müssen akzeptiert werden.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "registration_confirmation_failed"): ?>
+      <p>Es gab einen Fehler bei der Registrierung.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "email_sent"): ?>
+      <p class="success">
+        Weitere Infos finden Sie in der hier:  
+        <a href="<?php echo $_SESSION["mail_file"]; ?>" target="_blank">Registrierung abschließen</a>.
+    </p>
     <?php endif; ?>
     <?php
         unset($_SESSION["message"]);

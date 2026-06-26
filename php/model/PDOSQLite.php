@@ -33,10 +33,12 @@ function createDB()
     $db->exec("
             CREATE TABLE IF NOT EXISTS user (
                 user_id         INTEGER PRIMARY KEY AUTOINCREMENT,
-                nickname        VARCHAR(50) NOT NULL UNIQUE,
+                nickname        VARCHAR(50),
                 profile_picture VARCHAR(255),
                 password        VARCHAR(255) NOT NULL,
-                email           VARCHAR(100) NOT NULL UNIQUE
+                email           VARCHAR(100) NOT NULL UNIQUE,
+                token           TEXT,
+                is_active       INTEGER DEFAULT 0
             );
 
             CREATE TABLE IF NOT EXISTS review (
@@ -68,14 +70,15 @@ function createDB()
     $userCount = $db->query('SELECT COUNT(*) FROM user')->fetchColumn();
     if ($userCount == 0) {
       $stmt = $db->prepare(
-        "INSERT INTO user (email, password, nickname, profile_picture)
-                 VALUES (?, ?, ?, ?)"
+        "INSERT INTO user (email, password, nickname, profile_picture, token, is_active)
+                 VALUES (?, ?, ?, ?, ?, ?)"
       );
       $stmt->execute([
         'schluckspecht@prost.de',
-        password_hash('bier123', PASSWORD_DEFAULT),
+        password_hash('bier123', PASSWORD_DEFAULT), 
         'Schluckspecht',
-        'profile_picture.jpg'
+        'profile_picture.jpg',
+        'abc', 1
       ]);
       $user1Id = $db->lastInsertId();
 
@@ -83,7 +86,8 @@ function createDB()
         'bierabetiker@prost.de',
         password_hash('bier456', PASSWORD_DEFAULT),
         'Bierabetiker',
-        'profile_picture.jpg'
+        'profile_picture.jpg',
+        'abc', 1
       ]);
       $user2Id = $db->lastInsertId();
 

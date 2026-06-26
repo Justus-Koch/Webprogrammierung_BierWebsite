@@ -17,7 +17,7 @@ class UserManagementPDOSQLite implements UserManagementDAO{
         return self::$instance;
     }
 
-    public function saveUser($email, $password, $nickname=null){
+    public function saveUser($email, $password, $token, $nickname=null){
         try{
             if(empty($nickname)){
                 $nickname="Bierliebhaber";
@@ -25,12 +25,12 @@ class UserManagementPDOSQLite implements UserManagementDAO{
             $profile_picture="profile_picture.jpg";
             $db = getConnection();
 
-            $sql = "INSERT INTO user (email, password, nickname, profile_picture) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO user (email, password, nickname, profile_picture, token) VALUES (?, ?, ?, ?, ?)";
             $command = $db->prepare($sql);
             if (!$command) {
                 throw new InternalErrorException();
             }
-            if (!$command->execute(array($email, $password, $nickname, $profile_picture))){
+            if (!$command->execute(array($email, $password, $nickname, $profile_picture, $token))){
                 throw new InternalErrorException();
             }
             $lastId = $db->lastInsertId();
@@ -40,6 +40,25 @@ class UserManagementPDOSQLite implements UserManagementDAO{
             if ($exc->getCode() == 23000) {
                 return false;
             }
+            throw new InternalErrorException();
+        }
+    }
+
+    public function confirmUser($token){
+        try{
+            $db = getConnection();
+            $sql = "UPDATE user SET is_active = 1 WHERE token = ?";
+            $command = $db->prepare($sql);
+            if (!$command) {
+                throw new InternalErrorException();
+            }
+            if (!$command->execute(array($token))){
+                throw new InternalErrorException();
+            }
+            if($command->rowCount() == 0){
+                throw new UserNotFoundException();
+            }
+        }catch(PDOException $exc){
             throw new InternalErrorException();
         }
     }
@@ -115,7 +134,7 @@ class UserManagementPDOSQLite implements UserManagementDAO{
     public function login($email, $password){
         try{
             $db = getConnection();
-            $sql = "SELECT user_id, password FROM user WHERE email = ?";
+            $sql = "SELECT user_id, password FROM user WHERE email = ? AND is_active = 1";
             $command = $db->prepare($sql);
             $command->execute([$email]);
             $user = $command->fetchObject();

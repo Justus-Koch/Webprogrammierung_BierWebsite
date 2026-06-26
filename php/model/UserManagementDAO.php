@@ -12,6 +12,13 @@
          * Throws an InternalErrorException if there is an internal error.
          */
         function saveUser($email, $password, $nickname);
+
+        /**
+         * Confirms the registration of the user with the given token.
+         * Throws an UserNotFoundException if an user with this token does not exist.
+         * Throws an InternalErrorException if there is an internal error.
+         */
+        function confirmUser($token);
         /**
          * Return the user with the given id.
          * Throws an UserNotFoundException if an user with this id does not exist.

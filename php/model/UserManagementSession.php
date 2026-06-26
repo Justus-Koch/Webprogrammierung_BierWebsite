@@ -49,6 +49,10 @@
             return true;
         }
 
+        public function confirmUser($token){
+            // TODO implement
+        }
+
         public function findUser($id){
             if (isset($this->users[$id])){
                 return $this->users[$id];
