@@ -40,6 +40,8 @@ unset($_SESSION["email"]);
       <p>Eingegebene Werte sind zu lang.</p>
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "checkbox_privacy_not_accepted"): ?>
       <p>Die Datenschutzerklärung und die Nutzungsbedingungen müssen akzeptiert werden.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "password_unsafe"): ?>
+      <p>Das Passwort muss mindestens 8 Zeichen lang sein und einen Großbuchstaben und ein Sonderzeichen enthalten.</p>
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "registration_confirmation_failed"): ?>
       <p>Es gab einen Fehler bei der Registrierung.</p>
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "user_already_registrated"): ?>
@@ -75,7 +77,7 @@ unset($_SESSION["email"]);
       </div>
 
       <div class="form-group">
-        <label for="password">Passwort <span aria-hidden="true">*</span></label>
+        <label for="password">Passwort (muss mind. 8 Zeichen lang und einen Großbuchstaben und ein Sonderzeichen enthalten)<span aria-hidden="true">*</span></label>
         <input type="password" id="password" name="password"
                required aria-required="true"
                autocomplete="new-password">
@@ -91,8 +93,8 @@ unset($_SESSION["email"]);
       <div class="checkbox-group">
         <input type="checkbox" id="checkbox_privacy" name="checkbox_privacy" value="1" required aria-required="true">
         <label for="checkbox_privacy">
-          Ich akzeptiere die <a href="<?php echo ROOT; ?>php/view/datenschutz.php" target="_blank">Datenschutzerklärung</a> 
-          und die <a href="<?php echo ROOT; ?>php/view/nutzungsbedingungen.php" target="_blank">Nutzungsbedingungen</a>.<span aria-hidden="true">*</span>
+          Ich akzeptiere die <a href="<?php echo ROOT; ?>php/view/datenschutz.php">Datenschutzerklärung</a> 
+          und die <a href="<?php echo ROOT; ?>php/view/nutzungsbedingungen.php">Nutzungsbedingungen</a>.<span aria-hidden="true">*</span>
         </label>
       </div>
 
