@@ -1,4 +1,4 @@
-<?php $title = 'Impressum'; 
+<?php $title = 'Impressum';
 if (!isset($abs_path)) {
   require_once "../../path.php";
 }
