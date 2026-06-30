@@ -7,6 +7,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 if (!isset($abs_path)) {
   require_once "../../path.php";
 }
+require_once $abs_path . '/php/csrf.php';
 
 require_once $abs_path. '/php/load-edit-review.php';
 
@@ -39,9 +40,10 @@ include_once $abs_path . '/php/include/header.php';
 
         <?php if ($reviewToEdit == null): ?>
             <p>Review nicht gefunden</p>
-        <?php else: ?>    
-        <form method="POST" action="<?php echo ROOT; ?>php/edit-review-execute.php" class="review-form" enctype="multipart/form-data" novalidate>
-
+        <?php else: ?>
+        <form method="POST" action="<?php echo ROOT; ?>php/edit-review-execute.php" class="review-form" enctype="multipart/form-data">
+          <input type="hidden" name="csrf_token"
+                 value="<?php echo htmlspecialchars(generateCsrfToken()); ?>">
           <!-- Review-ID as Hidden Field -->
           <input type="hidden" name="review_id" value="<?php echo $reviewToEdit->getId(); ?>">
 
@@ -122,13 +124,15 @@ include_once $abs_path . '/php/include/header.php';
               <button type="submit" class="btn-submit" name="submit">Änderungen speichern</button>
               <a href="<?php echo ROOT; ?>php/view/profile.php" class="button-secondary">Abbrechen</a>
             </div>
-          
+
 
         </form>
 
         <!-- Löschen als eigenes Formular, damit es einen separaten execute hat -->
         <form method="POST" action="<?php echo ROOT; ?>php/delete-review-execute.php"
               onsubmit="return confirm('Möchtest du dieses Review wirklich löschen?')">
+          <input type="hidden" name="csrf_token"
+                 value="<?php echo htmlspecialchars(generateCsrfToken()); ?>">
           <input type="hidden" name="review_id" value="<?php echo $reviewToEdit->getId(); ?>">
           <button type="submit" class="btn-delete" aria-label="Dieses Review unwiderruflich löschen">
             Löschen

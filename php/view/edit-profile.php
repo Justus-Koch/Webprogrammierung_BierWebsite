@@ -7,6 +7,7 @@
   if (!isset($abs_path)) {
       require_once "../../path.php";
   }
+require_once $abs_path . '/php/csrf.php';
 
   require_once $abs_path.'/php/profile-load.php';
 
@@ -40,7 +41,8 @@
     </div>
 
       <form method="post" class="review-form"  enctype="multipart/form-data" action="<?php echo ROOT; ?>php/profile-edit.php" novalidate>
-
+        <input type="hidden" name="csrf_token"
+               value="<?php echo htmlspecialchars(generateCsrfToken()); ?>">
         <div class="form-group">
           <label for="nickname">Spitzname <span aria-hidden="true">*</span></label>
           <input type="text" id="nickname" name="nickname"
@@ -63,6 +65,8 @@
           </div>
       </form>
       <form method="post" class="review-form" onsubmit="return confirm('Möchtest du dein Profil wirklich löschen?')" action="<?php echo ROOT; ?>php/profile-delete.php" novalidate>
+        <input type="hidden" name="csrf_token"
+               value="<?php echo htmlspecialchars(generateCsrfToken()); ?>">
         <button type="submit" name="submit" type="button" class="btn-delete" aria-label="Profil unwiderruflich löschen">Profil löschen</button>
       </form>
       </div>

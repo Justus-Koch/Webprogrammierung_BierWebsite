@@ -7,6 +7,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 if (!isset($abs_path)) {
   require_once "../../path.php";
 }
+require_once $abs_path . '/php/csrf.php';
 
 $form_data = $_SESSION['form_data'] ?? [];
 unset($_SESSION['form_data']);
@@ -43,7 +44,8 @@ include_once $abs_path . '/php/include/header.php';
         </div>
 
         <form method="POST" action="<?php echo ROOT; ?>php/create-review-execute.php" class="review-form" enctype="multipart/form-data" novalidate>
-
+          <input type="hidden" name="csrf_token"
+                 value="<?php echo htmlspecialchars(generateCsrfToken()); ?>">
           <div class="form-group">
             <label for="picture">Bier-Foto hochladen (optional)</label>
             <div class="file-input-wrapper">

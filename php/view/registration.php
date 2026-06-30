@@ -6,6 +6,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 if (!isset($abs_path)) {
   require_once "../../path.php";
 }
+require_once $abs_path . '/php/csrf.php';
 
 $nickname = isset($_SESSION["nickname"]) ? $_SESSION["nickname"] : "";
 $email = isset($_SESSION["email"]) ? $_SESSION["email"] : "";
@@ -46,7 +47,7 @@ unset($_SESSION["email"]);
       <p>Diese E-Mail ist bereits registriert.</p>
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "email_sent"): ?>
       <p class="success">
-        Weitere Infos finden Sie in der hier:  
+        Weitere Infos finden Sie in der hier:
         <a href="<?php echo $_SESSION["mail_file"]; ?>" target="_blank">Registrierung abschließen</a>.
     </p>
     <?php endif; ?>
@@ -55,7 +56,8 @@ unset($_SESSION["email"]);
     ?>
 
     <form method="post" action="<?php echo ROOT; ?>php/registration-execute.php" class="review-form" novalidate>
-
+      <input type="hidden" name="csrf_token"
+             value="<?php echo htmlspecialchars(generateCsrfToken()); ?>">
       <div class="form-group">
         <label for="nickname">Nickname <span aria-hidden="true">*</span></label>
         <input type="text" id="nickname" name="nickname"
@@ -91,7 +93,7 @@ unset($_SESSION["email"]);
       <div class="checkbox-group">
         <input type="checkbox" id="checkbox_privacy" name="checkbox_privacy" value="1" required aria-required="true">
         <label for="checkbox_privacy">
-          Ich akzeptiere die <a href="<?php echo ROOT; ?>php/view/datenschutz.php" target="_blank">Datenschutzerklärung</a> 
+          Ich akzeptiere die <a href="<?php echo ROOT; ?>php/view/datenschutz.php" target="_blank">Datenschutzerklärung</a>
           und die <a href="<?php echo ROOT; ?>php/view/nutzungsbedingungen.php" target="_blank">Nutzungsbedingungen</a>.<span aria-hidden="true">*</span>
         </label>
       </div>

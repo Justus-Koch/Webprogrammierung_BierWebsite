@@ -5,6 +5,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 if (!isset($abs_path)) {
   require_once "../../path.php";
 }
+require_once $abs_path . '/php/csrf.php';
 
 $email = isset($_SESSION["email"]) ? $_SESSION["email"] : "";
 unset($_SESSION["email"]);
@@ -39,7 +40,8 @@ unset($_SESSION["email"]);
     ?>
 
     <form method="POST" action="<?php echo ROOT; ?>php/login-execute.php" class="review-form" novalidate>
-
+      <input type="hidden" name="csrf_token"
+             value="<?php echo htmlspecialchars(generateCsrfToken()); ?>">
       <div class="form-group">
         <label for="username">E-Mail <span aria-hidden="true">*</span></label>
         <input type="email" id="username" name="email" value="<?= htmlspecialchars($email)?>"
