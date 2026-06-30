@@ -106,3 +106,19 @@ Antwort: notwendiges JavaScript und Anpassungen an PHP in login/registration
 24. Prompt (Claude, 16.06.2026)
 Meine Website hat eine Funktion zum Hinzufügen von Favoriten. Momentan wird die Seite beim Hinzufügen jedes Favoriten neu geladne. Ich möchte mit AJAX umsetzen, dass der reload nicht passiert. Es soll auch noch ohne Java-Script funktionieren (Code zum Hinzufügen von Favoriten gegeben).
 Antwort: Java-Script-Code und Anpassung an dem bestehenden php zum Hinzufügen von Favoriten.
+
+25. Prompt (ChatGPT, 30.06.2026)
+Das ist meine bislang bestehende Regisierung. Ich möchte nun folgende Aspekte umsetzen (Erklärungen von Aufgabenzettel gegeben).
+Antwort: Anpassung der Registrierung mit Token-Generierung, Erstellung eines eindeutigen Dateinamens und Dateiinhalts.
+
+26. Prompt (Claude, 30.06.2026)
+Wie definiere ich einen UNIQUE-Constraint in PDO SQLite der auf dem Attribut email greift, wenn is_active = 1 ist.
+Antwort: Erstellung des passendes UNIQUE-Constraints.
+
+27. Prompt (ChatGPT, 30.06.2026)
+Schreibe eine Methode isPasswordSafe($password), die prüft, ob das Passwort mind. 8 Zeichen lang ist, mind. einen Großbuchstaben enthält und mind. ein Sonderzeichen enthält.
+Antwort: Methode isPasswordSafe
+
+28. Prompt (ChatGPT, 30.06.2026)
+Ich möchte die Bedingungen eines sicheren Passwortes nun auch dynamisch mit JS prüfen wie die anderen Eingaben bei der Registrierung.
+Antwort: Ergänzung des JS zur Prüfung der Bedingungen

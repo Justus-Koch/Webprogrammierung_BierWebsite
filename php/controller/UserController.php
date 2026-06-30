@@ -246,11 +246,30 @@
         }else if (!isset($_POST["checkbox_privacy"]) || $_POST["checkbox_privacy"] !== "1") {
             $_SESSION["message"] = "checkbox_privacy_not_accepted";
             $this->redirect("registration.php");
+        }else if (!$this->isPasswordSafe($_POST["password"])) {
+            $_SESSION["message"] = "password_unsafe";
+            $this->redirect("registration.php");
         }
         if (mb_strlen($_POST["nickname"], 'UTF-8') > 50 || mb_strlen($_POST["email"], 'UTF-8') > 50 || mb_strlen($_POST["password"], 'UTF-8') > 50) {
             $_SESSION["message"] = "input_too_long";
             $this->redirect("registration.php");
         }
+    }
+
+    private function isPasswordSafe($password){
+        // Mindestens 8 Zeichen
+        if (strlen($password) < 8) {
+            return false;
+        }
+        // Mindestens ein Großbuchstabe
+        if (!preg_match('/[A-Z]/', $password)) {
+            return false;
+        }
+        // Mindestens ein Sonderzeichen
+        if (!preg_match('/[\W_]/', $password)) {
+            return false;
+        }
+        return true;
     }
 
     private function checkUpdateParam(){

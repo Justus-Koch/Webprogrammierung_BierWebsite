@@ -15,9 +15,41 @@ document.addEventListener("DOMContentLoaded", () => {
         return isValid;
     };
 
+    // Passwort-Sicherheitsprüfung
+    const validatePasswordSecurity = () => {
+        const value = password.value;
+
+        const hasMinLength = value.length >= 8;
+        const hasUppercase = /[A-Z]/.test(value);
+        const hasSpecialChar = /[\W_]/.test(value);
+
+        let errorMessage = "";
+
+        if (!hasMinLength) {
+            errorMessage = "Das Passwort muss mindestens 8 Zeichen lang sein.";
+        } else if (!hasUppercase) {
+            errorMessage = "Das Passwort muss mindestens einen Großbuchstaben enthalten.";
+        } else if (!hasSpecialChar) {
+            errorMessage = "Das Passwort muss mindestens ein Sonderzeichen enthalten.";
+        }
+
+        const isValid = hasMinLength && hasUppercase && hasSpecialChar;
+
+        toggleError(password, isValid, errorMessage);
+
+        return isValid;
+    };
+
     const validatePasswords = () => {
-        let isMatchValid = password.value === passwordConfirm.value && passwordConfirm.value !== "";
-        toggleError(passwordConfirm, isMatchValid, "Die Passwörter stimmen nicht überein.");
+        const isMatchValid =
+            password.value === passwordConfirm.value &&
+            passwordConfirm.value !== "";
+
+        toggleError(
+            passwordConfirm,
+            isMatchValid,
+            "Die Passwörter stimmen nicht überein."
+        );
 
         return isMatchValid;
     };
@@ -25,15 +57,26 @@ document.addEventListener("DOMContentLoaded", () => {
     // Live-Validierung
     nickname.addEventListener("input", validateNickname);
     email.addEventListener("input", () => validateEmailField(email));
-    password.addEventListener("input", validatePasswords);
+
+    password.addEventListener("input", () => {
+        validatePasswordSecurity();
+        validatePasswords();
+    });
+
     passwordConfirm.addEventListener("input", validatePasswords);
 
     form.addEventListener("submit", (event) => {
         const isNicknameValid = validateNickname();
         const isEmailValid = validateEmailField(email);
+        const isPasswordSecure = validatePasswordSecurity();
         const isPasswordsValid = validatePasswords();
 
-        if (!isNicknameValid || !isEmailValid || !isPasswordsValid) {
+        if (
+            !isNicknameValid ||
+            !isEmailValid ||
+            !isPasswordSecure ||
+            !isPasswordsValid
+        ) {
             event.preventDefault();
         }
     });
