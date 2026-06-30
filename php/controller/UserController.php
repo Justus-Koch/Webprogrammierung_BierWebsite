@@ -82,9 +82,14 @@
         $token = $_GET["token"];
         try{
             $userManagement = UserManagement::getInstance();
-            $userManagement->confirmUser($token);
-            $_SESSION["message"] = "registration_success";
-            $this->redirect("login.php");
+            $success = $userManagement->confirmUser($token);
+            if($success){
+                $_SESSION["message"] = "registration_success";
+                $this->redirect("login.php");
+            }else{
+                $_SESSION["message"] = "user_already_registrated";
+                $this->redirect("registration.php");
+            } 
         }catch(UserNotFoundException $e){
             $this->handleUserNotFoundException();
         }catch(InternalErrorException $e){

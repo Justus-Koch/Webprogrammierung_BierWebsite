@@ -42,6 +42,8 @@ unset($_SESSION["email"]);
       <p>Die Datenschutzerklärung und die Nutzungsbedingungen müssen akzeptiert werden.</p>
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "registration_confirmation_failed"): ?>
       <p>Es gab einen Fehler bei der Registrierung.</p>
+    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "user_already_registrated"): ?>
+      <p>Diese E-Mail ist bereits registriert.</p>
     <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "email_sent"): ?>
       <p class="success">
         Weitere Infos finden Sie in der hier:  

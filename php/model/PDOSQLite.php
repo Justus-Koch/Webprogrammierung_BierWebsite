@@ -35,11 +35,15 @@ function createDB()
                 user_id         INTEGER PRIMARY KEY AUTOINCREMENT,
                 nickname        VARCHAR(50),
                 profile_picture VARCHAR(255),
-                password        VARCHAR(255) NOT NULL,
-                email           VARCHAR(100) NOT NULL UNIQUE,
+                password        VARCHAR(255) NOT NULL UNIQUE,
+                email           VARCHAR(100) NOT NULL,
                 token           TEXT,
                 is_active       INTEGER DEFAULT 0
             );
+
+            CREATE UNIQUE INDEX IF NOT EXISTS idx_user_email_active
+            ON user(email)
+            WHERE is_active = 1;
 
             CREATE TABLE IF NOT EXISTS review (
                 review_id        INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -25,6 +25,14 @@ class UserManagementPDOSQLite implements UserManagementDAO{
             $profile_picture="profile_picture.jpg";
             $db = getConnection();
 
+            $db->exec('BEGIN IMMEDIATE TRANSACTION'); 
+
+            $checkSql = "SELECT 1 FROM user WHERE email = ? AND is_active = 1 LIMIT 1";
+            $checkStmt = $db->prepare($checkSql);
+            $checkStmt->execute([$email]);
+            if ($checkStmt->fetch()) {
+                return false;
+            }
             $sql = "INSERT INTO user (email, password, nickname, profile_picture, token) VALUES (?, ?, ?, ?, ?)";
             $command = $db->prepare($sql);
             if (!$command) {
@@ -34,12 +42,10 @@ class UserManagementPDOSQLite implements UserManagementDAO{
                 throw new InternalErrorException();
             }
             $lastId = $db->lastInsertId();
+            $db->exec('COMMIT');
             return $lastId;
         }catch(PDOException $exc){
-            // UNIQUE constraint
-            if ($exc->getCode() == 23000) {
-                return false;
-            }
+            $db->exec('ROLLBACK');
             throw new InternalErrorException();
         }
     }
@@ -58,7 +64,12 @@ class UserManagementPDOSQLite implements UserManagementDAO{
             if($command->rowCount() == 0){
                 throw new UserNotFoundException();
             }
+            return true;
         }catch(PDOException $exc){
+            // UNIQUE constraint
+            if ($exc->getCode() == 23000) {
+                return false;
+            }
             throw new InternalErrorException();
         }
     }
@@ -195,7 +206,6 @@ class UserManagementPDOSQLite implements UserManagementDAO{
             return false;
         }
     }
-
 }
 ?>
 
