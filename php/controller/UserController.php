@@ -17,6 +17,7 @@
 
             if($userID >= 0){
                 $_SESSION["message"] = "login_success";
+                session_regenerate_id(true);
                 $_SESSION["userID"] = $userID;
                 error_log("user id bei login gesetzt". $_SESSION["userID"]);
                 $this->redirect("index.php");
@@ -46,25 +47,25 @@
             $content .= "<p>Email an: " . $_POST["email"] . "</p>\n";
             $content .= "<p>Bitte ignoriere die E-Mail, wenn du es nicht warst, der sich versucht hat zu registrieren.</p>\n";
             $token = bin2hex(random_bytes(16));
-            
+
             if($userManagement->saveUser($_POST["email"], password_hash($_POST["password"], PASSWORD_DEFAULT), $token, $_POST["nickname"])){
                 $confirmationLink = ROOT . "php/registration-confirm.php?token=" . $token;
                 $content .= "<p>Ansonsten klicke auf folgenden Link, um die Registrierung abzuschließen:</p>\n";
                 $content .= "<p><a href=" . $confirmationLink . ">Registrierung abschließen</a></p>";
             }else{
-                $resetLink = ROOT . "php/view/registration.php"; 
+                $resetLink = ROOT . "php/view/registration.php";
                 $content .= "<p>Du bist bereits registriert. Solltest du dein Passwort vergessen haben, klicke bitte hier: ";
                 $content .= "<a href='" . $resetLink . "'>Passwort ändern</a></p>";
             }
-            
+
             $dir_name = "confirmation/";
             $dir = $abs_path . "/" . $dir_name;
             if(!is_dir($dir)){
                 mkdir($dir);
             }
-            $filename = "confirmation_". uniqid() . ".html"; 
+            $filename = "confirmation_". uniqid() . ".html";
             file_put_contents($dir . $filename, $content);
-            
+
             $_SESSION["message"] = "email_sent";
             $_SESSION["mail_file"] = ROOT . $dir_name . $filename;
             $this->redirect("registration.php");
@@ -89,7 +90,7 @@
             }else{
                 $_SESSION["message"] = "user_already_registrated";
                 $this->redirect("registration.php");
-            } 
+            }
         }catch(UserNotFoundException $e){
             $this->handleUserNotFoundException();
         }catch(InternalErrorException $e){
@@ -111,7 +112,7 @@
                 }else{
                     $this->redirect("edit-profile.php");
                 }
-                
+
             }else{
                 $userManagement->updateUser($_SESSION["userID"], $_POST["nickname"]);
             }
@@ -295,16 +296,16 @@
     }
 
     private function redirect($newPage){
-        header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");  
-        header("Pragma: no-cache"); // Kompatibilität HTTP/1.0  
-        header("Expires: 0"); // Kompatibilität für alte Proxies 
+        header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+        header("Pragma: no-cache"); // Kompatibilität HTTP/1.0
+        header("Expires: 0"); // Kompatibilität für alte Proxies
         header("Location: ". ROOT . "php/view/" . $newPage);
         exit;
     }
 
     private function sendConfirmationMail($success){
         $_SESSION["message"] = "mail_sent";
-        
+
         if($success){
             $link = "";
             $mailContent .= "Ansonsten klicke auf folgenden Link, um die Registrierung abzuschließen: ${link}";

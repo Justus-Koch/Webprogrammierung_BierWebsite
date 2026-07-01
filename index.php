@@ -8,3 +8,4 @@ if (!isset($abs_path)) {
 require_once $abs_path . "/php/view/index.php";
 
 ?>
+

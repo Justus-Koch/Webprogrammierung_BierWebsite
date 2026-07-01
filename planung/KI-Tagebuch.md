@@ -100,7 +100,7 @@ Wie kann ich abfragen, ob der UNIQUE-Constraint verletzt wurde?
 Antwort: Abfrage des Exception-Codes auf 23000.
 
 23. Prompt (Gemini, 16.06.2026)
-Implementiere die Echtzeit-Validierung der Nutzereingaben bei Registrierung und Anmeldung (bestehender Code gegeben) mit JavaScript. Vermeide doppelten Code. 
+Implementiere die Echtzeit-Validierung der Nutzereingaben bei Registrierung und Anmeldung (bestehender Code gegeben) mit JavaScript. Vermeide doppelten Code.
 Antwort: notwendiges JavaScript und Anpassungen an PHP in login/registration
 
 24. Prompt (Claude, 16.06.2026)
@@ -122,3 +122,12 @@ Antwort: Methode isPasswordSafe
 28. Prompt (ChatGPT, 30.06.2026)
 Ich möchte die Bedingungen eines sicheren Passwortes nun auch dynamisch mit JS prüfen wie die anderen Eingaben bei der Registrierung.
 Antwort: Ergänzung des JS zur Prüfung der Bedingungen
+
+29. Prompt (Claude, 01.07.2026)
+Ich muss security tokens umsetzen. Erkläre mir wie das funktioniert, wofür sie da sind
+und wie ich sie implementieren kann
+Antwort: Ausführliche Erklärung zu CSRF, der Funktionsweise und den Anwendungen
+
+30. Prompt (Claude, 01.07.2026)
+Überprüfe, ob in meiner Codebase Session Cookies korrekt umgesetzt sind
+Antwort: Eine Verbesserung, nach erfolgreichem login wird nun die Session erneuert und die alte gelöscht
