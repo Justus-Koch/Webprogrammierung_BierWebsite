@@ -1,11 +1,8 @@
 <?php
-if (session_status() !== PHP_SESSION_ACTIVE) {
-    session_start();
-}
-
 if (!isset($abs_path)) {
   require_once "../../path.php";
 }
+require_once $abs_path . "/php/session-start.php";
 require_once $abs_path . '/php/csrf.php';
 
 $nickname = isset($_SESSION["nickname"]) ? $_SESSION["nickname"] : "";

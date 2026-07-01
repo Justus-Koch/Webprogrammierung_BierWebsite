@@ -2,6 +2,7 @@
 if (!isset($abs_path)) {
   require_once "../path.php";
 }
+require_once $abs_path . "/php/session-start.php";
 
 require_once $abs_path . "/php/is-favourite.php";
 require_once $abs_path . "/php/model/User.php";

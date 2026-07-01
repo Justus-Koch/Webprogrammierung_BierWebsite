@@ -1,8 +1,6 @@
 <?php
 
-if (session_status() !== PHP_SESSION_ACTIVE) {
-  session_start();
-}
+require_once $abs_path . "/php/session-start.php";
 
 function generateCsrfToken()
 {
