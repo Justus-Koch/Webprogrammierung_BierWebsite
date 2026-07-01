@@ -35,6 +35,8 @@ include_once $abs_path . '/php/include/header.php';
             <p>Dateityp nicht erlaubt.</p>
           <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'invalid_beer_type'): ?>
             <p>Bierart nicht erlaubt.</p>
+          <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'parameter_out_of_range'): ?>
+            <p>Parameter außerhalb des erlaubten Bereichs.</p>
           <?php endif; ?>
           <?php unset($_SESSION['message']); ?>
         </div>
@@ -83,13 +85,13 @@ include_once $abs_path . '/php/include/header.php';
             <legend class="visually-hidden">Technische Details zum Bier</legend>
             <div class="form-group flex-1">
               <label for="original_extract">Stammwürze (%)</label>
-              <input type="number" min="0" max="30" step="0.01"
+              <input type="number" min="0" max="100" step="0.01"
                      name="original_extract" id="original_extract"
                      value="<?php echo htmlspecialchars($originalExtract); ?>">
             </div>
             <div class="form-group flex-1">
               <label for="alcohol_content">Alkoholgehalt (%)</label>
-              <input type="number" min="0" max="20" step="0.01"
+              <input type="number" min="0" max="100" step="0.01"
                      name="alcohol_content" id="alcohol_content"
                      value="<?php echo htmlspecialchars($alcoholContent); ?>">
             </div>

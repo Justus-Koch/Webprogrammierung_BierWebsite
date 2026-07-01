@@ -105,7 +105,7 @@ class ReviewController
       $this->redirect("login.php");
     }
     $_SESSION['form_data'] = $_POST;
-    $this->checkReviewParam("edit-review.php");
+    $this->checkReviewParam("edit-review.php?id=" . intval($_POST['review_id']));
     $this->checkReviewId();
     try {      
       $instance = ReviewManagement::getInstance();
@@ -185,8 +185,9 @@ class ReviewController
     if (!isset($_POST['beer_name']) || 
         !isset($_POST['beer_type']) ||
         !isset($_POST['alcohol_content']) ||
-        !isset($_POST['original_gravity']) ||
-        !isset($_POST['rating'])) {
+        !isset($_POST['original_extract']) ||
+        !isset($_POST['rating'])
+        ) {
 
         $_SESSION['message'] = 'missing_parameters';
         $this->redirect($newPage);
@@ -228,23 +229,23 @@ private function checkBeerType($newPage) {
 private function checkNumericRanges($newPage) {
     $rating = (int) $_POST['rating'];
     $alcohol = (float) $_POST['alcohol_content'];
-    $gravity = (float) $_POST['original_gravity'];
+    $extract = (float) $_POST['original_extract'];
 
     // rating: 1–5
     if ($rating < 1 || $rating > 5) {
-        $_SESSION['message'] = 'invalid_rating';
+        $_SESSION['message'] = 'parameter_out_of_range';
         $this->redirect($newPage);
     }
 
     // alcohol_content: 0.00–100.00
     if ($alcohol < 0 || $alcohol > 100) {
-        $_SESSION['message'] = 'invalid_alcohol_content';
+        $_SESSION['message'] = 'parameter_out_of_range';
         $this->redirect($newPage);
     }
 
-    // original_gravity: 0.00–100.00
-    if ($gravity < 0 || $gravity > 100) {
-        $_SESSION['message'] = 'invalid_original_gravity';
+    // original_extract: 0.00–100.00
+    if ($extract < 0 || $extract > 100) {
+        $_SESSION['message'] = 'parameter_out_of_range';
         $this->redirect($newPage);
     }
 }
