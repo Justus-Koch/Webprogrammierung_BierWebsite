@@ -16,11 +16,6 @@ require_once $abs_path . '/php/controller/ReviewController.php';
 // ID from URL
 $id = isset($_GET['id']) ? intval($_GET['id']) : null;
 
-if ($id === null) {
-  header("Location: ". ROOT . "php/view/profile.php");
-  exit;
-}
-
 $form_data = $_SESSION['form_data'] ?? [];
 unset($_SESSION['form_data']);
 

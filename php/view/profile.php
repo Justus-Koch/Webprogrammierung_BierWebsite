@@ -24,6 +24,8 @@ include_once $abs_path . '/php/include/header.php';
           <p>Review erfolgreich aktualisiert.</p>
         <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'delete_review_success'): ?>
           <p>Review erfolgreich gelöscht.</p>
+        <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'missing_parameters'): ?>
+          <p class="alert">Fehlende Parameter.</p>
         <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'user_not_found'): ?>
           <p class="alert">Kein Benutzer eingeloggt.</p>
         <?php endif; ?>

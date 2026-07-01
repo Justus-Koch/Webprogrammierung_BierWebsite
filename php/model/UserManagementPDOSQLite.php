@@ -86,7 +86,6 @@ class UserManagementPDOSQLite implements UserManagementDAO{
                 throw new InternalErrorException();
             }
             $userData = $command->fetchObject();
-            error_log("USER DATA: " . print_r($userData, true));
             if(empty($userData)){
                 throw new UserNotFoundException();
             }else{

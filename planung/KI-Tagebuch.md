@@ -135,3 +135,11 @@ Antwort: Eine Verbesserung, nach erfolgreichem login wird nun die Session erneue
 31. Prompt (ChatGPT, 01.07.2026)
 Wie prüfe ich, ob die Größe einer hochgeladenen Datei im Rahmen ist?
 Antwort: Ergänzung der Methode checkAndUploadImage um die Größenprüfung.
+
+32. Prompt (ChatGPT, 01.07.2026)
+Die SessionID soll aus Sicherheitsgründen in Cookies gespeichert werden.
+Antwort: Setzen der entsprechenden Cookie-Parameter vor session_start()
+
+33. Prompt (ChatGPT, 01.07.2026)
+rating soll ein wert zwischen 1 und 5 sein, alcohol_content und original_extract zwischen 0,00 und 100,00. Füge die Prüfungen hinzu.
+Antwort: Erweiterung der checkReviewParam-Funktion
