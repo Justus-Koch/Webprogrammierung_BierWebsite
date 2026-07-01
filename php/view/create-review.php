@@ -33,12 +33,16 @@ include_once $abs_path . '/php/include/header.php';
         <div class="alert">
           <?php if (isset($_SESSION['message']) && $_SESSION['message'] == 'missing_required_parameters'): ?>
             <p>Biername und Bewertung sind erforderlich.</p>
-          <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'missing_parameters'): ?>
-            <p>Es fehlen Parameter.</p>
+          <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "upload_error"): ?>
+            <p>Fehler beim Hochladen der Datei.</p>
+          <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "upload_too_large"): ?>
+            <p>Datei zu groß.</p>
+          <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "input_too_long"): ?>
+            <p>Eingaben zu lang.</p>
           <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'upload_type_not_allowed'): ?>
             <p>Dateityp nicht erlaubt.</p>
-          <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'upload_error'): ?>
-            <p>Fehler beim Hochladen des Bildes.</p>
+          <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'invalid_beer_type'): ?>
+            <p>Bierart nicht erlaubt.</p>
           <?php endif; ?>
           <?php unset($_SESSION['message']); ?>
         </div>

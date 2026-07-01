@@ -81,7 +81,6 @@ class ReviewController
            $this->redirect("create-review.php");
         }
       }
-      $this->checkInputLengths();
       $instance = ReviewManagement::getInstance();
       $instance->createReview($_POST['beer_name'],
           $_POST['beer_type'],
@@ -128,7 +127,6 @@ class ReviewController
           $this->redirect("edit-review.php?id=" . intval($_POST['review_id']));
         }
       }
-      $this->checkInputLengths();
 
       $review = new Review(
         $id,
@@ -184,16 +182,18 @@ class ReviewController
     }
   }
 
-  private function checkReviewParam() {
+  private function checkReviewParam($newPage) {
     if (!isset($_POST['beer_name']) || !isset($_POST['beer_type']) ||
       !isset($_POST['alcohol_content'])) {
       $_SESSION['message'] = 'missing_parameters';
-      $this->redirect("create-review.php");
+      $this->redirect($newPage);
     }
     if (empty(trim($_POST['beer_name'])) || !isset($_POST['rating']) || empty($_POST['rating'])) {
       $_SESSION['message'] = 'missing_required_parameters';
-      $this->redirect("create-review.php");
+      $this->redirect($newPage);
     }
+    $this->checkInputLengths($newPage);
+    $this->checkBeerType($newPage);
   }
 
   private function checkReviewId() {
@@ -214,14 +214,35 @@ class ReviewController
         $this->redirect("index.php");
     }
 
-  private function checkInputLengths(){
+  private function checkInputLengths($newPage){
     if (strlen($_POST['beer_name']) > 50 || 
           strlen($_POST['beer_type']) > 50 || 
           strlen($_POST['content']) > 500) {
           $_SESSION["message"] = "input_too_long";
-          $this->redirect("edit-review.php");
+          $this->redirect($newPage);
       }
   }
+
+  private function checkBeerType($newPage) {
+    $allowed = [
+        'Pils',
+        'Weizen',
+        'Helles',
+        'Dunkles',
+        'India Pale Ale',
+        'Bock',
+        'Kellerbier',
+        'Rotbier',
+        'Export'
+    ];
+
+    $beer_type = $_POST['beer_type'] ?? null;
+
+    if (!in_array($beer_type, $allowed, true)) {
+        $_SESSION['message'] = 'invalid_beer_type';
+        $this->redirect($newPage);
+    }
+}
 
   private function redirect($newPage){
     header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");  

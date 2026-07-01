@@ -302,23 +302,5 @@
         header("Location: ". ROOT . "php/view/" . $newPage);
         exit;
     }
-
-    private function sendConfirmationMail($success){
-        $_SESSION["message"] = "mail_sent";
-
-        if($success){
-            $link = "";
-            $mailContent .= "Ansonsten klicke auf folgenden Link, um die Registrierung abzuschließen: ${link}";
-        }else{
-            $mailContent .= "Du bist aber bereits registriert.";
-        }
-
-        $dir = $abs_path . "/confirmation";
-        if(!is_dir($dir)){
-            mkdir($dir);
-        }
-        $filename = "confirmation_". uniqid() . "txt";
-        file_put_contents($filename, $mailContent);
-    }
 }
 ?>

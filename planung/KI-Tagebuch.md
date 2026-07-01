@@ -131,3 +131,7 @@ Antwort: Ausführliche Erklärung zu CSRF, der Funktionsweise und den Anwendunge
 30. Prompt (Claude, 01.07.2026)
 Überprüfe, ob in meiner Codebase Session Cookies korrekt umgesetzt sind
 Antwort: Eine Verbesserung, nach erfolgreichem login wird nun die Session erneuert und die alte gelöscht
+
+31. Prompt (ChatGPT, 01.07.2026)
+Wie prüfe ich, ob die Größe einer hochgeladenen Datei im Rahmen ist?
+Antwort: Ergänzung der Methode checkAndUploadImage um die Größenprüfung.

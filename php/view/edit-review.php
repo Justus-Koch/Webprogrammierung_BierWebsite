@@ -28,12 +28,14 @@ include_once $abs_path . '/php/include/header.php';
             <p>Review nicht gefunden.</p>
           <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "upload_error"): ?>
             <p>Fehler beim Hochladen der Datei.</p>
-          <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "upload_type_not_allowed"): ?>
-            <p>Dateityp nicht erlaubt.</p>
+          <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "upload_too_large"): ?>
+            <p>Datei zu groß.</p>
           <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "input_too_long"): ?>
             <p>Eingaben zu lang.</p>
           <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'upload_type_not_allowed'): ?>
             <p>Dateityp nicht erlaubt.</p>
+          <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'invalid_beer_type'): ?>
+            <p>Bierart nicht erlaubt.</p>
           <?php endif; ?>
           <?php unset($_SESSION['message']); ?>
         </div>
@@ -66,10 +68,15 @@ include_once $abs_path . '/php/include/header.php';
           <div class="form-group">
             <label for="beer_type">Bierart</label>
             <select name="beer_type" id="beer_type">
-              <option value="Pils" <?php echo $beerType === 'Pils' ? 'selected' : ''; ?>>Pils</option>
-              <option value="Weizen" <?php echo $beerType === 'Weizen' ? 'selected' : ''; ?>>Weizen</option>
-              <option value="Helles" <?php echo $beerType === 'Helles' ? 'selected' : ''; ?>>Helles</option>
-              <option value="Dunkles" <?php echo $beerType=== 'Dunkles' ? 'selected' : ''; ?>>Dunkles</option>
+                <option value="Pils" <?= ($form_data['beer_type'] ?? '') == 'Pils' ? 'selected' : '' ?>>Pils</option>
+                <option value="Weizen" <?= ($form_data['beer_type'] ?? '') == 'Weizen' ? 'selected' : '' ?>>Weizen</option>
+                <option value="Helles" <?= ($form_data['beer_type'] ?? '') == 'Helles' ? 'selected' : '' ?>>Helles</option>
+                <option value="Dunkles" <?= ($form_data['beer_type'] ?? '') == 'Dunkles' ? 'selected' : '' ?>>Dunkles</option>
+                <option value="India Pale Ale" <?= ($form_data['beer_type'] ?? '') == 'India Pale Ale' ? 'selected' : '' ?>>India Pale Ale</option>
+                <option value="Bock" <?= ($form_data['beer_type'] ?? '') == 'Bock' ? 'selected' : '' ?>>Bock</option>
+                <option value="Kellerbier" <?= ($form_data['beer_type'] ?? '') == 'Kellerbier' ? 'selected' : '' ?>>Kellerbier</option>
+                <option value="Rotbier" <?= ($form_data['beer_type'] ?? '') == 'Rotbier' ? 'selected' : '' ?>>Rotbier</option>
+                <option value="Export" <?= ($form_data['beer_type'] ?? '') == 'Export' ? 'selected' : '' ?>>Export</option>
             </select>
           </div>
 

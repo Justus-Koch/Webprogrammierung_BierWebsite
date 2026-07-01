@@ -6,13 +6,21 @@ function checkAndUploadImage($key){
         $_SESSION["message"] = "upload_error";
         return null;
     }
+
+    // Größenprüfung (z.B. 2 MB)
+    $maxSize = 2 * 1024 * 1024; // 2 MB
+    if ($_FILES[$key]["size"] > $maxSize) {
+        $_SESSION["message"] = "upload_too_large";
+        return null;
+    }
+
     $types = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
     if(!in_array($_FILES[$key]["type"], $types)){
         error_log("Dateityp nicht erlaubt");
         $_SESSION["message"] = "upload_type_not_allowed";
         return null;
     }
-    //Namen prüfen
+    // Namen prüfen
     $file_type = ".". explode("/", $_FILES[$key]["type"])[1];
     $new_name = $_SESSION["userID"].time().$file_type;
     $new_dest = IMAGE_PATH.$new_name;

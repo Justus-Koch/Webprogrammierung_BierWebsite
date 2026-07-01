@@ -30,6 +30,8 @@ require_once $abs_path . '/php/csrf.php';
       <div class="alert">
         <?php if (isset($_SESSION["message"]) && $_SESSION["message"] == "upload_error"): ?>
           <p>Fehler beim Hochladen der Datei.</p>
+        <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "upload_too_large"): ?>
+          <p>Datei zu groß.</p>
         <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "upload_type_not_allowed"): ?>
           <p>Dateityp nicht erlaubt.</p>
         <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "nickname_too_long"): ?>
