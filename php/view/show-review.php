@@ -45,8 +45,8 @@ foreach ($reviews as $review):
                    alt="Foto von <?php echo htmlspecialchars($review->getBeerName()); ?>" width="70">
           <p>Biername:<br> <?php echo htmlspecialchars($review->getBeerName()); ?></p>
           <p>Bierart:<br> <?php echo htmlspecialchars($review->getBeerType()); ?></p>
-          <p>Alkoholgehalt:<br> <?php echo htmlspecialchars($review->getAlcoholContent()); ?></p>
-          <p>Stammwürze:<br> <?php echo htmlspecialchars($review->getOriginalExtract()); ?></p>
+          <p>Alkoholgehalt:<br> <?php echo htmlspecialchars($review->getAlcoholContent()); ?>%</p>
+          <p>Stammwürze:<br> <?php echo htmlspecialchars($review->getOriginalExtract()); ?>%</p>
           <p>Bewertung:<br> <?php echo htmlspecialchars($review->getRating()); ?>/5</p>
         </div>
         <div class="content">

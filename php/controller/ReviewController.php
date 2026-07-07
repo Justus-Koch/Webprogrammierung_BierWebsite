@@ -107,7 +107,7 @@ class ReviewController
     $_SESSION['form_data'] = $_POST;
     $this->checkReviewParam("edit-review.php?id=" . intval($_POST['review_id']));
     $this->checkReviewId();
-    try {      
+    try {
       $instance = ReviewManagement::getInstance();
       $id = intval($_POST['review_id']);
 
@@ -182,7 +182,7 @@ class ReviewController
   }
 
   private function checkReviewParam($newPage) {
-    if (!isset($_POST['beer_name']) || 
+    if (!isset($_POST['beer_name']) ||
         !isset($_POST['beer_type']) ||
         !isset($_POST['alcohol_content']) ||
         !isset($_POST['original_extract']) ||
@@ -204,8 +204,8 @@ class ReviewController
 }
 
 private function checkInputLengths($newPage){
-    if (strlen($_POST['beer_name']) > 50 || 
-        strlen($_POST['beer_type']) > 50 || 
+    if (strlen($_POST['beer_name']) > 50 ||
+        strlen($_POST['beer_type']) > 50 ||
         strlen($_POST['content'] ?? '') > 500) {
 
         $_SESSION["message"] = "input_too_long";
@@ -269,9 +269,9 @@ private function checkNumericRanges($newPage) {
     }
 
   private function redirect($newPage){
-    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");  
-    header("Pragma: no-cache"); // Kompatibilität HTTP/1.0  
-    header("Expires: 0"); // Kompatibilität für alte Proxies 
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+    header("Pragma: no-cache"); // Kompatibilität HTTP/1.0
+    header("Expires: 0"); // Kompatibilität für alte Proxies
     header("Location: ". ROOT . "php/view/" . $newPage);
     exit;
   }

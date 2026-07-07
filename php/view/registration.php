@@ -58,7 +58,7 @@ unset($_SESSION["email"]);
       <input type="hidden" name="csrf_token"
              value="<?php echo htmlspecialchars(generateCsrfToken()); ?>">
       <div class="form-group">
-        <label for="nickname">Nickname <span aria-hidden="true">*</span></label>
+        <label for="nickname">Nickname (max. 50 Zeichen)<span aria-hidden="true">*</span></label>
         <input type="text" id="nickname" name="nickname"
                value="<?= htmlspecialchars($nickname)?>"
                placeholder="Dein Nickname"

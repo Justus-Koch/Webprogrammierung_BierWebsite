@@ -43,7 +43,7 @@ require_once $abs_path . '/php/csrf.php';
         <input type="hidden" name="csrf_token"
                value="<?php echo htmlspecialchars(generateCsrfToken()); ?>">
         <div class="form-group">
-          <label for="nickname">Spitzname <span aria-hidden="true">*</span></label>
+          <label for="nickname">Spitzname (max. 50 Zeichen)<span aria-hidden="true">*</span></label>
           <input type="text" id="nickname" name="nickname"
                  value="<?= htmlspecialchars($nickname) ?>"
                  required aria-required="true">

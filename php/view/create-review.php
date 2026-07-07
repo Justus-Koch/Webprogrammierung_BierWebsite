@@ -61,14 +61,14 @@ include_once $abs_path . '/php/include/header.php';
           </div>
 
           <div class="form-group">
-            <label for="beer_name">Biername <span aria-hidden="true">*</span></label>
+            <label for="beer_name">Biername (max. 50 Zeichen)<span aria-hidden="true">*</span></label>
             <input type="text" name="beer_name" id="beer_name"
               value="<?= htmlspecialchars($form_data['beer_name'] ?? '') ?>"
               placeholder="z.B. Augustiner Helles" required aria-required="true">
           </div>
 
           <div class="form-group">
-            <label for="beer_type">Bierart</label>
+            <label for="beer_type">Bierart (max. 50 Zeichen)</label>
             <select name="beer_type" id="beer_type">
                 <option value="Pils" <?= ($form_data['beer_type'] ?? '') == 'Pils' ? 'selected' : '' ?>>Pils</option>
                 <option value="Weizen" <?= ($form_data['beer_type'] ?? '') == 'Weizen' ? 'selected' : '' ?>>Weizen</option>
@@ -124,7 +124,7 @@ include_once $abs_path . '/php/include/header.php';
           </fieldset>
 
           <div class="form-group">
-            <label for="content">Deine Meinung</label>
+            <label for="content">Deine Meinung (max. 500 Zeichen)</label>
             <textarea name="content" id="content" cols="50" rows="6"
                     placeholder="Beschreibe Geschmack, Geruch und Aussehen..."><?= htmlspecialchars($form_data['content'] ?? '') ?></textarea>
           </div>

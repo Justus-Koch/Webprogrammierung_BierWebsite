@@ -14,7 +14,7 @@ function getConnection()
     $db = new PDO($dsn, $user, $pw);
     $db->exec("PRAGMA foreign_keys = ON;");
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $db->exec("PRAGMA busy_timeout = 3000;"); 
+    $db->exec("PRAGMA busy_timeout = 3000;");
     return $db;
   } catch (PDOException $e) {
     throw new InternalErrorException();
@@ -35,8 +35,8 @@ function createDB()
                 user_id         INTEGER PRIMARY KEY AUTOINCREMENT,
                 nickname        VARCHAR(50),
                 profile_picture VARCHAR(255),
-                password        VARCHAR(255) NOT NULL UNIQUE,
-                email           VARCHAR(100) NOT NULL,
+                password        VARCHAR(50) NOT NULL UNIQUE,
+                email           VARCHAR(50) NOT NULL,
                 token           TEXT,
                 is_active       INTEGER DEFAULT 0
             );
@@ -49,13 +49,13 @@ function createDB()
                 review_id        INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id          INT NOT NULL,
                 date             DATETIME DEFAULT CURRENT_TIMESTAMP,
-                beer_type        VARCHAR(100),
+                beer_type        VARCHAR(50),
                 rating           INT CHECK (rating BETWEEN 1 AND 5),
                 content          TEXT,
                 picture          VARCHAR(255),
                 alcohol_content  DECIMAL(4,2),
                 original_gravity DECIMAL(4,2),
-                beer_name        VARCHAR(100) NOT NULL,
+                beer_name        VARCHAR(50) NOT NULL,
                 FOREIGN KEY (user_id) REFERENCES user(user_id)
                     ON DELETE CASCADE ON UPDATE CASCADE
             );
@@ -79,7 +79,7 @@ function createDB()
       );
       $stmt->execute([
         'schluckspecht@prost.de',
-        password_hash('bier123', PASSWORD_DEFAULT), 
+        password_hash('bier123', PASSWORD_DEFAULT),
         'Schluckspecht',
         'profile_picture.jpg',
         'abc', 1
