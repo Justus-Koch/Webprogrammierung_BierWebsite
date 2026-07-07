@@ -306,6 +306,28 @@
   background-color: #95a5a6;
 }
 
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.favourite.is-loading .favourite-icon::before,
+.favourite.is-loading .favourite-icon::after {
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.favourite.is-loading .favourite-icon {
+  border: 3px solid #bdc3c7;
+  border-top: 3px solid #e74c3c;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 4px;
+  box-sizing: border-box;
+  animation: spin 0.8s linear infinite;
+}
+
 /* ============================================================
    PROFILE CARD
    ============================================================ */

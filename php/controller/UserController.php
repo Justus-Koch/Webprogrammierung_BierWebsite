@@ -4,6 +4,7 @@
     }
     require_once $abs_path."/php/model/User.php";
     require_once $abs_path."/php/model/UserManagement.php";
+    require_once $abs_path."/php/model/ReviewManagementDAO.php";
     require_once $abs_path."/php/util/imageHandling.php";
 
     class UserController{
@@ -195,8 +196,18 @@
                 echo json_encode(["success" => true]);
                 exit;
             }
+        } catch (ReviewNotFoundException $e) {
+            if ($isAjax) {
+                header('Content-Type: application/json');
+                http_response_code(404);
+                echo json_encode(["success" => false, "error" => "review_not_found"]);
+                exit;
+            }
+            $this->handleReviewNotFoundException();
         } catch (UserNotFoundException $e) {
             if ($isAjax) {
+                header('Content-Type: application/json');
+                http_response_code(401);
                 echo json_encode(["success" => false, "error" => "user_not_found"]);
                 exit;
             }
@@ -289,6 +300,12 @@
         $_SESSION["message"] = "user_not_found";
         $this->redirect("index.php");
     }
+
+    private function handleReviewNotFoundException()
+    {
+        $_SESSION["message"] = "review_not_found";
+        $this->redirect("index.php");
+    }
     private function handleInternalErrorException()
     {
         $_SESSION["message"] = "internal_error";
@@ -296,9 +313,6 @@
     }
 
     private function redirect($newPage){
-        header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-        header("Pragma: no-cache"); // Kompatibilität HTTP/1.0
-        header("Expires: 0"); // Kompatibilität für alte Proxies
         header("Location: ". ROOT . "php/view/" . $newPage);
         exit;
     }

@@ -161,8 +161,19 @@ class UserManagementPDOSQLite implements UserManagementDAO{
     public function toggleFavouriteState($userID, $reviewID){
         try {
             $db = getConnection();
-            //$db->beginTransaction();
             $db->exec('BEGIN IMMEDIATE TRANSACTION'); 
+
+            $checkReview = $db->prepare("SELECT 1 FROM review WHERE review_id = ?");
+            $checkReview->execute([$reviewID]);
+            if (!$checkReview->fetch()){
+                throw new ReviewNotFoundException();
+            }
+
+            $checkUser = $db->prepare("SELECT 1 FROM user WHERE user_id = ?");
+            $checkUser->execute([$userID]);
+            if (!$checkUser->fetch()){
+                throw new UserNotFoundException();
+            }
 
             $checkFavourite = $db->prepare("SELECT 1 FROM likes WHERE user_id = ? AND review_id = ?");
             $checkFavourite->execute([$userID, $reviewID]);

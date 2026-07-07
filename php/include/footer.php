@@ -14,3 +14,11 @@ if (!isset($abs_path)) {
 </footer>
 
 <script src="<?php echo ROOT; ?>js/favourites.js"></script>
+
+<script>
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted) {
+      window.location.reload();
+    }
+  });
+</script>

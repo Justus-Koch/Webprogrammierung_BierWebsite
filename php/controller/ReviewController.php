@@ -269,9 +269,6 @@ private function checkNumericRanges($newPage) {
     }
 
   private function redirect($newPage){
-    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");  
-    header("Pragma: no-cache"); // Kompatibilität HTTP/1.0  
-    header("Expires: 0"); // Kompatibilität für alte Proxies 
     header("Location: ". ROOT . "php/view/" . $newPage);
     exit;
   }

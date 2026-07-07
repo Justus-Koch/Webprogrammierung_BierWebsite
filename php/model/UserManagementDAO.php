@@ -45,10 +45,10 @@
          */
         function login($email, $password);
 
-
         /**
          * Removes or adds the review with the given reviewID from/to the user with the given userID.
          * Throws an UserNotFoundException if an user with this id does not exist.
+         * Throws an ReviewNotFoundException if an review with this id does not exist.
          * Throws an InternalErrorException if there is an internal error.
          */
         function toggleFavouriteState($userID, $reviewID);
