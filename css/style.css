@@ -64,6 +64,7 @@ textarea:focus-visible,
   outline: 3px solid #004a99;
   outline-offset: 4px;
   border-radius: 4px;
+  overflow-wrap: anywhere;
 }
 
 /* --- Navbar horizontal (top bar) --- */
