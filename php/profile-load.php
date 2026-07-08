@@ -10,12 +10,15 @@ if (!isset($_SESSION["userID"])) {
     exit;
 }
 
+$userID = isset($_GET['id']) ? intval($_GET['id']) : $_SESSION['userID'];
 $userController = new UserController();
-$current_user = $userController->getUser();
+$profile_user = $userController->getUser($userID);
+
+$is_own_profile = ($profile_user->getId() == $_SESSION['userID']);
 
 require_once $abs_path . '/php/controller/ReviewController.php';
 
 $reviewController = new ReviewController();
-$userReviews = $reviewController->loadReviewsByUser($_SESSION['userID']);
+$reviews = $reviewController->loadReviewsByUser($userID);
 ?>
 

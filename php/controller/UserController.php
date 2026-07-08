@@ -147,14 +147,14 @@
         }
     }
 
-    public function getUser(){
+    public function getUser($userID){
         if(!isset($_SESSION["userID"])){
             $_SESSION["message"] = "missing_user_id";
             $this->redirect("index.php");
         }
         try{
             $userManagement = UserManagement::getInstance();
-            return $userManagement->findUser($_SESSION["userID"]);
+            return $userManagement->findUser($userID);
         }catch(UserNotFoundException $e){
             $this->handleUserNotFoundException();
         }catch(InternalErrorException $e){
