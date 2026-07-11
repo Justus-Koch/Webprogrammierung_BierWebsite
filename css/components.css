@@ -34,24 +34,6 @@
   color: black;
 }
 
-.navbar-horizontal button,
-.navbar-horizontal a.button-secondary {
-  background-color: #444;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  transition: background 0.2s;
-}
-
-.navbar-horizontal button:hover,
-.navbar-horizontal a.button-secondary:hover {
-  background-color: #555;
-}
-
 /* Search form inside navbar */
 .search-form {
   display: flex;
@@ -104,6 +86,115 @@
 
 .navbar-vertical li a:hover {
   background-color: #111;
+}
+
+/* ============================================================
+   BURGER MENU & SIDEBAR OVERLAY
+   ============================================================ */
+
+/* Burger Button aus der allgemeinen Button-Regel herausnehmen */
+.navbar-horizontal button:not(.menuButton),
+.navbar-horizontal a.button-secondary {
+  background-color: #444;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.navbar-horizontal button:not(.menuButton):hover,
+.navbar-horizontal a.button-secondary:hover {
+  background-color: #555;
+}
+
+/* Burger Icon */
+.menuButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menuButton span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  border-radius: 3px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* X-Animation wenn offen */
+.menuButton[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.menuButton[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.menuButton[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Sidebar als Overlay auf Mobile */
+.navbar-vertical {
+  position: fixed;
+  top: 55px;
+  left: -200px;
+  height: calc(100vh - 60px);
+  width: 200px;
+  z-index: 100;
+  background-color: #333;
+  transition: left 0.3s ease;
+  display: block;
+}
+
+.navbar-vertical.active {
+  left: 0;
+}
+
+@media (min-width: 768px) {
+  .navbar-vertical {
+    position: static;
+    width: 200px;
+    height: auto;
+    min-height: calc(100vh - 60px);
+    display: block;
+  }
+
+  .menuButton {
+    display: none;
+  }
+}
+
+/* Dunkles Overlay hinter der Sidebar */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+.sidebar-overlay.active {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .sidebar-overlay {
+    display: none !important;
+  }
 }
 
 /* ============================================================

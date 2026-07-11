@@ -17,7 +17,13 @@ if (!isset($abs_path)) {
 <header>
   <nav class="navbar-horizontal" aria-label="Hauptnavigation">
     <div class="navbar-left">
-      <button class="menuButton" onclick="toggleSidebar()" aria-controls="sidebar-nav" aria-expanded="false">Menü</button>
+      <button class="menuButton" onclick="toggleSidebar()"
+              aria-controls="sidebar-nav" aria-expanded="false"
+              aria-label="Menü öffnen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <form action="<?php echo ROOT; ?>php/view/search.php" method="GET" class="search-form" role="search">
         <label for="site-search" class="visually-hidden">Website durchsuchen:</label>
         <input type="search" id="site-search" name="q" placeholder="Suchen...">

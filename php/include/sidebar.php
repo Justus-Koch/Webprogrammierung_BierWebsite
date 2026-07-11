@@ -11,3 +11,4 @@ if (!isset($abs_path)) {
     <li><a href="<?php echo ROOT; ?>php/view/profile.php">Profil</a></li>
   </ul>
 </nav>
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
