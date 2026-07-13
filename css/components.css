@@ -108,7 +108,7 @@
 
 .navbar-horizontal button:not(.menuButton):hover,
 .navbar-horizontal a.button-secondary:hover {
-  background-color: #555;
+  background-color: #666565;
 }
 
 /* Burger Icon */
@@ -157,9 +157,6 @@
   display: block;
 }
 
-.navbar-vertical.active {
-  left: 0;
-}
 
 @media (min-width: 768px) {
   .navbar-vertical {
@@ -220,7 +217,7 @@
 }
 
 .button-secondary:hover {
-  background-color: #e2e5e9;
+  background-color: #cacaca;
 }
 
 /* ============================================================
@@ -516,6 +513,19 @@ main h2 {
   }
 }
 
+.username a {
+  color: #333;           
+  text-decoration: none; 
+  font-weight: 600;             
+  padding-bottom: 2px;      
+  border-bottom: 2px solid transparent;
+}
+
+.username a:hover {
+  color: #004a99;                 
+  border-bottom-color: #004a99;  
+}
+
 /* ============================================================
    REVIEW FORM LAYOUT
    ============================================================ */
@@ -712,7 +722,7 @@ fieldset legend {
   margin-top: 10px;
 }
 
-.btn-submit:hover { background-color: #555; }
+.btn-submit:hover { background-color: #666; }
 .btn-delete:hover { background-color: #a31407; }
 
 @media (min-width: 600px) {

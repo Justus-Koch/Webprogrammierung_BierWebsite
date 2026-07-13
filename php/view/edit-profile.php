@@ -56,13 +56,13 @@
             <button type="submit" class="btn-submit" name="submit">Speichern</button>
             <a href="<?php echo ROOT; ?>php/view/profile.php" class="button-secondary">Abbrechen</a>
           </div>
-        </div>
       </form>
 
       <form method="post" class="review-form" onsubmit="return confirm('Möchtest du dein Profil wirklich löschen?')" action="<?php echo ROOT; ?>php/profile-delete.php" novalidate>
         <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCsrfToken()); ?>">
         <button type="submit" name="submit" class="btn-delete" aria-label="Profil unwiderruflich löschen">Profil löschen</button>
       </form>
+      </div>
 
     </div>
   </main>
