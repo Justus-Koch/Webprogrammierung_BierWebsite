@@ -157,6 +157,9 @@
   display: block;
 }
 
+.navbar-vertical.active {
+  left: 0;
+}
 
 @media (min-width: 768px) {
   .navbar-vertical {
