@@ -13,17 +13,6 @@ if (!isset($abs_path)) {
   </nav>
 </footer>
 
-<script>
-  function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar-nav');
-    const overlay = document.getElementById('sidebar-overlay');
-    const btn = document.querySelector('.menuButton');
-    const isOpen = sidebar.classList.toggle('active');
-    overlay.classList.toggle('active');
-    btn.setAttribute('aria-expanded', isOpen);
-  }
-</script>
-
 <script src="<?php echo ROOT; ?>js/favourites.js"></script>
 
 </body>

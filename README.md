@@ -9,3 +9,4 @@ JavaScript/AJAX:
 - Vorschau der hochgeladenen Bilder
 - kein Reload der ganzen Seite beim Hinzufügen von Favoriten
 - Dynamisches Suchen während dem Eingeben von Queries (Momentan gibt es diese Funktion nur auf der Suchseite, also wenn man einmal auf Suche gedrückt hat. Das soll aber noch so angepasst werden, so dass es die Funktion auch auf der Startseite gibt)
+

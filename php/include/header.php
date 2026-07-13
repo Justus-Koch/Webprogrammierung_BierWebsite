@@ -14,16 +14,16 @@ if (!isset($abs_path)) {
 </head>
 <body>
 
+<input type="checkbox" id="sidebar-toggle" class="sidebar-toggle-checkbox" aria-label="Menü öffnen">
 <header>
   <nav class="navbar-horizontal" aria-label="Hauptnavigation">
     <div class="navbar-left">
-      <button class="menuButton" onclick="toggleSidebar()"
-              aria-controls="sidebar-nav" aria-expanded="false"
-              aria-label="Menü öffnen">
+      <label for="sidebar-toggle" class="menuButton" title="Menü öffnen">
         <span></span>
         <span></span>
         <span></span>
-      </button>
+      </label>
+
       <form action="<?php echo ROOT; ?>php/view/search.php" method="GET" class="search-form" role="search">
         <label for="site-search" class="visually-hidden">Website durchsuchen:</label>
         <input type="search" id="site-search" name="q" placeholder="Suchen...">
