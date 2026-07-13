@@ -68,7 +68,7 @@ include_once $abs_path . '/php/include/header.php';
           </div>
 
           <div class="form-group">
-            <label for="beer_type">Bierart (max. 50 Zeichen)</label>
+            <label for="beer_type">Bierart</label>
             <select name="beer_type" id="beer_type">
                 <option value="Pils" <?= ($form_data['beer_type'] ?? '') == 'Pils' ? 'selected' : '' ?>>Pils</option>
                 <option value="Weizen" <?= ($form_data['beer_type'] ?? '') == 'Weizen' ? 'selected' : '' ?>>Weizen</option>
