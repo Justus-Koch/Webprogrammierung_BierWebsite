@@ -1,6 +1,6 @@
 <?php
 if (!isset($abs_path)) {
-  require_once "../../path.php";
+    require_once "../../path.php";
 }
 require_once $abs_path . "/php/session-start.php";
 
@@ -15,14 +15,16 @@ include_once $abs_path . '/php/include/header.php';
     <?php include_once $abs_path . '/php/include/sidebar.php'; ?>
 
     <main>
-        <div class="success">
-            <?php if (isset($_SESSION['message']) && $_SESSION['message'] == 'update_profile_success'): ?>
-                <p>Profiländerungen wurden erfolgreich gespeichert.</p>
-            <?php elseif (isset($_SESSION['message']) && $_SESSION['message'] == 'create_review_success'): ?>
-                <p>Review erfolgreich erstellt.</p>
-            <?php endif; ?>
-            <?php unset($_SESSION['message']); ?>
-        </div>
+        <?php if (isset($_SESSION['message']) && in_array($_SESSION['message'], ['update_profile_success', 'create_review_success'])): ?>
+            <div class="success">
+                <?php if ($_SESSION['message'] == 'update_profile_success'): ?>
+                    <p>Profiländerungen wurden erfolgreich gespeichert.</p>
+                <?php elseif ($_SESSION['message'] == 'create_review_success'): ?>
+                    <p>Review erfolgreich erstellt.</p>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+        <?php unset($_SESSION['message']); ?>
 
         <section class="profile-card" aria-labelledby="profile-heading">
             <div class="profile-header">

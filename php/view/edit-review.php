@@ -2,12 +2,11 @@
 $title = 'Review bearbeiten';
 
 if (!isset($abs_path)) {
-  require_once "../../path.php";
+    require_once "../../path.php";
 }
 
 require_once $abs_path . "/php/session-start.php";
 require_once $abs_path . '/php/csrf.php';
-
 require_once $abs_path. '/php/load-edit-review.php';
 
 include_once $abs_path . '/php/include/header.php';
@@ -44,10 +43,9 @@ include_once $abs_path . '/php/include/header.php';
         <?php if ($reviewToEdit == null): ?>
             <p>Review nicht gefunden</p>
         <?php else: ?>
-        <form method="POST" action="<?php echo ROOT; ?>php/edit-review-execute.php" class="review-form" enctype="multipart/form-data">
-          <input type="hidden" name="csrf_token"
-                 value="<?php echo htmlspecialchars(generateCsrfToken()); ?>">
-          <!-- Review-ID as Hidden Field -->
+        
+        <form method="POST" action="<?php echo ROOT; ?>php/edit-review-execute.php" class="review-form" enctype="multipart/form-data" novalidate>
+          <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCsrfToken()); ?>">
           <input type="hidden" name="review_id" value="<?php echo $reviewToEdit->getId(); ?>">
 
           <div class="form-group">
@@ -69,19 +67,20 @@ include_once $abs_path . '/php/include/header.php';
           <div class="form-group">
             <label for="beer_type">Bierart</label>
             <select name="beer_type" id="beer_type">
-                <option value="Pils" <?= ($form_data['beer_type'] ?? '') == 'Pils' ? 'selected' : '' ?>>Pils</option>
-                <option value="Weizen" <?= ($form_data['beer_type'] ?? '') == 'Weizen' ? 'selected' : '' ?>>Weizen</option>
-                <option value="Helles" <?= ($form_data['beer_type'] ?? '') == 'Helles' ? 'selected' : '' ?>>Helles</option>
-                <option value="Dunkles" <?= ($form_data['beer_type'] ?? '') == 'Dunkles' ? 'selected' : '' ?>>Dunkles</option>
-                <option value="India Pale Ale" <?= ($form_data['beer_type'] ?? '') == 'India Pale Ale' ? 'selected' : '' ?>>India Pale Ale</option>
-                <option value="Bock" <?= ($form_data['beer_type'] ?? '') == 'Bock' ? 'selected' : '' ?>>Bock</option>
-                <option value="Kellerbier" <?= ($form_data['beer_type'] ?? '') == 'Kellerbier' ? 'selected' : '' ?>>Kellerbier</option>
-                <option value="Rotbier" <?= ($form_data['beer_type'] ?? '') == 'Rotbier' ? 'selected' : '' ?>>Rotbier</option>
-                <option value="Export" <?= ($form_data['beer_type'] ?? '') == 'Export' ? 'selected' : '' ?>>Export</option>
+                <?php $currentType = $form_data['beer_type'] ?? $beerType ?? ''; ?>
+                <option value="Pils" <?= $currentType == 'Pils' ? 'selected' : '' ?>>Pils</option>
+                <option value="Weizen" <?= $currentType == 'Weizen' ? 'selected' : '' ?>>Weizen</option>
+                <option value="Helles" <?= $currentType == 'Helles' ? 'selected' : '' ?>>Helles</option>
+                <option value="Dunkles" <?= $currentType == 'Dunkles' ? 'selected' : '' ?>>Dunkles</option>
+                <option value="India Pale Ale" <?= $currentType == 'India Pale Ale' ? 'selected' : '' ?>>India Pale Ale</option>
+                <option value="Bock" <?= $currentType == 'Bock' ? 'selected' : '' ?>>Bock</option>
+                <option value="Kellerbier" <?= $currentType == 'Kellerbier' ? 'selected' : '' ?>>Kellerbier</option>
+                <option value="Rotbier" <?= $currentType == 'Rotbier' ? 'selected' : '' ?>>Rotbier</option>
+                <option value="Export" <?= $currentType == 'Export' ? 'selected' : '' ?>>Export</option>
             </select>
           </div>
 
-          <div class="form-row">
+          <fieldset class="form-row">
             <legend class="visually-hidden">Technische Details zum Bier</legend>
             <div class="form-group flex-1">
               <label for="original_extract">Stammwürze (%)</label>
@@ -95,29 +94,24 @@ include_once $abs_path . '/php/include/header.php';
                      name="alcohol_content" id="alcohol_content"
                      value="<?php echo htmlspecialchars($alcoholContent); ?>">
             </div>
-          </div>
+          </fieldset>
 
           <fieldset class="form-group">
             <legend>Bewertung bearbeiten (1 bis 5 Sterne) <span aria-hidden="true">*</span></legend>
             <div class="star-rating-accessible">
-              <input type="radio" id="star1" name="rating" value="1"
-                <?php echo $rating == 1 ? 'checked' : ''; ?>>
+              <input type="radio" id="star1" name="rating" value="1" <?php echo $rating == 1 ? 'checked' : ''; ?>>
               <label for="star1"><span class="visually-hidden">1 Stern</span>★</label>
 
-              <input type="radio" id="star2" name="rating" value="2"
-                <?php echo $rating == 2 ? 'checked' : ''; ?>>
+              <input type="radio" id="star2" name="rating" value="2" <?php echo $rating == 2 ? 'checked' : ''; ?>>
               <label for="star2"><span class="visually-hidden">2 Sterne</span>★</label>
 
-              <input type="radio" id="star3" name="rating" value="3"
-                <?php echo $rating ? 'checked' : ''; ?>>
+              <input type="radio" id="star3" name="rating" value="3" <?php echo $rating == 3 ? 'checked' : ''; ?>>
               <label for="star3"><span class="visually-hidden">3 Sterne</span>★</label>
 
-              <input type="radio" id="star4" name="rating" value="4"
-                <?php echo $rating == 4 ? 'checked' : ''; ?>>
+              <input type="radio" id="star4" name="rating" value="4" <?php echo $rating == 4 ? 'checked' : ''; ?>>
               <label for="star4"><span class="visually-hidden">4 Sterne</span>★</label>
 
-              <input type="radio" id="star5" name="rating" value="5"
-                <?php echo $rating == 5 ? 'checked' : ''; ?>>
+              <input type="radio" id="star5" name="rating" value="5" <?php echo $rating == 5 ? 'checked' : ''; ?>>
               <label for="star5"><span class="visually-hidden">5 Sterne</span>★</label>
             </div>
           </fieldset>
@@ -149,7 +143,6 @@ include_once $abs_path . '/php/include/header.php';
 
         </div>
         <?php endif; ?>
-
       </div>
     </main>
   </div>
@@ -159,4 +152,3 @@ include_once $abs_path . '/php/include/header.php';
 
 </body>
 </html>
-

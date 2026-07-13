@@ -1,6 +1,6 @@
 <?php
 if (!isset($abs_path)) {
-  require_once "../../path.php";
+    require_once "../../path.php";
 }
 
 require_once $abs_path . "/php/session-start.php";
@@ -24,33 +24,32 @@ unset($_SESSION["email"]);
   <div class="form-card">
     <h1>Anmeldung</h1>
 
-    <div class="alert">
-    <?php if (isset($_SESSION["message"]) && $_SESSION["message"] == "login_failed"): ?>
-      <p>E-Mail oder Passwort ist falsch.</p>
-    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "missing_parameters"): ?>
-      <p>Es fehlen Parameter.</p>
-    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "missing_required_parameters"): ?>
-      <p>Es fehlen notwendige Parameter.</p>
-    <?php elseif (isset($_SESSION["message"]) && $_SESSION["message"] == "registration_success"): ?>
-      <p class="success">Registrierung erfolgreich.</p>
+    <?php if (isset($_SESSION["message"]) && in_array($_SESSION["message"], ["login_failed", "missing_parameters", "missing_required_parameters", "registration_success"])): ?>
+      <div class="alert">
+        <?php if ($_SESSION["message"] == "login_failed"): ?>
+          <p>E-Mail oder Passwort ist falsch.</p>
+        <?php elseif ($_SESSION["message"] == "missing_parameters"): ?>
+          <p>Es fehlen Parameter.</p>
+        <?php elseif ($_SESSION["message"] == "missing_required_parameters"): ?>
+          <p>Es fehlen notwendige Parameter.</p>
+        <?php elseif ($_SESSION["message"] == "registration_success"): ?>
+          <p class="success">Registrierung erfolgreich.</p>
+        <?php endif; ?>
+      </div>
     <?php endif; ?>
-    <?php
-        unset($_SESSION["message"]);
-    ?>
+    <?php unset($_SESSION["message"]); ?>
 
     <form method="POST" action="<?php echo ROOT; ?>php/login-execute.php" class="review-form" novalidate>
-      <input type="hidden" name="csrf_token"
-             value="<?php echo htmlspecialchars(generateCsrfToken()); ?>">
+      <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCsrfToken()); ?>">
+      
       <div class="form-group">
-        <label for="username">E-Mail <span aria-hidden="true">*</span></label>
-        <input type="email" id="username" name="email" value="<?= htmlspecialchars($email)?>"
-               required aria-required="true">
+        <label for="email">E-Mail <span aria-hidden="true">*</span></label>
+        <input type="email" id="email" name="email" value="<?= htmlspecialchars($email) ?>" required aria-required="true">
       </div>
 
       <div class="form-group">
         <label for="password">Passwort <span aria-hidden="true">*</span></label>
-        <input type="password" id="password" name="password"
-               required aria-required="true">
+        <input type="password" id="password" name="password" required aria-required="true">
       </div>
 
       <div class="form-footer-actions">
@@ -60,8 +59,8 @@ unset($_SESSION["email"]);
         </div>
         <a href="index.php" class="button-secondary">Abbrechen</a>
       </div>
-
     </form>
+
   </div>
 </main>
 

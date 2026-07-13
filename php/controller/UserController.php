@@ -93,7 +93,8 @@
                 $this->redirect("registration.php");
             }
         }catch(UserNotFoundException $e){
-            $this->handleUserNotFoundException();
+            $_SESSION["message"] = "invalid_registration_link";
+            $this->redirect("registration.php");
         }catch(InternalErrorException $e){
             $this->handleInternalErrorException();
         }

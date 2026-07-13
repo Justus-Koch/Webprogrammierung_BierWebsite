@@ -82,7 +82,7 @@ include_once $abs_path . '/php/include/header.php';
             </select>
           </div>
 
-          <div class="form-row">
+          <fieldset class="form-row">
             <legend class="visually-hidden">Technische Details</legend>
             <div class="form-group flex-1">
               <label for="original_extract">Stammwürze (%)</label>
@@ -96,7 +96,7 @@ include_once $abs_path . '/php/include/header.php';
                   name="alcohol_content" id="alcohol_content"
                 value="<?= htmlspecialchars($form_data['alcohol_content'] ?? '') ?>">
             </div>
-          </div>
+          </fieldset>
 
           <fieldset class="form-group">
             <legend>Bewertung bearbeiten (1 bis 5 Sterne) <span aria-hidden="true">*</span></legend>
@@ -110,7 +110,7 @@ include_once $abs_path . '/php/include/header.php';
               <label for="star2"><span class="visually-hidden">2 Sterne</span>★</label>
 
               <input type="radio" id="star3" name="rating" value="3"
-                <?php echo $rating ? 'checked' : ''; ?>>
+                <?php echo $rating == 3 ? 'checked' : ''; ?>>
               <label for="star3"><span class="visually-hidden">3 Sterne</span>★</label>
 
               <input type="radio" id="star4" name="rating" value="4"

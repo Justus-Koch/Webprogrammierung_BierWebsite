@@ -17,12 +17,12 @@ class UserManagementPDOSQLite implements UserManagementDAO{
         return self::$instance;
     }
 
-    public function saveUser($email, $password, $token, $nickname=null){
-        try{
-            if(empty($nickname)){
-                $nickname="Bierliebhaber";
+    public function saveUser($email, $password, $token, $nickname = null) {
+        try {
+            if (empty($nickname)) {
+                $nickname = "Bierliebhaber";
             }
-            $profile_picture="profile_picture.jpg";
+            $profile_picture = "profile_picture.jpg";
             $db = getConnection();
 
             $db->exec('BEGIN IMMEDIATE TRANSACTION'); 
@@ -31,21 +31,37 @@ class UserManagementPDOSQLite implements UserManagementDAO{
             $checkStmt = $db->prepare($checkSql);
             $checkStmt->execute([$email]);
             if ($checkStmt->fetch()) {
+                $db->exec('ROLLBACK');
                 return false;
             }
-            $sql = "INSERT INTO user (email, password, nickname, profile_picture, token) VALUES (?, ?, ?, ?, ?)";
-            $command = $db->prepare($sql);
-            if (!$command) {
-                throw new InternalErrorException();
+
+            $checkToken = "SELECT user_id FROM user WHERE email = ? AND is_active = 0 LIMIT 1";
+            $checkTokenStmt = $db->prepare($checkToken);
+            $checkTokenStmt->execute([$email]);
+            $inactiveUser = $checkTokenStmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($inactiveUser) {
+                $updateSql = "UPDATE user SET token = ?, password = ?, nickname = ? WHERE email = ? AND is_active = 0";
+                $updateSqlStmt = $db->prepare($updateSql);
+                $updateSqlStmt->execute([$token, $password, $nickname, $email]);
+                
+                $result = $inactiveUser['user_id'];
+            } else {
+                $sql = "INSERT INTO user (email, password, nickname, profile_picture, token) VALUES (?, ?, ?, ?, ?)";
+                $command = $db->prepare($sql);
+                if (!$command->execute([$email, $password, $nickname, $profile_picture, $token])) {
+                    throw new InternalErrorException();
+                }
+                $result = $db->lastInsertId();
             }
-            if (!$command->execute(array($email, $password, $nickname, $profile_picture, $token))){
-                throw new InternalErrorException();
-            }
-            $lastId = $db->lastInsertId();
+
             $db->exec('COMMIT');
-            return $lastId;
-        }catch(PDOException $exc){
-            $db->exec('ROLLBACK');
+            return $result;
+
+        } catch (PDOException $exc) {
+            if (isset($db)) {
+                $db->exec('ROLLBACK');
+            }
             throw new InternalErrorException();
         }
     }
