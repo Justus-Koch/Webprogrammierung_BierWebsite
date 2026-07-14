@@ -94,6 +94,7 @@ class ReviewController
 
 
       $_SESSION['message'] = 'create_review_success';
+      unset($_SESSION['form_data']);
       $this->redirect("profile.php");
     } catch (InternalErrorException $e) {
       $this->handleInternalErrorException();

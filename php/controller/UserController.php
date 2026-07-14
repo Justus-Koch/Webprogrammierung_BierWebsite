@@ -20,7 +20,7 @@
                 $_SESSION["message"] = "login_success";
                 session_regenerate_id(true);
                 $_SESSION["userID"] = $userID;
-                error_log("user id bei login gesetzt". $_SESSION["userID"]);
+                unset($_SESSION["email"]);
                 $this->redirect("index.php");
             }else{
                 $_SESSION["message"] = "login_failed";
@@ -69,6 +69,8 @@
 
             $_SESSION["message"] = "email_sent";
             $_SESSION["mail_file"] = ROOT . $dir_name . $filename;
+            unset($_SESSION["nickname"]);
+            unset($_SESSION["email"]);
             $this->redirect("registration.php");
         }catch(InternalErrorException $e){
             error_log("Registrierungsfehler: " . $e);
