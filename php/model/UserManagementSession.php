@@ -26,14 +26,16 @@
                 // Dummy Daten einfügen
                 $numOfUsers = 3;
                 for ($i=0; $i < $numOfUsers; $i++){
-                    $this->users[$i] = new User($i, "bier@gmail.com", "bier", "Bierliebhaber".$i, "bier.jpg");
+                    $newUser = new User($i, "bier@bier.de", password_hash("123", PASSWORD_DEFAULT), "abc", "Bierliebhaber".$i, "bier.jpg");
+                    $newUser->activate();
+                    $this->users[$i] = $newUser;
                 }
                 $_SESSION["users"] = serialize($this->users);
                 $_SESSION["nextID"] = $numOfUsers;
             }
         }
 
-        public function saveUser($email, $password, $nickname=null){
+        public function saveUser($email, $password, $token, $nickname=null){
             $id = $_SESSION["nextID"];
             if(empty($nickname)){
                 $nickname="Bierliebhaber".$id;
@@ -42,15 +44,31 @@
                 $profile_picture="profile_picture.jpg";
             }
             
-            $newUser = new User($id, $email, $password, $nickname, $profile_picture);
+            $newUser = new User($id, $email, $password, $token, $nickname, $profile_picture);
             $this->users[$id] = $newUser;
             $_SESSION["nextID"] = $id + 1;
             $_SESSION["users"] = serialize($this->users);
             return true;
         }
 
-        public function confirmUser($token){
-            // TODO implement
+        public function confirmUser($token) {
+            $userFound = false;
+
+            foreach ($this->users as $user) {
+                if ($user->getToken() === $token) {
+                    $user->activate();
+                    $userFound = true;
+                    break;
+                }
+            }
+
+            if (!$userFound) {
+                throw new UserNotFoundException();
+            }
+
+            $_SESSION["users"] = serialize($this->users);
+
+            return true;
         }
 
         public function findUser($id){
@@ -82,7 +100,7 @@
 
         public function login($email, $password){
             foreach ($this->users as $user){
-                if($email === $user->getEmail() && password_verify($password, $user->password)){
+                if($email === $user->getEmail() && password_verify($password, $user->getPassword())){
                     return $user->getID();
                 }
             }

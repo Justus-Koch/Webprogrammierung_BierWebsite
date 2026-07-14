@@ -7,14 +7,16 @@
         private ?string $profile_picture;
         public $favorites;
         private bool $is_active;
+        private ?string $token;
         
-        public function __construct(int $id, string $email, string $password, string $nickname=null, string $profile_picture=null){
+        public function __construct(int $id, string $email, string $password, string $token = "abc", string $nickname=null, string $profile_picture=null){
             $this->id = $id;
             $this->email = $email;
             $this->password = $password;
+            $this->token = $token;
             $this->nickname = $nickname;
             $this->profile_picture = $profile_picture;
-            $this->is_active = FALSE;
+            $this->is_active = false;
             $this->favorites = [];
         }
 
@@ -39,7 +41,15 @@
         }
 
         public function activate(){
-            $this->is_active = TRUE;
+            $this->is_active = true;
+        }
+
+        public function isActive(){
+            return $this->is_active;
+        }
+
+        public function getToken(){
+            return $this->token;
         }
 
         public function update($nickname, $profile_picture){

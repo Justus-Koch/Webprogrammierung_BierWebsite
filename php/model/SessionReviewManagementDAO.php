@@ -121,7 +121,7 @@ class SessionReviewManagementDAO implements ReviewManagementDAO
 
   public function update($review, $user_id) {
     foreach ($this->reviews as $key => $value) {
-      if ($value->getId() === $review->getId() && $value->getAuthorId === $user_id) {
+      if ($value->getId() === $review->getId() && $value->getAuthorId() === $user_id) {
         $this->reviews[$key] = $review;
         $_SESSION["reviews"] = serialize($this->reviews);
         return;
@@ -132,7 +132,7 @@ class SessionReviewManagementDAO implements ReviewManagementDAO
 
   public function delete($id, $user_id) {
     foreach ($this->reviews as $key => $value) {
-      if ($value->getId() === $id && $value->getAuthorId === $user_id) {
+      if ($value->getId() === $id && $value->getAuthorId() === $user_id) {
         array_splice($this->reviews, $key, 1);
         $_SESSION["reviews"] = serialize($this->reviews);
         return;

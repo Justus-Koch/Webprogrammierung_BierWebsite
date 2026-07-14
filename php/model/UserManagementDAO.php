@@ -8,10 +8,10 @@
     interface UserManagementDAO{
 
         /**
-         * Saves a new user with the given email, password and nickname.
+         * Saves a new user with the given email, password, token and nickname.
          * Throws an InternalErrorException if there is an internal error.
          */
-        function saveUser($email, $password, $nickname);
+        function saveUser($email, $password, $token, $nickname);
 
         /**
          * Confirms the registration of the user with the given token.
