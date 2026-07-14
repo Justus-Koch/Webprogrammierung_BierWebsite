@@ -105,7 +105,7 @@ class UserManagementPDOSQLite implements UserManagementDAO{
             if(empty($userData)){
                 throw new UserNotFoundException();
             }else{
-                return new User($id, $userData->email, $userData->password, $userData->nickname, $userData->profile_picture);
+                return new User($id, $userData->email, $userData->password, $userData->token, $userData->nickname, $userData->profile_picture);
             }
         }catch(PDOException $exc){
             throw new InternalErrorException();
