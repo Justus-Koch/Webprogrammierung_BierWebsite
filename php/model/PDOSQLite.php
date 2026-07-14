@@ -78,8 +78,8 @@ function createDB()
                  VALUES (?, ?, ?, ?, ?, ?)"
       );
       $stmt->execute([
-        'schluckspecht@prost.de',
-        password_hash('bier123', PASSWORD_DEFAULT),
+        'bier@bier.de',
+        password_hash('123', PASSWORD_DEFAULT),
         'Schluckspecht',
         'profile_picture.jpg',
         'abc', 1
@@ -87,35 +87,54 @@ function createDB()
       $user1Id = $db->lastInsertId();
 
       $stmt->execute([
-        'bierabetiker@prost.de',
-        password_hash('bier456', PASSWORD_DEFAULT),
+        'weizen@weizen.de',
+        password_hash('123', PASSWORD_DEFAULT),
         'Bierabetiker',
         'profile_picture.jpg',
         'abc', 1
       ]);
       $user2Id = $db->lastInsertId();
 
+      $stmt->execute([
+        'pils@pils.de',
+        password_hash('123', PASSWORD_DEFAULT),
+        'Bierliebhaber',
+        'profile_picture.jpg',
+        'abc', 1
+      ]);
+      $user3Id = $db->lastInsertId();
+
       $reviewStmt = $db->prepare(
         "INSERT INTO review
                     (beer_name, beer_type, alcohol_content, original_gravity,
-                     rating, content, picture, user_id)
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+                     rating, content, picture, user_id, date)
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
       );
 
       $reviewStmt->execute([
         'Paulaner Helles', 'Helles', 5.0, 11.9, 4,
         'Ein leckeres helles Bier aus Bayern. Gschichten ausm Paulaner Garten.',
-        'bier.jpg', $user1Id
+        'bier.jpg', $user1Id, date('d/m/Y H:i')
       ]);
       $reviewStmt->execute([
         'Staropramen Dunkel', 'Dunkles', 5.2, 12.7, 3,
         'Ein Schluck Tschechien. Prost meine Mit-Bierabetiker.',
-        'bier.jpg', $user2Id
+        'bier.jpg', $user2Id, date('d/m/Y H:i')
       ]);
       $reviewStmt->execute([
         'Augustiner Lagerbier Hell', 'Helles', 5.2, 11.7, 5,
         'Das beste Bier Münchens. Punkt.',
-        'bier.jpg', $user1Id
+        'bier.jpg', $user1Id, date('d/m/Y H:i')
+      ]);
+      $reviewStmt->execute([
+        'Spaten Münchner Hell', 'Helles', 5.2, 11.7, 5,
+        'Lecker Bierchen.',
+        'bier.jpg', $user3Id, date('d/m/Y H:i')
+      ]);
+      $reviewStmt->execute([
+        'Jever Pilsener', 'Pils', 4.9, 11.3, 2,
+        'Nicht so lecker.',
+        'bier.jpg', $user1Id, date('d/m/Y H:i')
       ]);
     }
     unset($db);

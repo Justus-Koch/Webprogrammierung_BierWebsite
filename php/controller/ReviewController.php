@@ -87,7 +87,7 @@ class ReviewController
           $_POST['alcohol_content'],
           $_POST['rating'],
           $_SESSION['userID'],
-          date('d/m/Y'),
+          date('d/m/Y H:i'),
           $_POST['content'],
           $_POST['original_extract'],
           $new_name);
