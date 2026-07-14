@@ -55,14 +55,14 @@ unset($_SESSION["email"]);
         <?php endif; ?>
       </div>
     <?php endif; ?>
-    <?php 
-      unset($_SESSION["message"]); 
+    <?php
+      unset($_SESSION["message"]);
       unset($_SESSION["mail_file"]);
     ?>
 
     <form method="post" action="<?php echo ROOT; ?>php/registration-execute.php" class="review-form" novalidate>
       <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCsrfToken()); ?>">
-      
+
       <div class="form-group">
         <label for="nickname">Nickname (max. 50 Zeichen)<span aria-hidden="true">*</span></label>
         <input type="text" id="nickname" name="nickname" value="<?= htmlspecialchars($nickname) ?>" placeholder="Dein Nickname" required aria-required="true" autocomplete="nickname">
@@ -86,8 +86,8 @@ unset($_SESSION["email"]);
       <div class="checkbox-group">
         <input type="checkbox" id="checkbox_privacy" name="checkbox_privacy" value="1" required aria-required="true">
         <label for="checkbox_privacy">
-          Ich akzeptiere die <a href="<?php echo ROOT; ?>php/view/datenschutz.php">Datenschutzerklärung</a>
-          und die <a href="<?php echo ROOT; ?>php/view/nutzungsbedingungen.php">Nutzungsbedingungen</a>.<span aria-hidden="true">*</span>
+          Ich akzeptiere die <a href="<?php echo ROOT; ?>php/view/data-protection.php">Datenschutzerklärung</a>
+          und die <a href="<?php echo ROOT; ?>php/view/terms-of-use.php">Nutzungsbedingungen</a>.<span aria-hidden="true">*</span>
         </label>
       </div>
 
